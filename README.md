@@ -18,7 +18,7 @@
 
 Interactive Epidemics Modelling dashboard created using Streamlit and deployed on an Amazon Web Services (AWS) EC2 Linux Instance. In this dashboard, has been used COVID-19 as example case study (in order to provide a practical demonstration) but by changing the modelling parameters (eg. SIR model), parts of this dashboard toolkit can be used also to model many other types of epidemics in general. 
 
-![](C:\Users\hp\Dropbox\Research Project\Dashboard\Epidemics-Modelling\dist\epid.jpg)
+![](.\dist\epid.jpg)
 
 This dashboard is currently available live at [this link.](http://3.22.240.181:8501)
 
