@@ -1,0 +1,178 @@
+\documentclass[a4paper,12pt,twoside]{memoir} %memoir, report (switch to update)
+%\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx} % including images
+\graphicspath{ {./images/} } % images file path
+\usepackage{subfig}
+\usepackage{amssymb}
+\usepackage{epigraph}
+\usepackage{listings}
+\usepackage{nccmath}
+\usepackage{caption}
+% \usepackage{enumitem}
+\usepackage{fancyhdr} % Adding chapter and page number header
+\usepackage{emptypage}
+\usepackage[toc,page]{appendix}
+\usepackage{pgfgantt}
+\usepackage{tcolorbox}
+\usepackage{pdfpages} % Adding project brief as pdf
+\usepackage{gensymb}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{4}
+\usepackage{amsmath}
+
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\renewcommand{\thefootnote}{\roman{footnote}}
+
+%\usepackage{titlesec} % Shift title page up
+\hypersetup{   % Making table of contents interactive 
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage{hyperref}
+\urlstyle{same}
+\usepackage[compact]{titlesec}
+
+\usepackage{tocbasic} % Reduce spacing in table of contents
+\DeclareTOCStyleEntry[
+  beforeskip=.2em plus 1pt,% default is 1em plus 1pt
+  pagenumberformat=\textbf
+]{tocline}{chapter}
+
+
+\titlespacing{\section}{0pt}{*0}{*0} % Reduce spacing
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+\titleformat{\chapter}[display]  %Shifting title page up
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{5pt}{\Huge}
+
+\titlespacing{\chapter}{0pt}{-50pt}{-10pt}
+\include{thesis.preamble}
+
+\setlength{\parskip}{5pt} % Reduce spacing
+\setlength{\parsep}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\usepackage{tocloft}
+\setlength\cftparskip{-2pt}
+\setlength\cftbeforechapskip{0pt}
+\usepackage[left=3.5cm,right=2.4cm,top=2.4cm, bottom =2.4cm]{geometry} % Setting margin
+
+\let\OLDthebibliography\thebibliography %Bibliography spacing
+\renewcommand\thebibliography[1]{
+  \OLDthebibliography{#1}
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 0.3ex}
+}
+
+\begin{document}
+
+\title{\LARGE {\bf Causal Reasoning in Machine Learning}\\
+ \vspace*{6mm}
+}
+
+\author{Author: Pier Paolo Ippolito}
+\submitdate{September 15, 2020}
+
+\normallinespacing
+\maketitleint
+
+\cleardoublepage
+\thispagestyle{empty}
+\input{acknowledgements/quote.tex}
+\preface
+\input{acknowledgements/acknowledgements}
+\pagenumbering{roman}
+\input{statement/statement}
+\input{abstract/abstract}
+\input{list/list.tex}
+% \input{figtablist/figtablist.tex}
+%\lstlistoflistings
+% Making list of equations
+%%gmedina solution
+% \newcommand{\listequationsname}{List of Equations}
+% \newlistof{myequations}{equ}{\listequationsname}
+% \newcommand{\myequations}[1]{%
+% \addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}\par}
+% \setlength{\cftmyequationsnumwidth}{2.5em}% Width of equation number in List of Equations
+
+% \begin{document}
+
+% \listofmyequations
+
+% \chapter{sums}
+
+% \begin{equation}
+%     1 + 1 = 2
+% \end{equation}
+% \label{eq:2.1}
+% \myequations{sum}
+
+
+%\input{dedication/dedication}
+
+%\body
+\clearpage
+
+\begingroup
+\setlength{\cftbeforetoctitleskip}{-4.5 pt}
+\tableofcontents
+\newgeometry{left=3.5cm,right=2.4cm,top=2.4cm, bottom =2.4cm}
+\let\cleardoublepage\relax
+\let\clearpage\relax
+\thispagestyle{empty}
+\setcounter{page}{0} % Set the page counter to 1
+\restoregeometry
+\endgroup
+
+\renewcommand{\thepage}{\arabic{page}}% Arabic page numbers
+\cleardoublepage
+
+\pagestyle{fancy} % Adding chapter and page number header
+\setlength{\headsep}{0.25in}
+\fancyhf{}
+\fancyhead[EL]{\nouppercase\leftmark}
+\fancyhead[OR]{\nouppercase\leftmark}
+\fancyhead[ER,OL]{\thepage}
+
+% \baselineskip=15pt Toggle to update line spacing, for preample change linespread
+% in icthesis.sty
+
+\input{introduction/introduction}
+\input{background/background.tex}
+\input{technicalprogress/technicalprogress}
+\input{AI/AI}
+\input{management/management.tex}
+\input{planwork/planwork.tex}
+
+% body of thesis comes here
+
+%\input{conclusion/conclusion}
+
+% To do: fix link table of contents Appendices and Abstract,
+
+%\appendix
+% appendices come here
+\newpage
+
+%\addcontentsline{toc}{chapter}{Bibliography}
+%\bibliographystyle{alpha}
+%\bibliography{bibliography/bibliography}
+\input{references/references}
+\newpage
+
+% Appendices does not have a chapter name to fix that we use this
+\fancyhead[EL]{\nouppercase\"Appendices}
+\fancyhead[OR]{\nouppercase\"Appendices}
+\fancyhead[ER,OL]{\thepage}
+
+\input{appendices/appendices}
+
+\end{document}
