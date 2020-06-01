@@ -7,12 +7,19 @@
 
 ## Table of Contents
 
+* [About This Branch](#about-this-branch)
 * [About the Project](#about-the-project)
 * [Getting Started](#getting-started)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
 * [Acknowledgments](#acknowledgments)
+
+## About This Branch
+
+In this branch is available a static website hosted on GitHub pages open to anyone on the web in order to provide additional visualization insights and an interactive summary of this research project.
+
+![](./dist/home.PNG)
 
 ## About The Project
 

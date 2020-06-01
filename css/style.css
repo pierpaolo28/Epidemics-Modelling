@@ -1,0 +1,136 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+/* https://codepen.io/bernardo/pen/ugApF */
+@import url(https://fonts.googleapis.com/css?family=Lato:900);
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  ;
+}
+
+div.foo {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.letter {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 8em;
+  margin: 0.2em;
+  position: relative;
+  color: #00B4F1;
+  transform-style: preserve-3d;
+  perspective: 400;
+  z-index: 1;
+}
+
+.letter:before, .letter:after {
+  position: absolute;
+  content: attr(data-letter);
+  transform-origin: top left;
+  top: 0;
+  left: 0;
+}
+
+.letter, .letter:before, .letter:after {
+  transition: all 0.3s ease-in-out;
+}
+
+.letter:before {
+  color: #fff;
+  text-shadow:
+    -1px 0px 1px rgba(255, 255, 255, .8),
+    1px 0px 1px rgba(0, 0, 0, .8);
+  z-index: 3;
+  transform:
+    rotateX(0deg) rotateY(-15deg) rotateZ(0deg);
+}
+
+.letter:after {
+  color: rgba(0, 0, 0, .11);
+  z-index: 2;
+  transform:
+    scale(1.08, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 1deg);
+}
+
+.letter:hover:before {
+  color: #fafafa;
+  transform:
+    rotateX(0deg) rotateY(-40deg) rotateZ(0deg);
+}
+
+.letter:hover:after {
+  transform:
+    scale(1.08, 1) rotateX(0deg) rotateY(40deg) rotateZ(0deg) skew(0deg, 22deg);
+}
+
+.center {
+  text-align: center;
+  width: 80%;
+  margin: 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.bg {
+  /* The image used */
+  background-image: url("../dist/ice.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
