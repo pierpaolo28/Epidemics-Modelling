@@ -7,12 +7,21 @@
 
 ## Table of Contents
 
+* [About This Branch](#about-this-branch)
 * [About the Project](#about-the-project)
 * [Getting Started](#getting-started)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
 * [Acknowledgments](#acknowledgments)
+
+## About This Branch
+
+This branch contains the Latex Thesis written at completion of this project. This branch has been created using Overleaf Git interface, allowing to systematically fetch the updates on this report either locally (eg. TexMaker) or remotely on Overleaf and send them to this branch for accurate version control.
+
+![](dist/leaf.png)
+
+
 
 ## About The Project
 
