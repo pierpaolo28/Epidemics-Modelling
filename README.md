@@ -17,7 +17,7 @@
 
 ## About This Branch
 
-In this branch is available a static website hosted on GitHub pages open to anyone on the web in order to provide additional visualization insights and an interactive summary of this research project.
+In this branch is available a static website hosted on GitHub pages open to anyone on the web in order to provide additional visualization insights and an interactive summary of this research project. The homepage of this website is currently available at [this link.](https://pierpaolo28.github.io/Epidemics-Modelling/)
 
 ![](./dist/home.PNG)
 
