@@ -147,6 +147,23 @@ All the plots obtained during a first exploration of the data using MATLAB are p
 \subsection{ML Classification}
 Once I constructed the full data-set containing all the five stimuli, I then decided to try to perform a classification task using Machine Learning. In order to do so, I made use of many Python libraries such as: pandas, numpy, matplotlib.pyplot, sklearn and itertools.
 
+% https://www.overleaf.com/learn/latex/algorithms
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwResult{Write here the result }
+ initialization\;
+ \While{While condition}{
+  instructions\;
+  \eIf{condition}{
+   instructions1\;
+   instructions2\;
+   }{
+   instructions3\;
+  }
+ }
+ \caption{How to write algorithms}
+\end{algorithm}
+
 The pre-processing part consisted of, firstly loading the data, standardising it and then dividing it in training (70\%) and test sets (30\%) for both the inputs (X) and outputs values (Y). The total number of rows in the data-set was equal to 1906500 (934750 rows about typical children EEG data and 971750 about ASD data). Because of the 70\% against 30\% train/test split ratio, 5338 predictions were made during the training set (1334550/250 time-steps) and 2288 predictions during the test set (571950/250 time-steps).
 
 I finally decided to train and then test the binary classification results using different algorithms such as: Logistic Regression, Support Vector Machines (SVM), Decision Trees, Linear Discriminant analysis (LDA) and Gaussian Naive Bayes Classifier (GNB). The classification results are show in Table 4.1. At the output, a zero represent a typical child and a one represents a child affected by ASD. The models used attempted to identify if a child is affected or not by ASD using just a single stimulus repetition ($128 channels \times250 timesteps \times1 repetition$).
