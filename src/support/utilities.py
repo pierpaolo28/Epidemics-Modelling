@@ -8,8 +8,8 @@ import streamlit as st
 import pages.world_view
 import pages.home
 
-
-@st.cache
+# Automatically clear cashes every 24hrs
+@st.cache(ttl=86400)
 def world_map(resources, df2):
     datasets = []
     for link in resources:

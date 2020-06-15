@@ -11,7 +11,6 @@ from support.utilities import world_map, world_plot, stats
 
 
 def write():
-    """Used to write the page in the app.py file"""
     with st.spinner("Loading World View ..."):
 
         st.title('COVID-19 World View')

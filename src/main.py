@@ -1,13 +1,17 @@
 import streamlit as st
 import pages.home
 import pages.world_view
+import pages.news
+import pages.credits
 import pages.modelling
 from support.utilities import world_map, world_plot, stats
 
 PAGES = {
     "Home": pages.home,
     "World View": pages.world_view,
+    "World News": pages.news,
     "Modelling": pages.modelling,
+    "Credits": pages.credits,
 }
 
 
@@ -33,6 +37,10 @@ def main():
         pages.home.write()
     elif selection == "World View":
         pages.world_view.write()
+    elif selection == "World News":
+        pages.news.write()
+    elif selection == "Credits":
+        pages.credits.write()
     elif selection == "Modelling":
         pages.modelling.write()
 
