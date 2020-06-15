@@ -4,10 +4,14 @@ from PIL import Image
 import requests
 import matplotlib.pyplot as plt
 from collections import Counter
+import nltk
 from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from wordcloud import WordCloud
 import config
+
+nltk.download('stopwords')
+nltk.download('vader_lexicon')
 
 newsapi = NewsApiClient(api_key=config.news_key)
 
@@ -103,11 +107,14 @@ def write():
             except:
                 fail = 1
             if fail == 0:
-                response = requests.get(url, stream=True)
-                img = Image.open(response.raw)
-                plt.imshow(img)
-                plt.axis('off')
-                st.pyplot()
+                try:
+                    response = requests.get(url, stream=True)
+                    img = Image.open(response.raw)
+                    plt.imshow(img)
+                    plt.axis('off')
+                    st.pyplot()
+                except:
+                    pass
             sent.append(desc)
         if max_articles == 0:
             st.write("No news available at the moement for this country.")
