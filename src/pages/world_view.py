@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 import matplotlib
 import matplotlib.pyplot as plt
 import pages.home
-from support.utilities import world_map, world_plot, stats
+from support.utilities import world_map, world_plot, stats, header_view
 
 
 def write():
@@ -21,7 +21,10 @@ def write():
                      'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv'
                      ]
 
-        data_list = world_map(resources, df2)
+        data_list, fig, fig2 = world_map(resources, df2)
+
+        st.plotly_chart(fig)
+        st.plotly_chart(fig2)
 
         totay_cases = data_list[0][data_list[0]['Dates']
                                    == data_list[0]['Dates'].unique()[::-1][0]]

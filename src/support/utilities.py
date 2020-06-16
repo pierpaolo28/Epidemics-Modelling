@@ -2,11 +2,87 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 import matplotlib
 import matplotlib.pyplot as plt
 import streamlit as st
 import pages.world_view
 import pages.home
+
+
+def header_view(data_list):
+    fig = make_subplots(rows=1, cols=3,
+                        specs=[[{"type": "indicator"}, {"type": "indicator"}, {"type": "indicator"}]])
+
+    fig.add_trace(
+        go.Indicator(
+            mode="number",
+            value=sum(data_list[0].iloc[:, -2]),
+            title="Cases",
+        ),
+        row=1, col=1
+    )
+
+    fig.add_trace(
+        go.Indicator(
+            mode="number",
+            value=sum(data_list[1].iloc[:, -2]),
+            title="Recovered",
+        ),
+        row=1, col=2
+    )
+
+    fig.add_trace(
+        go.Indicator(
+            mode="number",
+            value=sum(data_list[2].iloc[:, -2]),
+            title="Deaths",
+        ),
+        row=1, col=3
+    )
+
+    fig.update_layout(height=200, width=600, title_text="Today Summary")
+    # st.plotly_chart(fig)
+
+    message = data_list[0]["Country/Region"] + "<br>"
+    message += "Confirmed: " + data_list[0].iloc[:, -2].astype(str)
+
+    fig2 = go.Figure(data=go.Scattergeo(
+        locationmode="country names",
+        lon=data_list[0]["Long"],
+        lat=data_list[0]["Lat"],
+        hovertext=message,
+        showlegend=False,
+        marker=dict(
+            size=7,
+            opacity=0.9,
+            reversescale=True,
+            autocolorscale=True,
+            line=dict(
+                width=1,
+            ),
+            cmin=0,
+            color=data_list[0].iloc[:, -3],
+            cmax=max(data_list[0].iloc[:, -3]),
+            colorbar_title="Live Confirmed Cases",
+        )),
+    )
+
+    fig2.update_layout(
+        title="COVID-19 Worldwide Cases",
+        showlegend=True,
+        legend=dict(x=0.65, y=0.8),
+        geo=dict(
+            projection_type="orthographic",
+            showcoastlines=True,
+            showland=True,
+            showocean=True,
+            lakecolor="LightBlue"
+        ),
+    )
+
+    # st.plotly_chart(fig)
+    return fig, fig2
 
 # Automatically clear cashes every 24hrs
 @st.cache(ttl=86400)
@@ -16,7 +92,7 @@ def world_map(resources, df2):
         df = pd.read_csv(link)
         df = df[df['Country/Region'] != 'Diamond Princess']
         df = df[df['Country/Region'] != 'MS Zaandam']
-        df = df.drop(['Province/State', 'Lat', 'Long'], axis=1)
+        df = df.drop(['Province/State'], axis=1)
         df = df.reset_index(drop=True)
         df = df.groupby('Country/Region').sum()
         df = df.reset_index()
@@ -59,17 +135,25 @@ def world_map(resources, df2):
                 code2.append('NA')
 
         df['code'] = code2
-        df = df.melt(id_vars=["Country/Region", "code"],
-                     var_name="Dates",
-                     value_name="Cases")
         datasets.append(df)
-    return datasets
+
+    fig, fig2 = header_view(datasets)
+
+    for i in range(len(datasets)):
+        datasets[i] = datasets[i].drop(
+            ['Lat', 'Long'], axis=1)
+        datasets[i] = datasets[i].melt(
+            id_vars=["Country/Region", "code"],
+            var_name="Dates",
+            value_name="Cases")
+
+    return datasets, fig, fig2
 
 
 def world_plot(df, up, low, name):
     fig = px.choropleth(df, locations="code", hover_name="Country/Region",
                         animation_frame="Dates",
-                        color_continuous_scale=px.colors.sequential.Viridis,
+                        color_continuous_scale=px.colors.sequential.Viridis[::-1],
                         color="Cases",
                         title="Covid-19 World "+str(name),
                         range_color=[low, up])

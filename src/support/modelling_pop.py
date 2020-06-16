@@ -15,18 +15,21 @@ class Person:
         self.x_dir, self.y_dir = np.cos(angle), np.sin(angle)
         self.reabilitation = 0
 
-    def step_ahead(self, community, proximity, contagiousness, rand_move=False):
-        self = contacts(self, community, proximity, contagiousness)
-        self = new_pos(self, rand_move)
+    def step_ahead(self, community, proximity, contagiousness, no_move, deaths_p):
+        self = contacts(self, community, proximity, contagiousness, deaths_p)
+        self = new_pos(self, no_move)
 
 
-def contacts(ind, community, proximity, unlikelyness_of_contact):
-    if ind.situation == 2:
+def contacts(ind, community, proximity, unlikelyness_of_contact, p_died):
+    if (ind.situation == 2) or (ind.situation == 3):
         pass
     elif ind.situation == 1:
-        ind.reabilitation += 1
-        if ind.reabilitation >= 14:
-            ind.situation = 2
+        if np.random.choice(2, 1, p=[1-p_died, p_died])[0] == 0:
+            ind.reabilitation += 1
+            if ind.reabilitation >= 14:
+                ind.situation = 2
+        else:
+            ind.situation = 3
     else:
         close_people = 0
         for friend in community:
@@ -39,7 +42,7 @@ def contacts(ind, community, proximity, unlikelyness_of_contact):
     return ind
 
 
-def check_bounds(ind, x_or_y, travelled_dist, i, rand_move):
+def check_bounds(ind, x_or_y, travelled_dist, i, no_move):
     if ind.position[i] + x_or_y*travelled_dist < 0:
         updated_pos = -ind.position[i] + (-x_or_y*travelled_dist)
         updated_dir = -x_or_y
@@ -49,37 +52,37 @@ def check_bounds(ind, x_or_y, travelled_dist, i, rand_move):
         updated_dir = -x_or_y
     else:
         updated_pos = ind.position[i] + x_or_y*travelled_dist
-        if rand_move:
-            updated_dir = np.random.uniform(-1, 1)
+        if no_move:
+            updated_dir = 0
         else:
             updated_dir = x_or_y
     return updated_pos, updated_dir
 
 
-def new_pos(ind, rand_move):
+def new_pos(ind, no_move):
     travelled_dist = ind.speed*np.random.random()
     ind.position[0], ind.x_dir = check_bounds(
-        ind, ind.x_dir, travelled_dist, 0, rand_move)
+        ind, ind.x_dir, travelled_dist, 0, no_move)
     ind.position[1], ind.y_dir = check_bounds(
-        ind, ind.y_dir, travelled_dist, 1, rand_move)
+        ind, ind.y_dir, travelled_dist, 1, no_move)
     return ind
 
 
 def pop_simulation(size, iterations, probs_positives,
                    grid_limits, min_contact_radious,
-                   unlikelyness_of_spread, chaotic=False):
+                   unlikelyness_of_spread, static, d_p):
     population = []
     for i in range(0, size):
         population.append(Person(np.random.choice(2, 1, p=[1-probs_positives, probs_positives])[0],
-                                 [random.randrange(grid_limits[0]), random.randrange(
-                                     grid_limits[1])],
+                                 [random.uniform(0, grid_limits[0]), random.uniform(
+                                     0, grid_limits[1])],
                                  random.uniform(0, 1), grid_limits))
 
     negatives, positives, survivors = [], [], []
     x_res, y_res, state = [], [], []
-    index = []
+    index, deaths = [], []
     for it in range(iterations):
-        it_negative, it_positives, it_survivors = 0, 0, 0
+        it_negative, it_positives, it_survivors, it_dead = 0, 0, 0, 0
         for i, single in enumerate(population):
             x_res.append(single.position[0])
             y_res.append(single.position[1])
@@ -90,18 +93,22 @@ def pop_simulation(size, iterations, probs_positives,
             elif single.situation == 1:
                 it_positives += 1
                 state.append('Infected')
+            elif single.situation == 3:
+                it_dead += 1
+                state.append('Died')
             else:
                 it_survivors += 1
                 state.append('Recovered')
             single.step_ahead(population[:i]+population[i+1:], min_contact_radious,
-                              unlikelyness_of_spread, rand_move=chaotic)
+                              unlikelyness_of_spread, no_move=static, deaths_p=d_p)
         negatives.append(it_negative)
         positives.append(it_positives)
         survivors.append(it_survivors)
-    return negatives, positives, survivors, x_res, y_res, state, index
+        deaths.append(it_dead)
+    return negatives, positives, survivors, deaths, x_res, y_res, state, index
 
 
-def replay_plot(negatives, positives, survivors, df, grid_limits):
+def replay_plot(negatives, positives, survivors, deaths, df, grid_limits):
     fig = make_subplots(rows=2, cols=1)
 
     fig.add_trace(
@@ -122,6 +129,13 @@ def replay_plot(negatives, positives, survivors, df, grid_limits):
         go.Scatter(x=[i for i in range(len(negatives))], y=survivors,
                    mode="lines",
                    line=dict(width=2, color="orange"), name='Recovered',),
+        row=1, col=1
+    )
+
+    fig.add_trace(
+        go.Scatter(x=[i for i in range(len(negatives))], y=deaths,
+                   mode="lines",
+                   line=dict(width=2, color="black"), name='Died',),
         row=1, col=1
     )
 
@@ -182,6 +196,11 @@ def replay_plot(negatives, positives, survivors, df, grid_limits):
             mode="lines",
             line=dict(width=2, color="orange")),
             go.Scatter(
+            x=[i for i in range(k)],
+            y=deaths,
+            mode="lines",
+            line=dict(width=2, color="black")),
+            go.Scatter(
             x=df[(df['index'] == k) & (df['state'] == 'Susceptible')]['x_pos'],
             y=df[(df['index'] == k) & (df['state'] == 'Susceptible')]['y_pos'],
             mode='markers',
@@ -203,7 +222,7 @@ def replay_plot(negatives, positives, survivors, df, grid_limits):
                 color="orange")
         ),
         ],
-        traces=[0, 1, 2, 3, 4, 5])
+        traces=[0, 1, 2, 3, 4, 5, 6])
 
         for k in range(len(negatives))]
 
@@ -243,5 +262,5 @@ def replay_plot(negatives, positives, survivors, df, grid_limits):
     fig.update_xaxes(title_text="X", range=[0, grid_limits[0]], row=2, col=1)
     fig.update_yaxes(title_text="Y", range=[0, grid_limits[1]], row=2, col=1)
     fig.update_layout(height=600, width=800,
-                      title_text="Interactive SIR Simulation Modelling")
+                      title_text="Interactive Simulation Modelling")
     st.plotly_chart(fig)
