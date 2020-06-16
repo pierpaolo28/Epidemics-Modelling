@@ -4,13 +4,15 @@ import pages.world_view
 import pages.news
 import pages.credits
 import pages.modelling
+import pages.population
 from support.utilities import world_map, world_plot, stats
 
 PAGES = {
     "Home": pages.home,
     "World View": pages.world_view,
     "World News": pages.news,
-    "Modelling": pages.modelling,
+    "Population Modelling": pages.population,
+    "Desease Modelling": pages.modelling,
     "Credits": pages.credits,
 }
 
@@ -41,7 +43,9 @@ def main():
         pages.news.write()
     elif selection == "Credits":
         pages.credits.write()
-    elif selection == "Modelling":
+    elif selection == "Population Modelling":
+        pages.population.write()
+    elif selection == "Desease Modelling":
         pages.modelling.write()
 
 
