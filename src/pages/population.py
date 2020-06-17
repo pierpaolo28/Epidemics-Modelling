@@ -11,13 +11,20 @@ from support.modelling_pop import pop_simulation, replay_plot
 def write():
     with st.spinner("Loading Population Modelling ..."):
         st.title("Population Modelling")
-        probs_positives = 0.04
-        grid_limits = [2, 2]
+        probs_positives = 0.05
+        grid_max = [[0, 5], [0, 5]]
         iterations = 100
+        grids_types = {
+            'Single Community': [grid_max],
+            '2 Isolated Communities': [[[0, 1], [0, 1]], [[4, 5], [4, 5]]],
+            '2 Communities with shared central point': [grid_max, [[0, 1], [0, 1]], [[4, 5], [4, 5]]],
+            '4 Isolated Communities': [[[0, 1], [0, 1]], [[4, 5], [4, 5]], [[0, 1], [4, 5]], [[4, 5], [0, 1]]],
+            '4 Communities with shared central point': [grid_max, [[0, 1], [0, 1]], [[4, 5], [4, 5]], [[0, 1], [4, 5]], [[4, 5], [0, 1]]]
+        }
 
         size = st.slider("Population size: ",
                          min_value=1, max_value=500,
-                         value=100, step=10)
+                         value=20, step=10)
 
         d_p = st.slider("Death Probability: ",
                         min_value=0.0, max_value=1.0,
@@ -25,13 +32,17 @@ def write():
 
         min_contact_radious = st.slider("Contact radius: ",
                                         min_value=0.0, max_value=1.0,
-                                        value=0.3, step=0.01)
+                                        value=0.5, step=0.01)
 
         unlikelyness_of_spread = st.slider("Probability of how unlikely it is to spread the virus if within the contact radius: ",
                                            min_value=0.0, max_value=1.0,
-                                           value=0.9, step=0.01)
+                                           value=0.5, step=0.01)
 
         static = st.selectbox("Chaotic Population", [False, True])
+
+        grid_selection = st.selectbox(
+            "Types of communities", list(grids_types.keys()))
+        grid_limits = grids_types[grid_selection]
 
         negatives, positives, survivors, deaths, x_res, y_res, state, index = pop_simulation(size, iterations,
                                                                                              probs_positives,
@@ -44,10 +55,11 @@ def write():
         for i in list(df['index'].unique()):
             for j in list(df['state'].unique()):
                 if len(df[(df['index'] == i) & (df['state'] == j)]) == 0:
-                    df = df.append(pd.DataFrame([[grid_limits[0]+5, grid_limits[1]+5, j, i]],
+                    df = df.append(pd.DataFrame([[grid_max[0][1]+5, grid_max[1][1]+5, j, i]],
                                                 columns=df.columns))
 
-        replay_plot(negatives, positives, survivors, deaths, df, grid_limits)
+        replay_plot(negatives, positives, survivors,
+                    deaths, df, grid_max=grid_max)
         st.markdown("## Simulation Report")
         st.markdown("### Final population distribution")
         st.write("Number of Susceptible Individuals: ",
