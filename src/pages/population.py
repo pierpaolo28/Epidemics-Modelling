@@ -38,6 +38,10 @@ def write():
                                            min_value=0.0, max_value=1.0,
                                            value=0.5, step=0.01)
 
+        avg_age = st.slider("Average population age: ",
+                            min_value=1, max_value=100,
+                            value=65, step=5)
+        avg_age = avg_age/100
         static = st.selectbox("Chaotic Population", [False, True])
 
         grid_selection = st.selectbox(
@@ -49,7 +53,7 @@ def write():
                                                                                              grid_limits,
                                                                                              min_contact_radious,
                                                                                              unlikelyness_of_spread,
-                                                                                             static, d_p)
+                                                                                             static, d_p, avg_age)
         d = {'x_pos': x_res, 'y_pos': y_res, 'state': state, 'index': index}
         df = pd.DataFrame(data=d)
         for i in list(df['index'].unique()):
