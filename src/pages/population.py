@@ -11,6 +11,19 @@ from support.modelling_pop import pop_simulation, replay_plot
 def write():
     with st.spinner("Loading Population Modelling ..."):
         st.title("Population Modelling")
+        st.markdown(
+            "As described in the Desease Growth tab, the number of new cases can vary according to the following formula: ")
+        st.latex(r'''\Delta N_{d} = E \times p \times N_{d}''')
+        st.markdown(
+            """
+            Therefore, the only way we can be able to decrease the number of cases, is by decresing the values of $E$ and $p$.
+            This can happen for example:
+            - $E$ can decrease if travelling and meetings of people are reduced as much as possible.
+            - $p$ can be reduced instead for example by making less likely to catch the desease by taking precotions such as washing hands, wearing masks, avoid touching our faces, etc...
+            
+            This trend can be observed in the following proposed model by the **Contact Radius** ($E$) and **Probability of how unlikely it is to spread the virus if within the contact radius** (complementary of $p$) variables.
+            In this way, causal effects of social distancing and improved hygiene can be easily inspected. Furthermore, the role of dividing individuals in different communities is additionally studied.
+        """)
         probs_positives = 0.05
         grid_max = [[0, 5], [0, 5]]
         iterations = 100
@@ -42,7 +55,7 @@ def write():
                             min_value=1, max_value=100,
                             value=65, step=5)
         avg_age = avg_age/100
-        static = st.selectbox("Chaotic Population", [False, True])
+        static = st.selectbox("Static Population", [False, True])
 
         grid_selection = st.selectbox(
             "Types of communities", list(grids_types.keys()))

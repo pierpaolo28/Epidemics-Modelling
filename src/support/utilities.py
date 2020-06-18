@@ -135,6 +135,8 @@ def world_map(resources, df2):
                 code2.append('NA')
 
         df['code'] = code2
+        df.loc[df.loc[df['Country/Region'] == 'United Kingdom of Great Britain and Northern Ireland'].index,
+               'Country/Region'] = 'United Kingdom'
         datasets.append(df)
 
     fig, fig2 = header_view(datasets)
