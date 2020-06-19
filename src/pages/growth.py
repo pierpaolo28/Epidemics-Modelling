@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 from support.utilities import world_map
-from support.log_plots import process_data, exponential_view, log_view
+from support.log_plots import process_data, exponential_view, log_view, log, exp, fit_curve, fit_plot
 
 
 def write():
@@ -100,3 +100,38 @@ def write():
         st.latex(
             r'''Growth \; Factor = \dfrac{\Delta N_{d}}{\Delta N_{d-1}}''')
         st.markdown("A growth factor of more than one, will shows as that we are still going through an exponential growth, while a growth factor equal to 1 can tell us we might now be approaching our inflection point.")
+
+        # Daily
+        topten_weekly_results = []
+        for i in list(top_trends['Country/Region'].unique()):
+            single_weekly_results = []
+            for j in list(top_trends['Dates'].unique()):
+                week_cases = top_trends[(top_trends['Dates'] == j) & (
+                    top_trends['Country/Region'] == i)]['Cases'].values
+                if len(week_cases) == 0:
+                    single_weekly_results.append(0.0)
+                else:
+                    single_weekly_results.append(np.sum(week_cases))
+            topten_weekly_results.append(single_weekly_results)
+
+        orig, log_res, exp_res = [], [], []
+        top_three = list(today_top['Country/Region'][:3].values)
+        matches = dict(
+            zip(list(top_trends['Country/Region'].unique()), topten_weekly_results))
+        for name in top_three:
+            x = np.arange(len(matches[name]))
+            y = matches[name]
+            orig.append(y)
+            log_res.append(fit_curve(func_type=log, x=x,
+                                     y=y, bounds=([-np.inf, np.inf])))
+            exp_res.append(fit_curve(func_type=exp, x=x, y=y,
+                                     bounds=([0, 0, -100], [100, 0.99, 100])))
+
+        st.markdown("For a logistic curve at the turning point: ")
+        st.latex(
+            r'''Slope = Growth Factor/2 \Rightarrow\quad Doubling Time (DT) = \dfrac{ln(2)}{Growth Factor/2}''')
+        st.markdown("Instead, for an exponential curve: ")
+        st.latex(
+            r'''Slope = Growth Factor \Rightarrow\quad Doubling Time (DT) = \dfrac{ln(2)}{Growth Factor}''')
+        st.markdown("A worked out example, with the results from the top three countries with the most number of Coronavirus Cases right now, is available below.")
+        fit_plot(orig, log_res, exp_res, top_three)

@@ -3,6 +3,9 @@ import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.metrics import r2_score
+from scipy.optimize import curve_fit
 pd.options.mode.chained_assignment = None
 colorscale = px.colors.cyclical.HSV
 
@@ -215,3 +218,74 @@ def log_view(top_trends, list_weekly_cases, list_cases_change):
         title_text="Average confirmed cases from week To week")
     fig.update_yaxes(title_text="Average number of total cases")
     st.plotly_chart(fig)
+
+
+# Following: https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html
+# and: https://www.youtube.com/watch?v=54XLXg4fYsc
+def log(x, a, b, c, d):
+    num = (d - c)
+    dem = (1 + a*np.exp(-b*x))
+    return c + num/dem
+
+
+def exp(x, a, b, c):
+    return a*np.exp(b*x)+c
+
+
+def fit_curve(func_type, x, y, bounds):
+    popt, pcov = curve_fit(func_type, x, y, bounds=bounds)
+    if bounds[0] == -np.inf:
+        # For a logistic curve at the turning point, Slope = Growth rate/2 -> doubling time = ln(2) / (Growth rate/2)
+        doubling_time = np.log(2)/(popt[1]/2)
+    else:
+        # For an exponential curve, Slope = Growth rate -> doubling time = ln(2)/Growth rate
+        doubling_time = np.log(2)/popt[1]
+    # Using R^2 as our metric for goodness of fit
+    y_pred = func_type(x, *popt)
+    r2_res = r2_score(y, y_pred)
+    if r2_res > 0.85:
+        return y_pred, r2_res, doubling_time
+    else:
+        return [None], [None], [None]
+
+
+def fit_plot(orig, log_res, exp_res, top_three):
+    fig, ax = plt.subplots(nrows=1, ncols=3)
+    fig.set_size_inches(27.5, 10.5)
+
+    ax[0].plot(orig[0], color='black', label='Original Data', linewidth=3.0)
+    if len(log_res[0][0]) != 1:
+        ax[0].plot(log_res[0][0], '--', color='red',  label='Logistic ($R^2$=' + str(
+            round(log_res[0][1], 2)) + ', \n DT=' + str(round(log_res[0][2], 1)) + ' days)')
+    if len(exp_res[0][0]) != 1:
+        ax[0].plot(exp_res[0][0], '--', label='Exponential ($R^2$=' + str(
+            round(exp_res[0][1], 2)) + ', \n DT=' + str(round(exp_res[0][2], 1)) + ' days)')
+    ax[0].set_ylabel("Number of Cases", fontsize=34)
+    ax[0].set_title(top_three[0], fontsize=34)
+    ax[0].legend(fontsize=27)
+
+    ax[1].plot(orig[1], color='black', label='Original Data', linewidth=3.0)
+    if len(log_res[1][0]) != 1:
+        ax[1].plot(log_res[1][0], '--', color='red', label='Logistic ($R^2$=' + str(
+            round(log_res[1][1], 2)) + ', \n DT=' + str(round(log_res[1][2], 1)) + ' days)')
+    if len(exp_res[1][0]) != 1:
+        ax[1].plot(exp_res[1][0], '--', label='Exponential ($R^2$=' + str(
+            round(exp_res[1][1], 2)) + ', \n DT=' + str(round(exp_res[1][2], 1)) + ' days)')
+    ax[1].set_xlabel("Days", fontsize=34)
+    ax[1].set_title(top_three[1], fontsize=34)
+    ax[1].legend(fontsize=27)
+
+    ax[2].plot(orig[2], color='black', label='Original Data', linewidth=3.0)
+    if len(log_res[2][0]) != 1:
+        ax[2].plot(log_res[2][0], '--', color='red', label='Logistic ($R^2$=' + str(
+            round(log_res[2][1], 2)) + ', \n DT=' + str(round(log_res[2][2], 1)) + ' days)')
+    if len(exp_res[2][0]) != 1:
+        ax[2].plot(exp_res[2][0], '--', label='Exponential ($R^2$=' + str(
+            round(exp_res[2][1], 2)) + ', \n DT=' + str(round(exp_res[2][2], 1)) + ' days)')
+    ax[2].set_title(top_three[2], fontsize=34)
+    ax[2].legend(fontsize=27)
+
+    fig.suptitle('Logistic/Exponential Curve Fitting', fontsize=34)
+    fig.tight_layout()
+    fig.subplots_adjust(top=0.8)
+    st.pyplot()

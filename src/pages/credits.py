@@ -9,7 +9,9 @@ def write():
 
                     This project was possible thanks to the data provided by the 
                     [COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19) 
-                    and the [Python News API](https://newsapi.org/docs/client-libraries/python)
+                    and the [Python News API.](https://newsapi.org/docs/client-libraries/python)
+
+                    Additionally, part of the proposed analysis have been inspired by following part of the videos/lectures from [minutephysics](https://www.youtube.com/user/minutephysics), [3Blue1Brown](https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw) and [The Julia Programming Language](https://www.youtube.com/user/JuliaLanguage).
 
                     ## Contacts
 
