@@ -285,6 +285,13 @@ def fit_plot(orig, log_res, exp_res, top_three):
     ax[2].set_title(top_three[2], fontsize=34)
     ax[2].legend(fontsize=27)
 
+    ax[0].tick_params(axis="x", labelsize=20)
+    ax[1].tick_params(axis="x", labelsize=20)
+    ax[2].tick_params(axis="x", labelsize=20)
+    ax[0].tick_params(axis="y", labelsize=20)
+    ax[1].tick_params(axis="y", labelsize=20)
+    ax[2].tick_params(axis="y", labelsize=20)
+
     fig.suptitle('Logistic/Exponential Curve Fitting', fontsize=34)
     fig.tight_layout()
     fig.subplots_adjust(top=0.8)

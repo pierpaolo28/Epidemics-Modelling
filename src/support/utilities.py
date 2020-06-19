@@ -10,7 +10,7 @@ import pages.world_view
 import pages.home
 
 
-def header_view(data_list):
+def summary_view(data_list):
     fig = make_subplots(rows=1, cols=3,
                         specs=[[{"type": "indicator"}, {"type": "indicator"}, {"type": "indicator"}]])
 
@@ -43,7 +43,10 @@ def header_view(data_list):
 
     fig.update_layout(height=200, width=600, title_text="Today Summary")
     # st.plotly_chart(fig)
+    return fig
 
+
+def header_view(data_list):
     message = data_list[0]["Country/Region"] + "<br>"
     message += "Confirmed: " + data_list[0].iloc[:, -2].astype(str)
 
@@ -82,7 +85,7 @@ def header_view(data_list):
     )
 
     # st.plotly_chart(fig)
-    return fig, fig2
+    return fig2
 
 # Automatically clear cashes every 24hrs
 @st.cache(ttl=86400)
@@ -92,6 +95,8 @@ def world_map(resources, df2):
         df = pd.read_csv(link)
         df = df[df['Country/Region'] != 'Diamond Princess']
         df = df[df['Country/Region'] != 'MS Zaandam']
+        if len(datasets) == 0:
+            fig2 = header_view([df])
         df = df.drop(['Province/State'], axis=1)
         df = df.reset_index(drop=True)
         df = df.groupby('Country/Region').sum()
@@ -131,7 +136,6 @@ def world_map(resources, df2):
             try:
                 code2.append(df2[df2['name'] == i]['alpha-3'].values[0])
             except:
-                # print(i)
                 code2.append('NA')
 
         df['code'] = code2
@@ -139,7 +143,7 @@ def world_map(resources, df2):
                'Country/Region'] = 'United Kingdom'
         datasets.append(df)
 
-    fig, fig2 = header_view(datasets)
+    fig = summary_view(datasets)
 
     for i in range(len(datasets)):
         datasets[i] = datasets[i].drop(
