@@ -14,5 +14,6 @@ def write():
             """
                 Track and Tracing can be considered to be the most effective approach in order to take under control a pandemic.
                 Although, one of the main limitations of this approach, is that in less lethal deseases it might be difficult to correctly identify in time all the individuals infected (some might be asyntomatic).
+                Developing contact tracing apps using criptography, could therefore enable us to keep our privacy intact while reducing the risk of spreading the desease.
             """
         )
