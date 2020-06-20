@@ -61,7 +61,8 @@ def write():
             '''
             In order to make our more more realistic, we can then add an additional state E representing all the population 
             elements which are still in the incubation stage before becoming infected. In order to apply these modifications, we
-            just need to apdate $\\frac{\partial I}{\partial t}$ and add this extra stage before just before it.
+            just need to apdate $\\frac{\partial I}{\partial t}$ and add this extra stage before just before it. The only variable which needs to
+            be added compared to the SIR model is $\delta$ (the percentage of how many individuals move from the incubaation period to being infected).
             '''
         )
         st.latex(
