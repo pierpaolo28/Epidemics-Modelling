@@ -15,12 +15,11 @@ def sir_step_ahead(y, t, N, beta, gamma):
 
 
 def SIR_sim(N, sim_days, orig_infected, prob_infect, contact_with_people, days):
-    S0, I0, R0 = N-orig_infected, orig_infected, 0
+    y0 = N-orig_infected, orig_infected, 0
     beta = prob_infect*contact_with_people
     gamma = 1.0 / days
     R0 = beta/gamma
     t = np.linspace(0, sim_days-1, sim_days)
-    y0 = S0, I0, R0
     sim_res = odeint(sir_step_ahead, y0, t, args=(N, beta, gamma))
     S, I, R = sim_res.T
     return S, I, R, R0
@@ -97,20 +96,19 @@ def SIR_plot(negatives, positives, survivors, R0):
 def seir_step_ahead(y, t, N, beta, gamma, delta):
     S, E, I, R = y
     dsdt = -beta * I * (S / N)
-    dedt = beta * I * (S / N) - gamma * E
+    dedt = beta * I * (S / N) - delta * E
     didt = delta * E - gamma * I
     drdt = gamma * I
     return dsdt, dedt, didt, drdt
 
 
 def SEIR_sim(N, sim_days, orig_esposed, prob_infect, contact_with_people, days, inc_days):
-    S0, E0, I0, R0 = N-orig_esposed, orig_esposed, 0, 0
+    y0 = N-orig_esposed, orig_esposed, 0, 0
     beta = prob_infect*contact_with_people
     gamma = 1.0 / days
     delta = 1.0 / inc_days
     R0 = beta/gamma
     t = np.linspace(0, sim_days-1, sim_days)
-    y0 = S0, E0, I0, R0
     sim_res = odeint(seir_step_ahead, y0, t, args=(N, beta, gamma, delta))
     S, E, I, R = sim_res.T
     return S, E, I, R, R0
