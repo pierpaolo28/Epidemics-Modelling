@@ -75,7 +75,7 @@ def pop_simulation(size, iterations, probs_positives,
                    unlikelyness_of_spread, static, d_p, avg_age):
     population = []
     for grid_l in grid_lists:
-        for i in range(0, size):
+        for i in range(0, size//len(grid_lists)):
             population.append(Person(np.random.choice(2, 1, p=[1-probs_positives, probs_positives])[0],
                                      [random.uniform(grid_l[0][0], grid_l[0][1]),
                                       random.uniform(grid_l[1][0], grid_l[1][1])],

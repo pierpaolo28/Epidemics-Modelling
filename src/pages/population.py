@@ -37,7 +37,7 @@ def write():
 
         size = st.slider("Population size: ",
                          min_value=1, max_value=500,
-                         value=20, step=10)
+                         value=60, step=10)
 
         d_p = st.slider("Death Probability: ",
                         min_value=0.0, max_value=1.0,
@@ -45,7 +45,7 @@ def write():
 
         min_contact_radious = st.slider("Contact radius: ",
                                         min_value=0.0, max_value=1.0,
-                                        value=0.5, step=0.01)
+                                        value=0.4, step=0.01)
 
         unlikelyness_of_spread = st.slider("Probability of how unlikely it is to spread the virus if within the contact radius: ",
                                            min_value=0.0, max_value=1.0,
