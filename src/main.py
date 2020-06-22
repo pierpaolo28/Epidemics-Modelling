@@ -9,6 +9,7 @@ import pages.growth
 import pages.tracing
 import pages.seir
 import pages.virus_model
+import pages.hubs
 from support.utilities import world_map, world_plot, stats
 
 PAGES = {
@@ -18,6 +19,7 @@ PAGES = {
     "Desease growth": pages.growth,
     "Population Modelling": pages.population,
     "Track and Trace": pages.tracing,
+    "Central Hubs": pages.hubs,
     "SIR and SEIR Modelling": pages.modelling,
     "Advanced SEIR Modelling": pages.seir,
     "Coronavirus Modelling": pages.virus_model,
@@ -53,6 +55,8 @@ def main():
         pages.growth.write()
     elif selection == "Track and Trace":
         pages.tracing.write()
+    elif selection == "Central Hubs":
+        pages.hubs.write()
     elif selection == "Credits":
         pages.credits.write()
     elif selection == "Population Modelling":

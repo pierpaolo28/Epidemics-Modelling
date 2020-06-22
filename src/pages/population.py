@@ -22,7 +22,7 @@ def write():
             - $p$ can be reduced instead for example by making less likely to catch the desease by taking precotions such as washing hands, wearing masks, avoid touching our faces, etc...
             
             This trend can be observed in the following proposed model by the **Contact Radius** ($E$) and **Probability of how unlikely it is to spread the virus if within the contact radius** (complementary of $p$) variables.
-            In this way, causal effects of social distancing and improved hygiene can be easily inspected. Furthermore, the role of dividing individuals in different communities is additionally studied.
+            In this way, causal effects of social distancing and improved hygiene can be easily inspected. Furthermore, the role of dividing individuals in different communities is additionally studied. Having different communities with a central shared point and random infected initialization, can in fact resemble how contagious deseases hotspots can be created.
         """)
         probs_positives = 0.05
         grid_max = [[0, 5], [0, 5]]
