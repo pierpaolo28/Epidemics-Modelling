@@ -10,6 +10,7 @@ import pages.tracing
 import pages.seir
 import pages.virus_model
 import pages.hubs
+import pages.finance
 from support.utilities import world_map, world_plot, stats
 
 PAGES = {
@@ -20,6 +21,7 @@ PAGES = {
     "Population Modelling": pages.population,
     "Track and Trace": pages.tracing,
     "Central Hubs": pages.hubs,
+    "Finance Simulation": pages.finance,
     "SIR and SEIR Modelling": pages.modelling,
     "Advanced SEIR Modelling": pages.seir,
     "Coronavirus Modelling": pages.virus_model,
@@ -57,6 +59,8 @@ def main():
         pages.tracing.write()
     elif selection == "Central Hubs":
         pages.hubs.write()
+    elif selection == "Finance Simulation":
+        pages.finance.write()
     elif selection == "Credits":
         pages.credits.write()
     elif selection == "Population Modelling":
