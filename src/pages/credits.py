@@ -8,8 +8,9 @@ def write():
                     # Credits
 
                     This project was possible thanks to the data provided by the 
-                    [COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19) 
-                    and the [Python News API.](https://newsapi.org/docs/client-libraries/python)
+                    [COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19),
+                    the [Python News API.](https://newsapi.org/docs/client-libraries/python), the [World Bank Data](https://data.worldbank.org/indicator/SH.MED.BEDS.ZS) and the 
+                    [Department of Economic and Social Affairs of the United Nations](https://population.un.org/wpp/DataQuery/).
 
                     Additionally, part of the proposed analysis have been inspired by following part of the videos/lectures from [minutephysics](https://www.youtube.com/user/minutephysics), [3Blue1Brown](https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw), [The Julia Programming Language](https://www.youtube.com/user/JuliaLanguage) and [Henri Froese articles series](https://towardsdatascience.com/infectious-disease-modelling-part-i-understanding-sir-28d60e29fdfc).
 

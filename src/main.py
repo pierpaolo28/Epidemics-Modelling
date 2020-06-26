@@ -11,6 +11,7 @@ import pages.seir
 import pages.virus_model
 import pages.hubs
 import pages.finance
+import pages.vaccination
 from support.utilities import world_map, world_plot, stats
 
 PAGES = {
@@ -24,6 +25,7 @@ PAGES = {
     "Finance Simulation": pages.finance,
     "SIR and SEIR Modelling": pages.modelling,
     "Advanced SEIR Modelling": pages.seir,
+    "Vaccination Modelling": pages.vaccination,
     "Coronavirus Modelling": pages.virus_model,
     "Credits": pages.credits,
 }
@@ -69,6 +71,8 @@ def main():
         pages.modelling.write()
     elif selection == "Advanced SEIR Modelling":
         pages.seir.write()
+    elif selection == "Vaccination Modelling":
+        pages.vaccination.write()
     elif selection == "Coronavirus Modelling":
         pages.virus_model.write()
 

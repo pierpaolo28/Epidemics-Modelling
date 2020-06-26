@@ -22,8 +22,8 @@ def write():
                       scenarios of desease spreading.
                     - Simulations of how protective measures can reduce the spread of the desease 
                       and what would be the potential economical impacts.
-                    - Prediction of necessary ICU beds and time series forecasting of when 
-                      the pandemic might end.
+                    - Prediction of necessary ICU beds and analysis of how time-limited immunity and
+                      vaccination would affect the development of a pandemic.
 
                     ## Contacts
 
