@@ -35,7 +35,7 @@ def write():
                          value=200, step=10)
 
         d_p = st.slider("Death Probability: ",
-                        min_value=0.0, max_value=1.0,
+                        min_value=0.0, max_value=0.5,
                         value=0.02, step=0.01)
 
         min_contact_radious = st.slider("Contact radius: ",
