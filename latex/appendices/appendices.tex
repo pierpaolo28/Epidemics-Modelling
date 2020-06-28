@@ -57,29 +57,6 @@
 
 \clearpage
 
-\setcounter{figure}{0}
-\section{Evaluation Board wiring and stand}
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=14cm]{images/wiring1}%
-    \caption{Evaluation Board}%
-\end{figure}
-
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=5cm]{images/wiring2}%
-    \caption{Raspberry Pi's GPIO}%
-\end{figure}
-
-Images reproduced from Frederick Vandenbosch DLP, LightCrafter Display 2000 EVM on Raspberry Pi \cite{projector}.
-\clearpage
-
-\begin{figure}%
-    \centering
-    \includegraphics[width=15.3cm]{images/3d.jpg}%
-    \caption{Projector stand design made using Fusion 360}%
-\end{figure}
-
 \clearpage
 \includepdf[pages=-,pagecommand=\section{Project Brief},noautoscale=true,offset=0 -70, scale=1.1]{images/brief.pdf}
 
@@ -182,117 +159,6 @@ model.save_weights("model.h5")
 \includepdf[pages=1,scale=0.95,pagecommand={\section{Ethics Application}\label{pdf:myfile}},linktodoc=true, offset=0 -40]{images/48201_47332_FEPS_SecondaryData_01082018.pdf}
 \includepdf[pages=2-,scale=0.95,pagecommand={},linktodoc=true, offset=0 -40]{images/48201_47332_FEPS_SecondaryData_01082018.pdf}
 
-% \clearpage
-% \section{ASD Screening Data Analysis for Toddlers - Behaviour Features}
-
-% \vspace*{15pt}
-
-% \begin{itemize}
-% \itemsep0em
-% \item Does your child look at you when you call his/her name?
-% \item How easy is it for you to get eye contact with your child? 
-% \item Does your child point to indicate that she/he wants something? (e.g. a toy that is out of reach) 
-% \item Does your child point to share interest with you? (e.g. pointing at an interesting sight) 
-% \item Does your child pretend? (e.g. care for dolls, talk on a toy phone)  
-% \item Does your child follow where you’re looking? 
-% \item If you or someone else in the family is visibly upset, does your child show signs of wanting to comfort them? (e.g. stroking hair, hugging them)
-% \item Would you describe your child’s first words as:
-% \item Does your child use simple gestures? (e.g. wave goodbye) 
-% \item Does your child stare at nothing with no apparent purpose? 
-% \end{itemize}
-
-% List Reproduced from: Q-CHAT-10 Quantitative Checklist for Autism in Toddlers \cite{toddler}.
-
-\clearpage
-\section{ML MATLAB Analysis}
-
-Plot of all the channels voltages registered for all the time-steps (repetition number one) in Happy Data, Typical Child number 1.
-
-\setcounter{figure}{0}
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=10cm]{images/series1}%
-    \caption{EEG voltage across all the cahnnels, all time-steps (Repetition 1), Happy Data, TYP1}%
-\end{figure}
-
-Plot of all the channels voltages registered for all the time-steps (repetition number one) in Happy Data, ASD Child number 1.
-
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=10cm]{images/series2}%
-    \caption{EEG voltage across all the cahnnels, all time-steps (Repetition 1), Happy Data, ASD1}%
-\end{figure}
-
-\clearpage
-
-Plots of the channel number against the voltage amplitude of EEG brainwaves for the first typical child (on the left side) and the first ASD child (on the right side), this is done for all the 5 stimuli and for their corresponded experiment repetitions number 1 (left side of each plot) and 35 (right side of each plot). All the channels, all the time-steps and just one repetition is considered for each graph.
-
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=14cm]{images/matplot1}%
-    \caption{Happy Data Stimulus}%
-\end{figure}
-
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=14cm]{images/matplot2}%
-    \caption{Neutral Data Stimulus}%
-\end{figure}
-
-\vspace{\floatsep}
-
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=14cm]{images/matplot3}%
-    \caption{Fear Data Stimulus}%
-\end{figure}
-
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=14cm]{images/matplot4}%
-    \caption{Tree Data Stimulus}%
-\end{figure}
-
-\clearpage
-
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=14cm]{images/matplot5}%
-    \caption{Cartoon Data Stimulus}%
-\end{figure}
-
-Considering just channel number 1, all the time-steps and just one repetition (Repetition number 1 on the left and repetition number 35 on the right of each plot), the following results can be obtained: 
-\vspace{\floatsep}
-
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=14cm]{images/matplot6}%
-    \caption{Happy Data Stimulus}%
-\end{figure}
-
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=14cm]{images/matplot7}%
-    \caption{Neutral Data Stimulus}%
-\end{figure}
-
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=14cm]{images/matplot8}%
-    \caption{Fear Data Stimulus}%
-\end{figure}
-
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=14cm]{images/matplot9}%
-    \caption{Tree Data Stimulus}%
-\end{figure}
-
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=14cm]{images/matplot10}%
-    \caption{Cartoon Data Stimulus}%
-\end{figure}
 
 \clearpage
 \section{Individual Stimulus Data-sets Results}
@@ -403,29 +269,6 @@ Cartoon Stimulus & 86.4 \\
     \subfloat[PCA Cartoon Stimulus]{{\includegraphics[width=6.7cm]{pca5} }}%
     \caption{PCA classification using Decision Tree}%
     \label{fig:example2}%
-\end{figure}
-
-\clearpage
-\section{Decision Tree Classification}
-
-The following graph was realised storing the tree as a .dot file and then using the Graphviz library. For the purposes of space, just the first 48 branches are displayed because the full decision tree is composed by more than 9000 branches. 
-
-\setcounter{figure}{0}
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=14cm]{images/tree}%
-    \caption{Decision Tree Classification Plot}%
-\end{figure}
-
-\clearpage
-\section{LSTM Training/Test Loss and Accuracy}
-
-
-\setcounter{figure}{0}
-\begin{figure}[ht!]%
-    \centering
-    \includegraphics[width=13cm]{images/LSTMloss}%
-    \caption{LSTM Training/Test Loss and Accuracy}%
 \end{figure}
 
 \clearpage

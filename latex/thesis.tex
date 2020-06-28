@@ -2,7 +2,7 @@
 %\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
 \usepackage{hyperref}
 \usepackage{graphicx} % including images
-\graphicspath{ {./images/} } % images file path
+\graphicspath{ {./latex/images/} } % images file path
 \usepackage{subfig}
 \usepackage{amssymb}
 \usepackage{epigraph}
@@ -56,7 +56,7 @@
 {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{5pt}{\Huge}
 
 \titlespacing{\chapter}{0pt}{-50pt}{-10pt}
-\include{thesis.preamble}
+\include{latex/thesis.preamble}
 
 \setlength{\parskip}{5pt} % Reduce spacing
 \setlength{\parsep}{0pt}
@@ -91,13 +91,13 @@
 
 \cleardoublepage
 \thispagestyle{empty}
-\input{acknowledgements/quote.tex}
+\input{latex/acknowledgements/quote.tex}
 \preface
-\input{acknowledgements/acknowledgements}
+\input{latex/acknowledgements/acknowledgements}
 \pagenumbering{roman}
-\input{statement/statement}
-\input{abstract/abstract}
-\input{list/list.tex}
+\input{latex/statement/statement}
+\input{latex/abstract/abstract}
+\input{latex/list/list.tex}
 % \input{figtablist/figtablist.tex}
 %\lstlistoflistings
 % Making list of equations
@@ -150,12 +150,12 @@
 % \baselineskip=15pt Toggle to update line spacing, for preample change linespread
 % in icthesis.sty
 
-\input{introduction/introduction}
-\input{background/background.tex}
-\input{technicalprogress/technicalprogress}
-\input{AI/AI}
-\input{management/management.tex}
-\input{planwork/planwork.tex}
+\input{latex/introduction/introduction}
+\input{latex/background/background.tex}
+\input{latex/technicalprogress/technicalprogress}
+\input{latex/AI/AI}
+\input{latex/management/management.tex}
+\input{latex/planwork/planwork.tex}
 
 % body of thesis comes here
 
@@ -170,7 +170,7 @@
 %\addcontentsline{toc}{chapter}{Bibliography}
 %\bibliographystyle{alpha}
 %\bibliography{bibliography/bibliography}
-\input{references/references}
+\input{latex/references/references}
 \newpage
 
 % Appendices does not have a chapter name to fix that we use this
@@ -178,6 +178,6 @@
 \fancyhead[OR]{\nouppercase\"Appendices}
 \fancyhead[ER,OL]{\thepage}
 
-\input{appendices/appendices}
+\input{latex/appendices/appendices}
 
 \end{document}
