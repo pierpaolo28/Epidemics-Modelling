@@ -14,10 +14,10 @@ def write():
         st.title("Central Hubs")
         st.write(
             """
-                Imposing travel restrictions can greatly help in lowering the rate at which a desease can spread. 
+                Imposing travel restrictions can greatly help in lowering the rate at which a disease can spread. 
                 Individuals, although still have at times to visit centrals hubs such as supermarkets during lockdowns. 
-                What would be the affect of allowing a central hub on the velocity at which a desease can spread? In this simulation,
-                we can easily observe how having even just a single central hub, can lead to a fast spreading of the desease across different communities.
+                What would be the affect of allowing a central hub on the velocity at which a disease can spread? In this simulation,
+                we can easily observe how having even just a single central hub, can lead to a fast spreading of the disease across different communities.
             """
         )
         probs_positives = 0.02

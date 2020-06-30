@@ -13,13 +13,7 @@ def write():
         st.title("Finance Simulation")
         st.write(
             """
-                Applying different types of social distancing and limited movement restrictions, could potentially lead to a good cointainement of the
-                spreading of a desease, but also to a major shrink of the whole economy. In the following simulation, two main types of responses are simulated:
-                no containement at all or imposing an hard lockdown. In order to keep track of the economic consequences of these two different approaches, the created population has been 
-                divided into 3 different classes: Working Class, Middle Class and Upper Class. Which have assigned different types of incomes and expenses which they have to pay on daily bases depending on their income.
-                The government offers the opportunity to give financial support on daily basis in case any of the citizen is struggling to pay its expenses. In a fully functioning society, most of the citizen are able to pay their 
-                expenses without having to use their savings or ask for help. As restrictions are imposed and freedom of movement is limited, citizen can only continue to earning and be self-sufficient if they are able to work from home.
-                Otherwise, the will have to make use of their savings and of the government support provided. Because of the neture of their work, middle and higher class workers, are more likely be able to work remotely.
+               Applying different types of social distancing and limited movement restrictions, could potentially lead to a good containment of the spreading of a disease, but also to a major shrink of the whole economy. In the following simulation, two main types of responses are simulated: no containment at all or imposing an hard lock-down. In order to keep track of the economic consequences of these two different approaches, the created population has been divided into 3 different classes: Working Class, Middle Class and Upper Class. Which have assigned different types of incomes and expenses which they have to pay on daily bases depending on their income. The government offers the opportunity to give financial support on daily basis in case any of the citizen is struggling to pay its expenses. In a fully functioning society, most of the citizen are able to pay their expenses without having to use their savings or ask for help. As restrictions are imposed and freedom of movement is limited, citizen can only continue to earning and be self-sufficient if they are able to work from home. Otherwise, the will have to make use of their savings and of the government support provided. Because of the nature of their work, middle and higher class workers, are more likely be able to work remotely.
             """
         )
         probs_positives = 0.04

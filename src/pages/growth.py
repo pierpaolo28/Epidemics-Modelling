@@ -10,9 +10,9 @@ from support.log_plots import process_data, exponential_view, log_view, log, exp
 
 
 def write():
-    with st.spinner("Loading Desease Growth ..."):
+    with st.spinner("Loading Disease Growth ..."):
 
-        st.title('COVID-19 Desease Growth')
+        st.title('COVID-19 Disease Growth')
 
         df2 = pd.read_csv('data/all.csv')
         resources = ['https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv',
@@ -48,7 +48,7 @@ def write():
         top_trends, topten_weekly_results = process_data(
             data_list, today_top)
 
-        st.markdown("## Keeping track of how fast a desease spreads")
+        st.markdown("## Keeping track of how fast a disease spreads")
 
         st.write("Examining how the number of cases increases over time using a linear plot"
                  " can be difficult since different countries have different population sizes"
@@ -56,8 +56,8 @@ def write():
                  " logarithmic verison of the plot below, we can in fact clearly see that all the different"
                  " countries followed approximately the same path in the evolution of the number of cases."
                  " The growth is at first exponential until it reaches an inflection point and then becomes a logistic"
-                 " (this can happen either thanks to desease spreading prevention techniques such as improved hygiene, social distancing"
-                 ", etc.. or because the desease already spread across the majority of the population in interest and therefore is left with not"
+                 " (this can happen either thanks to disease spreading prevention techniques such as improved hygiene, social distancing"
+                 ", etc.. or because the disease already spread across the majority of the population in interest and therefore is left with not"
                  "not many people to infect).")
 
         exponential_view(top_trends, topten_weekly_results)
@@ -79,7 +79,7 @@ def write():
 
         st.write("While going through an exponential growth, it can be difficult to understand "
                  "how long will it last (if the growth is going to still keep being exponential or is going to start decaying). "
-                 "One possible way to approach this problem, is focusing our attention of the rate of change in new cases from a week to another. "
+                 "One possible way to approach this problem, is to focus our attention on the rate of change in new cases from a week to another. "
                  "Plotting this on a both axis logarithmic scale, we would then clearly see that all the different countries have a same linear growth in cases. "
                  "Although, using some form of containement, some of these countries are succesfully able to escape from this linear growth in cases."
                  "Using this type of approach, we can successfully emphasize the deviation in the growth of an exponential curve. ")
@@ -90,7 +90,7 @@ def write():
             "The change in the number of cases from a day to another, can be defined by the following equation:")
         st.latex(r'''\Delta N_{d} = E \times p \times N_{d}''')
         st.markdown("Where $E$ represents the average number of people we are exposed to every day "
-                    ", $p$ represents the probability than an exposourse might lead to an infection and $N_{d}$ is the number of cases as today.")
+                    ", $p$ represents the probability that an exposure might lead to an infection and $N_{d}$ is the number of cases as today.")
         st.markdown("Using the logarithmic linear graphs, we could then perform a linear regression to find the line of best fit and find out how many days does it take for our cases to increase by a fixed constant. "
                     "Finally, using metrics such as the $R^{2}$ score, we could then quantitatively measure how far are our curves from an exponential curve.")
 

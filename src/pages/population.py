@@ -12,17 +12,17 @@ def write():
     with st.spinner("Loading Population Modelling ..."):
         st.title("Population Modelling")
         st.markdown(
-            "As described in the Desease Growth tab, the number of new cases can vary according to the following formula: ")
+            "As described in the Disease Growth tab, the number of new cases can vary according to the following formula: ")
         st.latex(r'''\Delta N_{d} = E \times p \times N_{d}''')
         st.markdown(
             """
-            Therefore, the only way we can be able to decrease the number of cases, is by decresing the values of $E$ and $p$.
+            Therefore, the only way we can be able to decrease the number of cases, is by decreasing the values of $E$ and $p$.
             This can happen for example:
             - $E$ can decrease if travelling and meetings of people are reduced as much as possible.
-            - $p$ can be reduced instead for example by making less likely to catch the desease by taking precotions such as washing hands, wearing masks, avoid touching our faces, etc...
+            - $p$ can be reduced instead for example by making less likely to catch the disease by taking precautions such as washing hands, wearing masks, avoid touching our faces, etc...
             
             This trend can be observed in the following proposed model by the **Contact Radius** ($E$) and **Probability of how unlikely it is to spread the virus if within the contact radius** (complementary of $p$) variables.
-            In this way, causal effects of social distancing and improved hygiene can be easily inspected. Furthermore, the role of dividing individuals in different communities is additionally studied. Having different communities with a central shared point and random infected initialization, can in fact resemble how contagious deseases hotspots can be created.
+            In this way, causal effects of social distancing and improved hygiene can be easily inspected. Furthermore, the role of dividing individuals in different communities is additionally studied. Having different communities with a central shared point and random infected initialization, can in fact resemble how contagious disease hotspots can be created.
         """)
         probs_positives = 0.05
         grid_max = [[0, 5], [0, 5]]

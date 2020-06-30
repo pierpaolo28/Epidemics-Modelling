@@ -13,12 +13,9 @@ def write():
         st.title("Track and Tracing")
         st.write(
             """
-                Track and Tracing can be considered to be the most effective approach in order to take under control a pandemic.
-                Although, one of the main limitations of this approach, is that in less lethal deseases it might be difficult to correctly identify in time all the individuals infected (some might be asyntomatic).
-                Developing contact tracing apps using criptography, could therefore enable us to keep our privacy intact while reducing the risk of spreading the desease.
+                Track and Tracing can be considered to be the most effective approach in order to take under control a pandemic. Although, one of the main limitations of this approach, is that in less lethal disease it might be difficult to correctly identify in time all the individuals infected (some might be asymptomatic). Developing contact tracing apps using cryptography, could therefore enable us to keep our privacy intact while reducing the risk of spreading the disease.
 
-                In the following model, is presented how an epidemics might evolve is all the infected individual are succesfully identified and then make their way to a quarantene location designed for all the individuals affected by the desease. 
-                Individuals are represented with different associated volicities in order to simulate the fact that same might be tracked before than others and might interact with susceptible individuals along the way.
+                In the following model, is presented how an epidemics might evolve is all the infected individual are successfully identified and then make their way to a quarantine location designed for all the individuals affected by the disease. Individuals are represented with different associated velocities in order to simulate the fact that same might be tracked before than others and might interact with susceptible individuals along the way.
             """
         )
         probs_positives = 0.04
@@ -89,7 +86,7 @@ def write():
         replay_plot(negatives, positives, survivors, deaths, df,
                     grid_max=grid_max, quar_grid=quarantene_grid)
 
-        st.write("The following model, extends instead the first model by adding a probability value that some individuals might not get traced at all and might therefore end up spreading the desease (eg. coronavirus asyntomatic or limited available testing capacity).")
+        st.write("The following model, extends instead the first model by adding a probability value that some individuals might not get traced at all and might therefore end up spreading the disease (eg. coronavirus asyntomatic or limited available testing capacity).")
 
         prob_to_be_untracked = st.slider("Probability individuals might be untracked: ",
                                          min_value=0.0, max_value=1.0,

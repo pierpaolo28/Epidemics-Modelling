@@ -18,7 +18,7 @@ PAGES = {
     "Home": pages.home,
     "World View": pages.world_view,
     "World News": pages.news,
-    "Desease growth": pages.growth,
+    "Disease growth": pages.growth,
     "Population Modelling": pages.population,
     "Track and Trace": pages.tracing,
     "Central Hubs": pages.hubs,
@@ -55,7 +55,7 @@ def main():
         pages.world_view.write()
     elif selection == "World News":
         pages.news.write()
-    elif selection == "Desease growth":
+    elif selection == "Disease growth":
         pages.growth.write()
     elif selection == "Track and Trace":
         pages.tracing.write()

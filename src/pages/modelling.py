@@ -20,7 +20,7 @@ def write():
             The SIR model can be described by the following three formulas, where 
             $N$ is the total number of elements in the population,
             $\\beta$ represents average amount of people an infected element can be able to infect in a day and
-            $\gamma$ the percentage of how many individuals recover from the desease each day.
+            $\gamma$ the percentage of how many individuals recover from the disease each day.
             '''
         )
         st.latex(
@@ -49,7 +49,7 @@ def write():
                                 min_value=0.0, max_value=1.0,
                                 value=0.2, step=0.1)
 
-        days = st.selectbox("Number of days the desease can last", [
+        days = st.selectbox("Number of days the disease can last", [
                             14, 1, 3, 7, 10, 21, 28])
 
         S, I, R, R0 = SIR_sim(N, sim_days, orig_infected,
@@ -61,8 +61,8 @@ def write():
             '''
             In order to make our more more realistic, we can then add an additional state E representing all the population 
             elements which are still in the incubation stage before becoming infected. In order to apply these modifications, we
-            just need to apdate $\\frac{\partial I}{\partial t}$ and add this extra stage before just before it. The only variable which needs to
-            be added compared to the SIR model is $\delta$ (the percentage of how many individuals move from the incubaation period to being infected).
+            just need to update $\\frac{\partial I}{\partial t}$ and add this extra stage before just before it. The only variable which needs to
+            be added compared to the SIR model is $\delta$ (the proportion of how many individuals move from the incubation period to being infected).
             '''
         )
         st.latex(
@@ -70,7 +70,7 @@ def write():
         st.latex(
             r'''\frac{\partial I}{\partial t} = \delta \times E \times -\gamma \times I''')
 
-        inc_days = st.selectbox("Number of incubation days for the desease", [
+        inc_days = st.selectbox("Number of incubation days for the disease", [
                                 float(i) for i in range(1, days, 3)])
 
         S, E, I, R, R0 = SEIR_sim(

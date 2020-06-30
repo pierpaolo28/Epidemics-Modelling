@@ -19,8 +19,8 @@ def write():
                     - A world view record of how the COVID-19 pandemic progressed over 
                       time and what are the latest results.
                     - A modelling interface which can be used in order to simulate different 
-                      scenarios of desease spreading.
-                    - Simulations of how protective measures can reduce the spread of the desease 
+                      scenarios of disease spreading.
+                    - Simulations of how protective measures can reduce the spread of the disease 
                       and what would be the potential economical impacts.
                     - Prediction of necessary ICU beds and analysis of how time-limited immunity and
                       vaccination would affect the development of a pandemic.

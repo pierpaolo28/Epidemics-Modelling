@@ -77,13 +77,13 @@ def write():
                              min_value=2, max_value=500,
                              value=150, step=10)
         orig_infected = population/100
-        days = st.selectbox("Number of days the desease can last", [
+        days = st.selectbox("Number of days the disease can last", [
                             14, 7, 10, 21, 28])
 
-        inc_days = st.selectbox("Number of incubation days for the desease", [
+        inc_days = st.selectbox("Number of incubation days for the disease", [
                                 float(i) for i in range(1, days, 3)])
 
-        death_days = st.selectbox("Number of days the desease can take to become lethal", [
+        death_days = st.selectbox("Number of days the disease can take to become lethal", [
             float(i) for i in range(int(inc_days)+2, days, 2)])
 
         age_based_alpha = [0.003, 0.002, 0.001, 0.005, 0.01, 0.01, 0.02, 0.02, 0.02, 0.02, 0.03, 0.03,
@@ -95,7 +95,7 @@ def write():
                             min_value=0.001, max_value=1.0,
                             value=0.5, step=0.01)
 
-        beds_already_taken = st.slider("Percentage of beds already taken for non-coronavirus related deseases",
+        beds_already_taken = st.slider("Percentage of beds already taken for non-coronavirus related disease",
                                        min_value=0.1, max_value=1.0,
                                        value=0.3, step=0.01)
 
