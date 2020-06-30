@@ -4,7 +4,7 @@
 \section{Motivations}
 Modelling, is a technique commonly used in order to approximate an environment/system to gain insights and better understand possible outcome scenarios especially in situations when we don't have data available about the topic. Some examples of applications in which modelling is commonly applied are: climate change, military defense, designing cities, infecting diseases development and testing financial policies. 
 
-Using modelling simulations, can be of great help when trying to answer different types of causal questions about our research topic (e.g. varying the different simulation parameters, it can be possible to see how these are related each other and how they affect the overall outcome). 
+Using modelling simulations, can be of great help when trying to answer different types of causal questions about our research topic (e.g. varying the different simulation parameters, it can be possible to see how these are related each other and how they effect the overall outcome). 
 
 As part of this study, an interactive online Web Application \footnote{Web Application Link: \url{http://3.22.240.181:8501/}} has been developed in order to quickly analyse in real time COVID-19 developments and simulating different scenarios and approaches which can be taken in order to mitigate the consequences of this outbreak. Most of the provided models have been designed so that to be flexible enough to model any other type of possible future infectious disease. 
 
@@ -62,7 +62,7 @@ As shown in Equation \ref{r0}, $R_{0}$ can be calculated as the number of people
 
 \useshortskip
 \begin{align}
-\ R_{0} = \beta \times D = \beta \times \gamma
+\ R_{0} = \beta \times D = \dfrac{\beta}{\gamma}
 \label{r0}
 \end{align}
 \useshortskip
@@ -104,7 +104,7 @@ This models can be designed using either ordinary differential equations or stoc
 
 \subsection{SIR (Susceptible-Infected-Recovered)}
 
-The SIR model can be described by the following three formulas, where 
+The SIR model is one of the most widely used epidemiology model and is composed by just 3 different compartments: Susceptible ($S$), Infected ($I$) and Recovered ($R$). This model can be described by the following three formulas, where 
 $N$ is the total number of elements in the population, $\beta$ represents average amount of people an infected element can be able to infect in a day and
 $\gamma$ the percentage of how many individuals recover from the disease each day.
 
@@ -125,6 +125,24 @@ $\gamma$ the percentage of how many individuals recover from the disease each da
 \ \frac{\partial R}{\partial t} = \gamma \times I
 \end{align}
 \useshortskip
+
+In order to visualise better the situation, this set of equations, can then be converted into a block diagram representation using the following structure (Figure \ref{comp}).
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=13cm]{latex/images/comp.PNG}%
+    \caption{Compartmental Models Diagram Representation}
+    \label{comp}
+\end{figure}
+
+Therefore, in order to move from one compartment to another, we need to take into consideration how long would this transaction take (Rate), the probability that it will actual happen for each individual (Probability) and the portion of individuals for which this transition takes place (Individuals). Converting our SIR set of equations into this representation, we can then obtain the diagram in Figure \ref{dsir}. When converting between these two representations, we can then see how a minus sign in the Ordinary Differential Equation (ODE) corresponds to an arrow leaving that compartment, while a plus sign corresponds to an arrow pointing towards that compartment. This same procedure can then be used in order to design any other type of compartmental model.
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=10cm]{latex/images/dsir.PNG}%
+    \caption{SIR Diagram Representation}
+    \label{dsir}
+\end{figure}
 
 Using the parameters in Table \ref{table:1}, it can then be possible to obtain the results in Figure \ref{sir}.
 
@@ -156,9 +174,13 @@ Number of days a the disease can last & 7 \\
     \label{sir}
 \end{figure}
 
+\textbf{Causal Question:} How does the number of people I am in contact with on average in a day affect the evolution of the pandemic?
+
+\textbf{Experimental Results:} 
+
 \subsection{SEIR (Susceptible-Exposed-Infected-Recovered)}
 
-In order to make our more more realistic, we can then add an additional state E representing all the population elements which are still in the incubation stage before becoming infected. In order to apply these modifications, we just need to update $\frac{\partial I}{\partial t}$ and add this extra stage before just before it. The only variable which needs to be added compared to the SIR model is $\delta$ (the percentage of how many individuals move from the incubation period to being infected).
+In order to make our more more realistic, we can then add an additional state E representing all the population elements which are still in the incubation stage before becoming infected. In order to apply these modifications, we just need to update $\frac{\partial I}{\partial t}$ and add this extra stage before just before it. The only variable which needs to be added compared to the SIR model is the proportion of how many individuals move from the incubation period to being infected ($\delta = \dfrac{1}{Days\;of\;incubation}$).
 
 \useshortskip
 \begin{align}
@@ -172,6 +194,15 @@ In order to make our more more realistic, we can then add an additional state E 
 \end{align}
 \useshortskip
 
+Following the same procedure as for the SIR model, we can then convert our SEIR model in block diagram form (Figure \ref{dseir}).
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=10cm]{latex/images/dseir.PNG}%
+    \caption{SEIR Diagram Representation}
+    \label{dseir}
+\end{figure}
+
 Using the same parameters as in Table \ref{table:1}, and using one day as the number of incubation days for the disease, can then be produced the results in Figure \ref{seir}.
 
 \begin{figure}[ht!]%
@@ -182,22 +213,175 @@ Using the same parameters as in Table \ref{table:1}, and using one day as the nu
 \end{figure}
 
 \subsection{Advanced SEIR Modelling}
+\label{cov_model}
 Starting from the developed SEIR Model, it can be now possible add more compartments and make different elements time-dependent so that to better capture real-world dynamics. The main additions engineered in this model are:
 \begin{itemize}
-    \item Take into account the portion of infected individuals which dies instead of recover.
+    \item Take into account the portion of infected individuals which dies instead of recover. This can be done by adding a new compartment after the Infected Stage and introducing two new variables $\rho$ (the rate, in terms of days, which takes on average to die) and $\alpha$ (the disease death rate) which determines the probability an individual infected might either die or recover.
     \item $R_{0}$ is not anymore static but dynamically changes over time. In this example, two functions have been used  in order to simulate $R_{0}$ behaviour over time: a Sigmoid or Sinusoidal. In this way, we are now able to model
     how a government might react in order to control the spread of the disease by exercising social distancing measures. A sigmoid in it's minimum point can in fact represent a lock-down and the smoothness by which it reaches its minimum can
-    easily represent how gradually the restrictions have been applied. An additional parameter is provided in order to decide from what day onward to start applying the restrictions (so that to observe what could be the consequences of a late or early intervention). The sinusoidal landscape, can instead be used in order to model possible sequential waves a disease can lead to.
-    \item Also the death rate has been designed to be time and age dependent. To each different age group is assigned a different base death rate (the older, the greater), which increase linearly with the increase in the number of infected at each time-step. Therefore, with higher peaks of individuals infected all at the same time increases the likelihood of individuals to die (mimicking strained healthcare system which don't have the potential to cure everyone at the same time). An animation of how the percentage of people dying if positive ($\alpha$) varies over time, is available in the animated simulation below.
+    easily represent how gradually the restrictions have been applied. An additional parameter is provided in order to decide from what day onward to start applying the restrictions (so that to observe what could be the consequences of a late or early intervention). The sinusoidal landscape, can instead be used in order to model possible sequential waves a disease can lead to. Because, $\beta$ is dependent on  $R_{0}$, this will be indicated to be our time dependent variable in our set of ODEs. 
+    \item Also the death rate has been designed to be time and age dependent. To each different age group is assigned a different base death rate (the older, the greater), which increase linearly with the increase in the number of infected at each time-step. Therefore, with higher peaks of individuals infected all at the same time increases the likelihood of individuals to die (mimicking strained healthcare system which don't have the potential to cure everyone at the same time).
 \end{itemize}
 
+The main equations summarising the flow between the different compartments can be summarised as:
+
+\useshortskip
+\begin{align}
+\ \frac{\partial S}{\partial t} = -\beta(t) \times I \times \frac{S}{N}
+\end{align}
+\useshortskip
+
+\useshortskip
+\begin{align}
+\ \frac{\partial E}{\partial t} = \beta(t) \times I \times \frac{S}{N} -\delta \times E
+\end{align}
+\useshortskip
+
+\useshortskip
+\begin{align}
+\ \frac{\partial I}{\partial t} = \delta \times E - (1 - \alpha(t)) \times \gamma \times I - \alpha(t) \times \rho \times I
+\end{align}
+\useshortskip
+
+\useshortskip
+\begin{align}
+\ \frac{\partial R}{\partial t} = (1 - \alpha(t)) \times \gamma \times I
+\end{align}
+\useshortskip
+
+\useshortskip
+\begin{align}
+\ \frac{\partial D}{\partial t} = \alpha(t) \times \rho \times I
+\end{align}
+\useshortskip
+
+Which results in the following diagram flow architecture:
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=10cm]{latex/images/dadv_seir.PNG}%
+    \caption{Advanced SEIR Diagram Representation}
+\end{figure}
+
+More specifically, the adaptive $R_{0}$ for the Sigmoid case has been designed to be equal to Equation \ref{sig}.
+
+\useshortskip
+\begin{align}
+\ R_{0}(t) = \frac{R_{start}-R_{end}}{1 + \exp^{-k(-x+x_{0})}} - R_{end}
+\label{sig}
+\end{align}
+\vspace{-0.4cm}
+\begin{conditions}
+ $R_{start}, R_{end}$  &  Initial and desired final value for $R_{0}$ in the sigmoid \\
+ $x_{0}$  &  Sigmoid inflection point date\\
+ $k$  &  Defines how drastically rapidly the restrictions have been applied\\
+\end{conditions}
+\vspace{-0.2cm}
+\useshortskip
+
+Following from our $R_{0}(t)$ calculation, $\beta(t)$ can then be estimated to be equal to:
+\useshortskip
+\begin{align}
+\ \beta(t) = R_{0}(t) \times \frac{1}{\alpha \times \frac{1}{\rho} + (1 - \alpha) \times \frac{1}{\gamma}}
+\end{align}
+\useshortskip
+
+In the case of a Sinusoidal landscape, $R_{0}$ has instead designed to be dependent on the following expression:
+
+\useshortskip
+\begin{align}
+\ R_{0}(t) = Oscillatory\:Factor \times \sin(\frac{x}{\frac{N\:Simulation\:Days}{10}}) + Oscillatory\:Factor + 1
+\end{align}
+\useshortskip
+
+In this way, $R_{0}$ is designed to always go through two peaks and one low for any type of possible simulation. Using an $Oscillatory\:Factor$ of 1, the peaks will be equal to an $R$ value of 3, while the low would be equal to 1. Increasing the value of the $Oscillatory\:Factor$, will then lead to higher values for our landscape peaks.
+
+Finally, in order to make our death rate time variant and dependent on the population age and number of infected cases at the same time, the following expression has been used:
+
+\useshortskip
+\begin{align}
+\ \alpha(t) = s \times \frac{I(t)}{N} + \alpha_{opt}
+\end{align}
+\vspace{-0.4cm}
+\begin{conditions}
+ $s$  &  Regulates in what proportion the death rate rises when 
+ the number of \\ 
+ & infected increases. \\
+ $\alpha_{opt}$  &  The death rate calculated depending on the population age.  \\ & Overall older populations will therefore have an higher base death rate \\
+ & than younger populations.\\
+\end{conditions}
+\vspace{-0.2cm}
+\useshortskip
+
 This advanced SEIR version has been inspired by Henri Froese \cite{tds} work.
+
+Starting with the same parameters already specified for the SIR and standard SEIR model we can then specify the number of days the disease can take to become lethal to be equal to 3 and the percentage weight of age on the death rate to 30\%.
+
+The proportions of individuals within different age ranges, could then be specified as shown in \ref{table:3}.
+
+\vspace{-0.3cm}
+{
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{Demographic} & \multicolumn{4}{c|}{Age} \\\cline{2-5}
+& 0-20 & 20-50 & 50-70 & 70-110 \\
+\hline
+Proportion Percentage (\%) & 0.15 & 0.25 & 0.4 & 0.2 & 
+\hline
+\end{tabular}
+\caption{Population Demographics}
+\label{table:3}
+\vspace{-0.4cm}
+\end{table}
+}
+
+In the case of the Sigmoid Landscape, using the parameters in Table \ref{table:4}, has been possible to record the results in Figure \ref{sig_seir}.
+{
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Parameter Type & Value \\
+\hline
+Social Distancing start date & 20  \\
+Percentage weight of how rapidly the restrictions are applied & 30\%  \\
+Maximum possible R value & 5  \\
+Minimum possible R value & 1  \\
+\hline
+\end{tabular}
+\caption{Sigmoid Landscape Parameters}
+\label{table:4}
+\end{table}
+}
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=13cm]{latex/images/sig_seir.PNG}%
+    \caption{Advanced SEIR (Sigmoid) Modelling}
+    \label{sig_seir}
+\end{figure}
+
+Using instead the Sinusoidal landscape and a scaling factor of 2, have been registered the results in Figure \ref{sine_seir}.
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=13cm]{latex/images/sine_seir.PNG}%
+    \caption{Advanced SEIR (Sinusoidal) Modelling}
+    \label{sine_seir}
+\end{figure}
+
+
+\textbf{Causal Question:} What are the effects of varying social distancing measures over time using different approaches (landscapes)? Given some user defined population age distribution, how would that effect the overall number of deaths?
+
+\textbf{Experimental Results:} 
 
 \subsection{Time Limited Immunity and Vaccination Modelling}
 
 \subsubsection{Time Limited Immunity}
 
-Updating our SIR model, we can be able to take into account the possibility that individuals might not gain lifetime immunity from a disease when recovering from it, but that might instead be re-infected again in the future after some time. The amount of time an individual might be immune from a disease can be represented by just adding a new variable to our model ($v$).
+Updating our SIR model, we can be able to take into account the possibility that individuals might not gain lifetime immunity from a disease when recovering from it, but that might instead be re-infected again in the future after some time. The amount of time an individual might be immune from a disease can be represented by just adding a new variable to our model ($v$) \cite{immune}.
 
 \useshortskip
 \begin{align}
@@ -217,6 +401,15 @@ Updating our SIR model, we can be able to take into account the possibility that
 \end{align}
 \useshortskip
 
+Converting our set of equations into a Block Diagram representation, will then result in Figure \ref{dimm}.
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=10cm]{latex/images/dimm.PNG}%
+    \caption{SIR Time Limited Immunity Diagram Representation}
+    \label{dimm}
+\end{figure}
+
 Using the same SIR model parameters as in Table \ref{table:1}, setting to 25 the maximum number of days the immunity to the disease can last, we can then produce the following results in Figure \ref{low_imm}.
 
 \begin{figure}[ht!]%
@@ -228,7 +421,7 @@ Using the same SIR model parameters as in Table \ref{table:1}, setting to 25 the
 
 \subsubsection{Vaccination}
 
-Extending our set of equations (adding an extra stage $\frac{\partial V}{\partial t}$), we can be able to take into account how an epidemic will evolve once a vaccine is available. In order to apply these modifications, we just need to update $\frac{\partial S}{\partial t}$ and add the vaccination stage before just after it. To make the simulation more realistic, we can then also specify from when in time a vaccine could start being distributed and how fast it can produced and shipped ($p$). Finally, a stage used to record the possible amount of deaths is included (using the same notation for the SEIR and Advanced SEIR models).
+Extending our set of equations (adding an extra stage $\frac{\partial V}{\partial t}$), we can be able to take into account how an epidemic will evolve once a vaccine is available. In order to apply these modifications, we just need to update $\frac{\partial S}{\partial t}$ and add the vaccination stage before just after it. To make the simulation more realistic, we can then also specify from when in time a vaccine could start being distributed and how fast it can produced and shipped ($p$). Finally, a stage used to record the possible amount of deaths is included (using the same notation for the Advanced SEIR models).
 
 \useshortskip
 \begin{align}
@@ -244,7 +437,7 @@ Extending our set of equations (adding an extra stage $\frac{\partial V}{\partia
 
 \useshortskip
 \begin{align}
-\ \frac{\partial I}{\partial t} = -\beta \times I \times \frac{S}{N}  -(1-\alpha) \times \gamma \times I -\alpha \times \rho \times I
+\ \frac{\partial I}{\partial t} = \beta \times I \times \frac{S}{N}  -(1-\alpha) \times \gamma \times I -\alpha \times \rho \times I
 \end{align}
 \useshortskip
 
@@ -259,6 +452,16 @@ Extending our set of equations (adding an extra stage $\frac{\partial V}{\partia
 \ \frac{\partial D}{\partial t} = \alpha \times \rho \times I
 \end{align}
 \useshortskip
+
+Converting our set of equations into a Block Diagram representation, we can then obtain Figure \ref{dvacc}.
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=10cm]{latex/images/dvacc.PNG}%
+    \caption{SIR Time Limited Immunity and Vaccination Diagram Representation}
+    \label{dvacc}
+\end{figure}
+
 
 Extending our set of parameters used for the Time Limited Immunity model, using the values from Table \ref{table:2}, has been possible to obtain the results in Figure \ref{vacc}.
 
@@ -288,11 +491,60 @@ Vaccine Distribution rate & 0.1\%  \\
 \end{figure}
 
 \subsection{Coronavirus Modelling}
+In order to test on real world data one of the created models, the architecture of the Advanced SEIR model outlined in Section \ref{cov_model} has been tested. The different parameters of the model, have then been personalised depending on the examined country specifics.
 
-TODO Cite Estimated Cases paper.
+In order to do so, information about a large number of countries population size and demographics has been processed making use of the United Nations World Population Prospects 2019 dataset \cite{pop_data}. Additionally, information about the number of hospital beds available for 1000 people for each country has been used from the The World Bank Data Hospital Beds dataset \cite{beds_data}, in order to calculate estimates of when hospitals in different countries might get overwhelmed and how many avoidable deaths would that cause.
+
+Finally, an estimation of the number of actual cases for each country has been calculated using the approach outlined in "Substantial undocumented infection facilitates the rapid dissemination of novel coronavirus (SARS-CoV-2)" \cite{cases_paper}.
+
+\subsubsection{Germany Case Study}
+
+As of the 29th of June 2020, Germany Coronavirus record can be summarised as in Figure \ref{germ}. Germany has a total population of 84 millions and the total number of estimated cases has been calculated taking in consideration that about 86\% of the total Coronavirus cases have been estimated to have been undocumented \cite{cases_paper} in China.
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=12cm]{latex/images/cov_g.PNG}%
+    \caption{Germany Statistics}
+    \label{germ}
+\end{figure}
+
+Another point, which could be necessary to take into account in order to understand the true number of cases in a country is the possibility of false positives and false negatives during testing. More accurate estimates can be calculated using Bayes Rule and the Law of Total Probability (Equation \ref{bayes2}). For instance, is a patient does a Coronavirus test and results positive, what are its chances that he/she actually has Coronavirus?
+
+\useshortskip
+\begin{align}
+\ P(B|A) = \frac{P(A|B)\times P(B)}{P(A)} = \frac{P(A|B)\times P(B)}{P(A|B)\times P(B) + P(A|\stcomp{B})\times P(\stcomp{B})}
+\label{bayes2}
+\end{align}
+\useshortskip
+
+In this example, we are going to take into consideration the COVID-19: Roche Antibody Test \cite{roche}. This test, has an estimated sensitivity of 100\% (ability to correctly identify patients with the disease) and specificity of 99.8\% (ability to correctly identify patients without the disease). Assuming a prevalence of the disease in the population of about 5\%, the following estimates can be calculated:
+
+\useshortskip
+\begin{align}
+\ P(B|A) = \frac{1 \times 0.05}{1 \times 0.05 + 0.002 \times 0.95} = 96.33\%
+\end{align}
+\useshortskip
+
+If the test is positive, there would be then a 96.33\% probability the patient actually has Coronavirus. As can be seen from Equation \ref{bayes2}, the rate of the Coronavirus cases in a population, plays an important factor.
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=13cm]{latex/images/cov_g2.PNG}%
+    \caption{Germany Simulation}
+\end{figure}
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=9cm]{latex/images/cov_g3.PNG}%
+    \caption{Germany Hospital Beds Analysis}
+\end{figure}
+
+\textbf{Causal Question:} How can we prevent an healthcare system to become overwhelmed? How many lives would be saved?
+
+\textbf{Experimental Results:} 
 
 \section{Agent Based Models}
-An alternative approach which can be used in order to simulate compartmental-like models, is by creating an Agent Based simulation. In this case, each single individual in the population is created following an Objected Oriented Programming approach (eg. using a programming class) and it's behaviour in an environment while in contact with the rest of the population is simulated. Using this type of approach, can therefore enable us to keep track of the position of the different individuals in a population and attribute then different characteristics such as an age or daily income.
+An alternative approach which can be used in order to simulate compartmental-like models, is by creating an Agent Based simulation. In this case, each single individual in the population is created following an Objected Oriented Programming approach (eg. using a programming class) and it's behaviour in an environment while in contact with the rest of the population is simulated. Using this type of approach, can therefore enable us to keep track of the position of the different individuals in a population and attribute then different characteristics such as an age or daily income. Similar results could be obtained using standard compartmental models by converting our Ordinary Differential Equations into Partial Differential Equations and making them dependent on both time and space \cite{pde}.
 
 \subsection{Population Modelling}
 
@@ -343,17 +595,29 @@ In this way, causal effects of social distancing and improved hygiene can be eas
     \label{pop}
 \end{figure}
 
+\textbf{Causal Question:} How does population density and community distribution affect the spread of a disease?
+
+\textbf{Experimental Results:} 
+
 \subsection{Track and Tracing}
 
 Track and Tracing can be considered to be the most effective approach in order to take under control a pandemic. Although, one of the main limitations of this approach, is that in less lethal disease it might be difficult to correctly identify in time all the individuals infected (some might be asymptomatic). Developing contact tracing apps using cryptography, could therefore enable us to keep our privacy intact while reducing the risk of spreading the disease.
 
 In the following model, is presented how an epidemics might evolve is all the infected individual are successfully identified and then make their way to a quarantine location designed for all the individuals affected by the disease. Individuals are represented with different associated velocities in order to simulate the fact that same might be tracked before than others and might interact with susceptible individuals along the way.
 
+\textbf{Causal Question:} What if instead of using social distancing we would try to increase our test capacity and successfully track and isolate all the infected people and the ones they have been in contact with? How would this system change if a portion of individuals would remain un-tracked?
+
+\textbf{Experimental Results:} 
+
 Analogous results have been registered also in \cite{epic}.
 
 \subsection{Central Hubs}
 
 Imposing travel restrictions can greatly help in lowering the rate at which a disease can spread. Individuals, although still have at times to visit centrals hubs such as supermarkets during lock-down's. What would be the affect of allowing a central hub on the velocity at which a disease can spread? In this simulation, we can easily observe how having even just a single central hub, can lead to a fast spreading of the disease across different communities.
+
+\textbf{Causal Question:} How does having a central hub visited by different communities members effects the spread of the disease?
+
+\textbf{Experimental Results:} 
 
 \subsection{Finance Simulation}
 

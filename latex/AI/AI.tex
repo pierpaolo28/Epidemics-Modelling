@@ -32,193 +32,193 @@
 \lstset{style=mystyle}
 
 
-\section{Faces Responses in Children with ASD}
+% \section{Faces Responses in Children with ASD}
 
-% https://www.overleaf.com/learn/latex/algorithms
-\begin{algorithm}[H]
-\SetAlgoLined
-\KwResult{Write here the result }
- initialization\;
- \While{While condition}{
-  instructions\;
-  \eIf{condition}{
-   instructions1\;
-   instructions2\;
-   }{
-   instructions3\;
-  }
- }
- \caption{How to write algorithms}
-\end{algorithm}
+% % https://www.overleaf.com/learn/latex/algorithms
+% \begin{algorithm}[H]
+% \SetAlgoLined
+% \KwResult{Write here the result }
+%  initialization\;
+%  \While{While condition}{
+%   instructions\;
+%   \eIf{condition}{
+%   instructions1\;
+%   instructions2\;
+%   }{
+%   instructions3\;
+%   }
+%  }
+%  \caption{How to write algorithms}
+% \end{algorithm}
 
-\begin{algorithm}
-\caption{Calculate $y = x^n$}
-\label{alg1}
-\vspace*{-.4cm}
-\begin{multicols}{2}
-\begin{algorithmic}[1]
-  \REQUIRE $n \geq 0 \vee x \neq 0$
-  \ENSURE $y = x^n$
-  \STATE $y \Leftarrow 1$
-  \IF{$n < 0$}
-  \STATE $X \Leftarrow 1 / x$
-  \STATE $N \Leftarrow -n$
-  \ELSE
-  \STATE $X \Leftarrow x$
-  \STATE $N \Leftarrow n$
-  \ENDIF
-  \WHILE{$N \neq 0$}
-  \IF{$N$ is even}
-  \STATE $X \Leftarrow X \times X$
-  \STATE $N \Leftarrow N / 2$
-  \ELSE[$N$ is odd]
-  \STATE $y \Leftarrow y \times X$
-  \STATE $N \Leftarrow N - 1$
-  \ENDIF
-  \ENDWHILE
-\end{algorithmic}
-\end{multicols}
-\vspace*{-.3cm}
-\end{algorithm}
+% \begin{algorithm}
+% \caption{Calculate $y = x^n$}
+% \label{alg1}
+% \vspace*{-.4cm}
+% \begin{multicols}{2}
+% \begin{algorithmic}[1]
+%   \REQUIRE $n \geq 0 \vee x \neq 0$
+%   \ENSURE $y = x^n$
+%   \STATE $y \Leftarrow 1$
+%   \IF{$n < 0$}
+%   \STATE $X \Leftarrow 1 / x$
+%   \STATE $N \Leftarrow -n$
+%   \ELSE
+%   \STATE $X \Leftarrow x$
+%   \STATE $N \Leftarrow n$
+%   \ENDIF
+%   \WHILE{$N \neq 0$}
+%   \IF{$N$ is even}
+%   \STATE $X \Leftarrow X \times X$
+%   \STATE $N \Leftarrow N / 2$
+%   \ELSE[$N$ is odd]
+%   \STATE $y \Leftarrow y \times X$
+%   \STATE $N \Leftarrow N - 1$
+%   \ENDIF
+%   \ENDWHILE
+% \end{algorithmic}
+% \end{multicols}
+% \vspace*{-.3cm}
+% \end{algorithm}
 
-The pre-processing part consisted of, firstly loading the data, standardising it and then dividing it in training (70\%) and test sets (30\%) for both the inputs (X) and outputs values (Y). The total number of rows in the data-set was equal to 1906500 (934750 rows about typical children EEG data and 971750 about ASD data). Because of the 70\% against 30\% train/test split ratio, 5338 predictions were made during the training set (1334550/250 time-steps) and 2288 predictions during the test set (571950/250 time-steps).
+% The pre-processing part consisted of, firstly loading the data, standardising it and then dividing it in training (70\%) and test sets (30\%) for both the inputs (X) and outputs values (Y). The total number of rows in the data-set was equal to 1906500 (934750 rows about typical children EEG data and 971750 about ASD data). Because of the 70\% against 30\% train/test split ratio, 5338 predictions were made during the training set (1334550/250 time-steps) and 2288 predictions during the test set (571950/250 time-steps).
 
-I finally decided to train and then test the binary classification results using different algorithms such as: Logistic Regression, Support Vector Machines (SVM), Decision Trees, Linear Discriminant analysis (LDA) and Gaussian Naive Bayes Classifier (GNB). The classification results are show in Table 4.1. At the output, a zero represent a typical child and a one represents a child affected by ASD. The models used attempted to identify if a child is affected or not by ASD using just a single stimulus repetition ($128 channels \times250 timesteps \times1 repetition$).
+% I finally decided to train and then test the binary classification results using different algorithms such as: Logistic Regression, Support Vector Machines (SVM), Decision Trees, Linear Discriminant analysis (LDA) and Gaussian Naive Bayes Classifier (GNB). The classification results are show in Table 4.1. At the output, a zero represent a typical child and a one represents a child affected by ASD. The models used attempted to identify if a child is affected or not by ASD using just a single stimulus repetition ($128 channels \times250 timesteps \times1 repetition$).
 
-{
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|}
-\hline
-Classifier &Accuracy (\%) \\
-\hline
-Logistic Regression & 53  \\
-Support Vector Machines & 53  \\
-Decision Tree & 80  \\
-Linear Discriminant Analysis & 53 \\
-Gaussian Naive Bayes & 60 \\
-\hline
-\end{tabular}
-\caption{ML Classification Accuracy}
-\label{table:1}
-\end{table}
-}
+% {
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{|c|c|}
+% \hline
+% Classifier &Accuracy (\%) \\
+% \hline
+% Logistic Regression & 53  \\
+% Support Vector Machines & 53  \\
+% Decision Tree & 80  \\
+% Linear Discriminant Analysis & 53 \\
+% Gaussian Naive Bayes & 60 \\
+% \hline
+% \end{tabular}
+% \caption{ML Classification Accuracy}
+% \label{table:1}
+% \end{table}
+% }
 
-\begin{lstlisting}[language=Python, caption=LSTM Preprocessing]
-segments = []
-for i in range(0, len(df) - N_TIME_STEPS, step):
-    ch = []
-    for j in range(0, N_FEATURES):
-        ch.append(df.iloc[:, j].values[i: i + N_TIME_STEPS])
-    segments.append(ch)
-labels = []
-for i in range(0, len(df) - N_TIME_STEPS, step):
-    label = stats.mode(df['Label'][i: i + N_TIME_STEPS])[0][0]
-    labels.append(label)
-labelsl = np.asarray(pd.get_dummies(labels), dtype = np.float32)
-reshaped_segments = np.asarray(segments, dtype= np.float32).reshape(-1, N_TIME_STEPS, N_FEATURES)
-X_train, X_test, y_train, y_test = train_test_split(
-        reshaped_segments, labelsl, test_size=0.2, random_state=RANDOM_SEED)
-\end{lstlisting}
+% \begin{lstlisting}[language=Python, caption=LSTM Preprocessing]
+% segments = []
+% for i in range(0, len(df) - N_TIME_STEPS, step):
+%     ch = []
+%     for j in range(0, N_FEATURES):
+%         ch.append(df.iloc[:, j].values[i: i + N_TIME_STEPS])
+%     segments.append(ch)
+% labels = []
+% for i in range(0, len(df) - N_TIME_STEPS, step):
+%     label = stats.mode(df['Label'][i: i + N_TIME_STEPS])[0][0]
+%     labels.append(label)
+% labelsl = np.asarray(pd.get_dummies(labels), dtype = np.float32)
+% reshaped_segments = np.asarray(segments, dtype= np.float32).reshape(-1, N_TIME_STEPS, N_FEATURES)
+% X_train, X_test, y_train, y_test = train_test_split(
+%         reshaped_segments, labelsl, test_size=0.2, random_state=RANDOM_SEED)
+% \end{lstlisting}
 
-{
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|}
-\hline
-Parameter &Number \\
-\hline
-Time Steps & 250  \\
-Features & 128  \\
-Steps & 25  \\
-Classes & 2 \\
-Hidden Units & 32 \\
-L2 Regularization & 0.0015 \\
-Learning Rate & 0.0025 \\
-Epochs & 50 \\
-Batch Size & 256 \\
-\hline
-\end{tabular}
-\caption{LSTM Parameters}
-\label{table:1}
-\end{table}
-}
+% {
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{|c|c|}
+% \hline
+% Parameter &Number \\
+% \hline
+% Time Steps & 250  \\
+% Features & 128  \\
+% Steps & 25  \\
+% Classes & 2 \\
+% Hidden Units & 32 \\
+% L2 Regularization & 0.0015 \\
+% Learning Rate & 0.0025 \\
+% Epochs & 50 \\
+% Batch Size & 256 \\
+% \hline
+% \end{tabular}
+% \caption{LSTM Parameters}
+% \label{table:1}
+% \end{table}
+% }
 
 
 
-{
-\begin{table}[h!]
-\centering
-\begin{tabular}{l|l|c|c|c}
-\multicolumn{2}{c}{}&\multicolumn{2}{c}{}&\\
-\cline{3-4}
-\multicolumn{2}{c|}{}&Negative (0)&Positive (1)&\multicolumn{1}{c}{Total}\\
-\cline{2-4}
-\multirow{}{}{}& Negative (0) & $1093$ & $29$ & $1122$\\
-\cline{2-4}
-& Positive (1) & $22$ & $1144$ & $1166$\\
-\cline{2-4}
-\multicolumn{1}{c}{} & \multicolumn{1}{c}{Total} & \multicolumn{1}{c}{$1115$} & \multicolumn{    1}{c}{$1173$} & \multicolumn{1}{c}{$2288$}\\
-\end{tabular}
-\caption{LSTM Confusion Matrix}
-\label{table:1}
-\end{table}
-}
+% {
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{l|l|c|c|c}
+% \multicolumn{2}{c}{}&\multicolumn{2}{c}{}&\\
+% \cline{3-4}
+% \multicolumn{2}{c|}{}&Negative (0)&Positive (1)&\multicolumn{1}{c}{Total}\\
+% \cline{2-4}
+% \multirow{}{}{}& Negative (0) & $1093$ & $29$ & $1122$\\
+% \cline{2-4}
+% & Positive (1) & $22$ & $1144$ & $1166$\\
+% \cline{2-4}
+% \multicolumn{1}{c}{} & \multicolumn{1}{c}{Total} & \multicolumn{1}{c}{$1115$} & \multicolumn{    1}{c}{$1173$} & \multicolumn{1}{c}{$2288$}\\
+% \end{tabular}
+% \caption{LSTM Confusion Matrix}
+% \label{table:1}
+% \end{table}
+% }
 
-The model consisted of: 
-\begin{enumerate}
-\itemsep0em
-\item One 2D Convolutional Layer of 64 filters, a kernel size of $5\times5$, a ReLU (Rectified Linear Unit, Equation 4.3) function and same padding. 
-\useshortskip
-\begin{align}
-\ f(x) = max(0,x)
-\label{eq:3}
-\end{align}
-\useshortskip
-\item Another 2D Convolutional Layer having 32 filters, a kernel size of $5\times5$, a ReLU (rectified linear unit) function, same padding and an L2 regularisation coefficient of 0.01 (to prevent overfitting). 
-\item A 2D MaxPooling layer of $2\times2$ size.
-\item A Dropout layer of 0.2 intensity (in order to avoid over-fitting the data).
-\item A layer to first flatten the data from three dimensions to just one, and then another one to condense the input to give to the classifier 128 features (always using the ReLU function and L2 regularisation).
-\item A second Dropout layer of 0.5 intensity.
-\item Finally, a Dense layer (of two neurons) to produce the classification result, using a Softmax activation function. The Softmax function (Equation 4.4) will take in this case the two inputs from the neurons and convert them in two probabilities that sums up to one. The greater probability was rounded up/down to either one or zero to represent the CNN output choice (Typical(0), ASD(1)).
-% \setlength{\floatsep}{-2pt}
-\begin{align}
-\ \sigma(x)_{j} = \frac{e^{x_{j}}}{\sum_{k=1}^{k} e^{x_{k}}} && \text{for j=1,\dots,k}
-\label{eq:3}
-\end{align}
+% The model consisted of: 
+% \begin{enumerate}
+% \itemsep0em
+% \item One 2D Convolutional Layer of 64 filters, a kernel size of $5\times5$, a ReLU (Rectified Linear Unit, Equation 4.3) function and same padding. 
 % \useshortskip
-\end{enumerate}
+% \begin{align}
+% \ f(x) = max(0,x)
+% \label{eq:3}
+% \end{align}
+% \useshortskip
+% \item Another 2D Convolutional Layer having 32 filters, a kernel size of $5\times5$, a ReLU (rectified linear unit) function, same padding and an L2 regularisation coefficient of 0.01 (to prevent overfitting). 
+% \item A 2D MaxPooling layer of $2\times2$ size.
+% \item A Dropout layer of 0.2 intensity (in order to avoid over-fitting the data).
+% \item A layer to first flatten the data from three dimensions to just one, and then another one to condense the input to give to the classifier 128 features (always using the ReLU function and L2 regularisation).
+% \item A second Dropout layer of 0.5 intensity.
+% \item Finally, a Dense layer (of two neurons) to produce the classification result, using a Softmax activation function. The Softmax function (Equation 4.4) will take in this case the two inputs from the neurons and convert them in two probabilities that sums up to one. The greater probability was rounded up/down to either one or zero to represent the CNN output choice (Typical(0), ASD(1)).
+% % \setlength{\floatsep}{-2pt}
+% \begin{align}
+% \ \sigma(x)_{j} = \frac{e^{x_{j}}}{\sum_{k=1}^{k} e^{x_{k}}} && \text{for j=1,\dots,k}
+% \label{eq:3}
+% \end{align}
+% % \useshortskip
+% \end{enumerate}
 
-In order to optimise the training, the Adam (Adaptive Moment Estimation) gradient descent algorithm was used, and the cross-entropy function was used to compute the model loss. The cross-entropy function ($H_{y'}(y)$), in a binary classification case can be calculated by using Equation 4.5.
-\useshortskip
-\begin{align}
-\ H_{y'}(y) = \sum_{i} (y_{i}'\log(y_{i}) + (1 - y_{i}')\log(1 - y_{i}))
-\label{eq:3}
-\end{align}
-\useshortskip
-\begin{conditions}
- y_{i}'  &  expected model output \\
- y_{i}     &  real model output \\
-\end{conditions}
-\useshortskip
-This model achieved an overall validation accuracy of 94.58\% in just thirty epochs of training. 
+% In order to optimise the training, the Adam (Adaptive Moment Estimation) gradient descent algorithm was used, and the cross-entropy function was used to compute the model loss. The cross-entropy function ($H_{y'}(y)$), in a binary classification case can be calculated by using Equation 4.5.
+% \useshortskip
+% \begin{align}
+% \ H_{y'}(y) = \sum_{i} (y_{i}'\log(y_{i}) + (1 - y_{i}')\log(1 - y_{i}))
+% \label{eq:3}
+% \end{align}
+% \useshortskip
+% \begin{conditions}
+%  y_{i}'  &  expected model output \\
+%  y_{i}     &  real model output \\
+% \end{conditions}
+% \useshortskip
+% This model achieved an overall validation accuracy of 94.58\% in just thirty epochs of training. 
 
 
-{
-\begin{table}[h!]
-\centering
-\begin{tabular}{l|l|c|c|c}
-\multicolumn{2}{c}{}&\multicolumn{2}{c}{}&\\
-\cline{3-4}
-\multicolumn{2}{c|}{}&Negative (0)&Positive (1)&\multicolumn{1}{c}{Total}\\
-\cline{2-4}
-\multirow{}{}{}& Negative (0) & $1001$ & $100$ & $1101$\\
-\cline{2-4}
-& Positive (1) & $24$ & $1163$ & $1187$\\
-\cline{2-4}
-\multicolumn{1}{c}{} & \multicolumn{1}{c}{Total} & \multicolumn{1}{c}{$1025$} & \multicolumn{    1}{c}{$1263$} & \multicolumn{1}{c}{$2288$}\\
-\end{tabular}
-\caption{CNN Confusion Matrix}
-\label{table:1}
-\end{table}
-}
+% {
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{l|l|c|c|c}
+% \multicolumn{2}{c}{}&\multicolumn{2}{c}{}&\\
+% \cline{3-4}
+% \multicolumn{2}{c|}{}&Negative (0)&Positive (1)&\multicolumn{1}{c}{Total}\\
+% \cline{2-4}
+% \multirow{}{}{}& Negative (0) & $1001$ & $100$ & $1101$\\
+% \cline{2-4}
+% & Positive (1) & $24$ & $1163$ & $1187$\\
+% \cline{2-4}
+% \multicolumn{1}{c}{} & \multicolumn{1}{c}{Total} & \multicolumn{1}{c}{$1025$} & \multicolumn{    1}{c}{$1263$} & \multicolumn{1}{c}{$2288$}\\
+% \end{tabular}
+% \caption{CNN Confusion Matrix}
+% \label{table:1}
+% \end{table}
+% }
