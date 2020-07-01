@@ -305,7 +305,7 @@ def virus_SEIR_plot(negatives, esposed, positives, survivors, deths, R0, alpha, 
                 font=dict(
                     color="black",
                     size=18
-                ),
+                    ),
                 xshift=284,
                 yshift=-140)
             ]),
@@ -371,3 +371,63 @@ def beds_plot(actual_beds, daily_deths):
         matplotlib.ticker.FuncFormatter(lambda x, p: format(int(x), ',')))
     ax.set_title("Available vs Needed Beds", fontsize=35)
     st.pyplot()
+
+
+def comulative_plot2(negatives, survivors, dates_range, r2_res):
+    fig = go.Figure(
+        data=[go.Scatter(x=dates_range, y=negatives,
+                         mode="lines", name='Real Cases Trend',
+                         line=dict(width=2, color="blue")),
+              go.Scatter(x=dates_range, y=survivors,
+                         mode="lines", name='Inferred Trend',
+                         line=dict(width=2, color="orange"))],
+        layout=go.Layout(
+            title_text="Advanced SEIR Parameters Estimation (R2 Score="+str(round(r2_res, 3))+")", hovermode="closest",
+            updatemenus=[
+                {
+                    "buttons": [
+                        {
+                            "args": [None, {"frame": {"duration": 100, "redraw": False},
+                                            "fromcurrent": True,
+                                            "transition": {"duration": 10,
+                                                           "easing": "quadratic-in-out"}}],
+                            "label": "Play",
+                            "method": "animate"
+                        },
+                        {
+                            "args": [[None], {"frame": {"duration": 0, "redraw": False},
+                                              "mode": "immediate",
+                                              "transition": {"duration": 0}}],
+                            "label": "Pause",
+                            "method": "animate"
+                        }
+                    ],
+                    "direction": "left",
+                    "pad": {"r": 10, "t": 87},
+                    "showactive": False,
+                    "type": "buttons",
+                    "x": 0.14,
+                    "xanchor": "right",
+                    "y": 1.65,
+                    "yanchor": "top"
+                }
+            ]),
+
+        frames=[go.Frame(
+            data=[go.Scatter(
+                x=[i for i in range(k)],
+                y=negatives,
+                mode="lines",
+                line=dict(width=2, color="blue")),
+                go.Scatter(
+                x=[i for i in range(k)],
+                y=survivors,
+                mode="lines",
+                line=dict(width=2, color="orange"))])
+
+                for k in range(len(negatives))],
+
+    )
+    fig.update_xaxes(title_text="Number of Days")
+    fig.update_yaxes(title_text="Comulative Cases")
+    st.plotly_chart(fig)

@@ -6,13 +6,14 @@ import plotly.express as px
 import plotly.graph_objects as go
 import matplotlib
 import matplotlib.pyplot as plt
+from scipy import integrate, optimize
+from sklearn.metrics import r2_score
 import pages.home
 import support.virus_utilities as vir
 import support.advanced_models as ad
 import math
 
 millnames = ['', ' thousands', ' millions', ' billions', ' trillions']
-
 # https://stackoverflow.com/questions/3154460/python-human-readable-large-numbers
 
 
@@ -135,3 +136,97 @@ def write():
         st.write("Comparing our current availability of beds against the actual number of beds needed during the peak of the outbreak, we can finally obtain the summary plot available below.")
 
         vir.beds_plot(actual_beds, daily_deths)
+
+        st.markdown("## Advanced SEIR Parameters Estimation")
+
+        sim_days2 = len(dates_range)
+        d = [i for i in range(len(dates_range))]
+        null = 0
+        for i in range(len(cases)):
+            if cases[i] <= 0:
+                null += 1
+            else:
+                break
+
+        def sir_step_ahead(y, d, beta, gamma):
+            S, I, R = y
+            N = S + I + R
+            dsdt = -beta * I * (S / N)
+            didt = beta * I * (S / N) - gamma * I
+            drdt = gamma * I
+            return dsdt, didt, drdt
+
+        def r_time(t, R0_beg, R0_end, dec_factor, x0):
+            adaptive_r = ((R0_beg-R0_end) /
+                          (1+np.exp(-dec_factor*(-t+x0)))) + R0_end
+            return adaptive_r
+
+        def alpha2(scaling, I, N, opt_alpha):
+            return scaling * (I/N) + opt_alpha
+
+        def ad_seir_step_ahead(y, t, gamma, delta, scaling, rho, R0_beg, R0_end, dec_factor, x):
+            S, E, I, R, D = y
+            N = S + E + I + R + D
+            r_t = r_time(t, R0_beg, R0_end, dec_factor, x)
+            alpha_t = alpha2(scaling, I, N, opt_alpha)
+            beta_t = r_t * (1/(alpha_t*(1/rho)+(1-alpha_t)*(1/gamma)))
+            dsdt = -beta_t * I * (S / N)
+            dedt = beta_t * I * (S / N) - delta * E
+            didt = delta * E - (1 - alpha_t) * gamma * I - alpha_t * rho * I
+            drdt = (1 - alpha_t) * gamma * I
+            dddt = alpha_t * rho * I
+            return dsdt, dedt, didt, drdt, dddt
+
+        def r_time2(t, sim_days2, scale_factor):
+            return scale_factor*np.sin(t/(sim_days2/10))+scale_factor + 1
+
+        def ad_seir_step_ahead2(y, t, gamma, delta, scaling, rho, scale_factor):
+            S, E, I, R, D = y
+            N = S + E + I + R + D
+            r_t = r_time2(t, sim_days2, scale_factor)
+            alpha_t = alpha2(scaling, I, N, opt_alpha)
+            beta_t = r_t * (1/(alpha_t*(1/rho)+(1-alpha_t)*(1/gamma)))
+            dsdt = -beta_t * I * (S / N)
+            dedt = beta_t * I * (S / N) - delta * E
+            didt = delta * E - (1 - alpha_t) * gamma * I - alpha_t * rho * I
+            drdt = (1 - alpha_t) * gamma * I
+            dddt = alpha_t * rho * I
+            return dsdt, dedt, didt, drdt, dddt
+
+        def fit_odeint(t, gamma, delta, scaling, rho, R0_beg, R0_end, dec_factor, x):
+            return integrate.odeint(ad_seir_step_ahead, y0, t, args=(gamma, delta, scaling, rho, R0_beg, R0_end, dec_factor, x))[:, 1]
+
+        def fit_odeint2(t, gamma, delta, scaling, rho, scale_factor):
+            return integrate.odeint(ad_seir_step_ahead2, y0, t, args=(gamma, delta, scaling, rho, scale_factor))[:, 1]
+
+        I0 = cases[null]
+        S0 = population - I0
+        R0 = 0.0
+        E0 = 0.0
+        D0 = 0.0
+        y0 = S0, E0, I0, R0, D0
+
+        land2 = st.selectbox("What's landscape did R approximately follow?",
+                             ['Sigmoid', 'Sinusoidal'])
+        if land2 == "Sigmoid":
+            popt, pcov = optimize.curve_fit(fit_odeint, d[:len(
+                d)-null], cases[null:], bounds=(0.000, [1., 1., 1., 1., 10, 10, 1., 50.]))
+            cols = ['γ', '𝛿', 'Age Weight', 'ρ',
+                    'Max R0', 'Min R0', 'Decay Factor', 'X0']
+            dataframe = pd.DataFrame(
+                [popt],
+                columns=(cols))
+            st.dataframe(dataframe.style.format("{:.3}").hide_index())
+            fitted = fit_odeint(d, *popt)
+        else:
+            popt, pcov = optimize.curve_fit(fit_odeint2, d[:len(
+                d)-null], cases[null:], bounds=(0.000, [1., 1., 1., 1., 10]))
+            cols = ['γ', '𝛿', 'Age Weight', 'ρ', 'R0 Scaling']
+            dataframe = pd.DataFrame(
+                [popt],
+                columns=(cols))
+            st.dataframe(dataframe.style.format("{:.3}").hide_index())
+            fitted = fit_odeint2(d, *popt)
+
+        r2_res = r2_score(cases, fitted)
+        vir.comulative_plot2(cases, fitted, dates_range, r2_res)
