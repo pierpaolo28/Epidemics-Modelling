@@ -34,6 +34,33 @@
  
 \lstset{style=mystyle}
 
+\section{Logistic/Exponential Curve Fitting}
+\label{exp_fit}
+
+For a logistic curve at the turning point: 
+
+\useshortskip
+\begin{align}
+\ Slope = Growth Factor/2 \Rightarrow\quad Doubling Time (DT) = \dfrac{ln(2)}{Growth Factor/2}
+\end{align}
+\useshortskip
+
+Instead, for an exponential curve:
+
+\useshortskip
+\begin{align}
+\ Slope = Growth Factor \Rightarrow\quad Doubling Time (DT) = \dfrac{ln(2)}{Growth Factor}
+\end{align}
+\useshortskip
+
+A worked out example, with the results from the top three countries with the most number of Coronavirus Cases as of the end of June 2020, is available below. From this example, we can easily see how well our data resembles a logistic/exponential curve (using the $R^{2}$ score to quantify the mismatch) and what's the predicted time for the number of cases to double given the current trends.
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=15.5cm]{latex/images/fitting.PNG}%
+    \caption{Curve Fitting}
+\end{figure}
+
 % % Can input the GANTT chart as either pdf or image (commented below)
 % \includepdf[pages=-,pagecommand={\section{Project Management}\null\vfill\captionof{figure}{First and Second Semester Gantt Chart Data}},noautoscale=true,offset=0 -10, scale=0.7]{images/g1.pdf}
 % %\section{Gantt Chart}
