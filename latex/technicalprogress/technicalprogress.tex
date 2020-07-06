@@ -16,8 +16,8 @@ Additionally, a secondary website has been created using GitHub Pages in order t
 Infectious diseases, can mainly be classified into three different categories depending on their characteristics \cite{2minclass}:
 \begin{enumerate}
     \item \textbf{Endemic}: an endemic is an health concern which is constantly present at a low rate within a population (its presence doesn't either substantially increase or decline). Some examples of endemics are Malaria and Chicken Pox.
-    \item \textbf{Epidemic}: is an health issue which can cause a fast and unforeseen increase in cases within a population. An example of epidemic, can be considered the seasonal flu, which can lead to a sharp increase in the number of infected at specific times of the year.
-    \item \textbf{Pandemic}: epidemics can finally later become pandemics if they manage to spread around the world and effect a great number of people. Some examples of pandemics are the Spanish Flu and COVID-19.
+    \item \textbf{Epidemic}: is an health issue which can cause a fast and unforeseen increase in cases within a population. An example of epidemic, can be considered to be the seasonal flu, which can lead to a sharp increase in the number of infected at specific times of the year.
+    \item \textbf{Pandemic}: epidemics can finally later become pandemics if they manage to spread around the world and affect a great number of people. Some examples of pandemics are the Spanish Flu and COVID-19.
 \end{enumerate}
 
 \subsection{Exponential vs Logistic Growth}
@@ -31,20 +31,21 @@ Pandemics, usually develops thanks to a disease ability to spread at an exponent
 \end{align}
 \useshortskip
 
-Where $E$ represents the average number of people we are exposed to every day, $p$ represents the probability that an exposure might lead to an infection and $N_{d}$ is the number of cases as of today. Therefore, in this type of situation, the only possible way to try to slow down our exponential trend is by decreasing $E$ and $p$. In order to make this possible, different techniques such as track and trace, social distancing and travel restrictions can be applied. Although, even if no intervention at all is done, an exponential trend is destined to convert to a logistic curve once a large number of the population gets infected by the disease (in fact, the probability than an exposure can lead to an infect automatically decreases if the majority of the population and the people we meet are already infected). Applying any type of restriction, would then help us in making possible to reach our inflection point between these two trends as soon as possible.
+Where $E$ represents the average number of people we are exposed to every day, $p$ represents the probability that an exposure might lead to an infection and $N_{d}$ is the number of cases as of today. Therefore, in this type of situation, the only possible way to try to slow down our exponential trend is by decreasing $E$ and $p$. In order to make this possible, different techniques such as track and trace, social distancing and travel restrictions can be applied. Although, even if no intervention at all is done, an exponential trend is destined to convert to a logistic curve once a large number of the population gets infected by the disease (in fact, the probability that an exposure can lead to an infect automatically decreases if the majority of the population and the people we meet are already infected). Applying any type of restriction, would then help us in making possible to reach our inflection point between these two trends as soon as possible.
 
-Exponential growths, can be easier to inspect if when plotting them on a logarithmic scale. Using this type of graph, an exponential curve would then look like approximately a straight line. As we can see from the graph on the left of Figure \ref{exp}, all the different considered countries follow the at first the same exponential pattern which then seems to be starting converting to a logistic curve. The graph on the right of Figure \ref{exp}, was then designed in order to try to amplify this change \cite{physics}. While going through an exponential growth, it can be difficult to understand how long will it last (if the growth is going to still keep being exponential or is going to start decaying). One possible way to approach this problem, is to focus our attention on the rate of change in new cases from a week to another. Plotting this on a both axis logarithmic scale, we would then clearly see that all the different countries have a same linear growth in cases. Although, using some form of containment, some of these countries are successfully able to escape from this linear growth in cases. Using this type of approach, we can successfully emphasize the deviation in the growth of an exponential curve.
+Exponential growths, can be easier to inspect when plotting on a logarithmic scale. Using this type of graph, an exponential curve would then look like approximately a straight line. As we can see from the graph on the left of Figure \ref{exp}, all the different considered countries follow at first the same exponential pattern which then seems to be starting converting to a logistic curve. The graph on the right of Figure \ref{exp}, was then designed in order to try to amplify this change \cite{physics}. While going through an exponential growth, it can be difficult to understand how long will it last (if the growth is going to still keep being exponential or is going to start decaying). One possible way to approach this problem, is to focus our attention on the rate of change in new cases from a week to another. Plotting this on a both axis logarithmic scale, we would then clearly see that all the different countries have a same linear growth in cases. Although, using some form of containment, some of these countries are successfully able to escape from this linear growth in cases. Using this type of approach, we can successfully emphasize the deviation in the growth of an exponential curve.
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=17cm]{latex/images/logplot.png}%
-    \caption{Exponential Growth Evolution}
+    % \includegraphics[width=17cm]{latex/images/logplot.png}%
+    \includegraphics[width=1\linewidth]{latex/images/logplot.pdf}
+    \caption{Exponential Growth Evolution (COVID-19, 28th June 2020)}
     \label{exp}
 \end{figure}
 
 Using the logarithmic linear graphs, we could then perform a linear regression to find the line of best fit and find out how many days does it take for our cases to increase by a fixed constant. Finally, using metrics such as the $R^{2}$ score, we could then quantitatively measure how far are our curves from an exponential curve.
 
-Another way to examine if we are reaching the end of an exponential curve, is by examining the slope (Growth Factor, Equation \ref{growth}).
+Another way to understand if we are reaching the end of an exponential curve, is by examining the slope (Growth Factor, Equation \ref{growth}).
 
 \useshortskip
 \begin{align}
@@ -76,7 +77,7 @@ As shown in Equation \ref{r0}, $R_{0}$ can be calculated as the number of people
 \end{align}
 \useshortskip
 
-If $R$ is greater than one, then the disease is still in the exponentially growing phase (we have an epidemic), if $R$ is instead equal to one we are instead in an endemic (therefore the number of cases stays approximately constant) and if $R$ is less than one, we are instead in the eradication phase and the disease could disappear entirely soon from our population.
+If $R$ is greater than one, then the disease is still in the exponentially growing phase (we have an epidemic), if $R$ is instead equal to one we are then in an endemic (therefore the number of cases stays approximately constant) and if $R$ is less than one, we are finally in the eradication phase and the disease could disappear entirely soon from our population.
 
 One of the most common approaches to eradicate a decease, is through Herd Immunity. The percentage proportion of the individuals in a population necessary to reach Herd Immunity can be estimated using Equation \ref{immunity}. In the case of COVID-19, this is estimated to be around 60\%. Herd Immunity, can potentially be achieved either through vaccination or natural selection \cite{blob}.
 
@@ -102,9 +103,10 @@ In this chapter, we will explore the first two approaches.
 
 In Compartmental Models, is assumed that each individual in a population, is assigned to a compartment. During the course of the simulations, individuals can then be free to move from one compartment to another depending on the dynamics of the model. Some examples of common departments in Epidemic Modelling are: Susceptible, Exposed, Infectious, Recovered, Dead, Vaccinated, etc...
 
-This models can be designed using either ordinary differential equations or stochastic elements as well. Diagrams representations of this type of models can be of great help in order to understand how the model equations works and what are the possible movements between different states. 
+These models can be designed using either ordinary differential equations or stochastic elements as well. Diagrams representations of this type of models can be of great help in order to understand how the model equations works and what are the possible movements between different states. 
 
 \subsection{SIR (Susceptible-Infected-Recovered)}
+\label{sir_sec}
 
 \textbf{Causal Question:} How does the number of people I am in contact with on average in a day affect the evolution of the pandemic?
 
@@ -134,7 +136,8 @@ In order to visualise better the situation, this set of equations, can then be c
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/comp.PNG}%
+    \includegraphics[width=0.8\linewidth]{latex/images/comp.pdf}
+    % \includegraphics[width=13cm]{latex/images/comp.PNG}%
     \caption{Compartmental Models Diagram Representation}
     \label{comp}
 \end{figure}
@@ -143,7 +146,8 @@ Therefore, in order to move from one compartment to another, we need to take int
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=10cm]{latex/images/dsir.PNG}%
+    \includegraphics[width=0.75\linewidth]{latex/images/dsir.pdf}
+    % \includegraphics[width=10cm]{latex/images/dsir.PNG}%
     \caption{SIR Diagram Representation}
     \label{dsir}
 \end{figure}
@@ -173,14 +177,17 @@ Number of days a the disease can last & 7 \\
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/sir.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/sir.pdf}
+    % \includegraphics[width=13cm]{latex/images/sir.PNG}%
     \caption{SIR Model}
     \label{sir}
 \end{figure}
 
+Experimental results demonstrated that even slight increases in the number of people individuals are in contact with on average in a day can cause major changes in the possible evolution of the pandemic, leading to higher peaks in the curve of infected and possibly overwhelming hospitalization systems.
+
 \subsection{SEIR (Susceptible-Exposed-Infected-Recovered)}
 
-In order to make our more more realistic, we can then add an additional state E representing all the population elements which are still in the incubation stage before becoming infected. In order to apply these modifications, we just need to update $\frac{\partial I}{\partial t}$ and add this extra stage before just before it. The only variable which needs to be added compared to the SIR model is the proportion of how many individuals move from the incubation period to being infected ($\delta = \dfrac{1}{Days\;of\;incubation}$).
+In order to make our more more realistic, we can then add an additional state E representing all the population elements which are still in the incubation stage before becoming infected. To apply these modifications, we just need to update $\frac{\partial I}{\partial t}$ and add this extra stage just before it. The only variable which needs to be added compared to the SIR model is the proportion of how many individuals move from the incubation period to being infected ($\delta = \dfrac{1}{Days\;of\;incubation}$).
 
 \useshortskip
 \begin{align}
@@ -198,16 +205,18 @@ Following the same procedure as for the SIR model, we can then convert our SEIR 
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=10cm]{latex/images/dseir.PNG}%
+    \includegraphics[width=0.75\linewidth]{latex/images/dseir.pdf}
+    % \includegraphics[width=10cm]{latex/images/dseir.PNG}%
     \caption{SEIR Diagram Representation}
     \label{dseir}
 \end{figure}
 
-Using the same parameters as in Table \ref{table:1}, and using one day as the number of incubation days for the disease, can then be produced the results in Figure \ref{seir}.
+Using the same parameters as in Table \ref{table:1}, and choosing one day as the number of incubation days for the disease, can then be produced the results in Figure \ref{seir}.
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/seir.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/seir.pdf}
+    % \includegraphics[width=13cm]{latex/images/seir.PNG}%
     \caption{SEIR Modelling}
     \label{seir}
 \end{figure}
@@ -262,7 +271,8 @@ Which results in the following diagram flow architecture:
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=10cm]{latex/images/dadv_seir.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/dadv_seir.pdf}
+    % \includegraphics[width=10cm]{latex/images/dadv_seir.PNG}%
     \caption{Advanced SEIR Diagram Representation}
 \end{figure}
 
@@ -361,7 +371,8 @@ Minimum possible R value & 1  \\
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/sig_seir.PNG}%
+    \includegraphics[width=1\linewidth]{latex/images/sig_seir.pdf}
+    % \includegraphics[width=13cm]{latex/images/sig_seir.PNG}%
     \caption{Advanced SEIR (Sigmoid) Modelling}
     \label{sig_seir}
 \end{figure}
@@ -370,16 +381,19 @@ Using instead the Sinusoidal landscape and a scaling factor of 2, have been regi
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/sine_seir.PNG}%
+    \includegraphics[width=1\linewidth]{latex/images/sine_seir.pdf}
+    % \includegraphics[width=13cm]{latex/images/sine_seir.PNG}%
     \caption{Advanced SEIR (Sinusoidal) Modelling}
+    \vspace{-0.5cm}
     \label{sine_seir}
 \end{figure}
 
 \subsection{Time Limited Immunity and Vaccination Modelling}
-
+\vspace{-0.1cm}
 \subsubsection{Time Limited Immunity}
+\textbf{Causal Question:} What if recovered patients could be infected again? Could it be possible to eradicate the disease?
 
-Updating our SIR model, we can be able to take into account the possibility that individuals might not gain lifetime immunity from a disease when recovering from it, but that might instead be re-infected again in the future after some time. The amount of time an individual might be immune from a disease can be represented by just adding a new variable to our model ($v$) \cite{immune}.
+\textbf{Experimental Results:} Updating our SIR model (Section \ref{sir_sec}), we can then be able to take into account the possibility that individuals might not gain lifetime immunity from a disease when recovering from it, but that might instead be re-infected again in the future after some time. The amount of time an individual might be immune from a disease can be represented by just adding a new variable to our model ($v$) \cite{immune}.
 
 \useshortskip
 \begin{align}
@@ -403,7 +417,8 @@ Converting our set of equations into a Block Diagram representation, will then r
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=10cm]{latex/images/dimm.PNG}%
+    \includegraphics[width=0.75\linewidth]{latex/images/dimm.pdf}
+    % \includegraphics[width=10cm]{latex/images/dimm.PNG}%
     \caption{SIR Time Limited Immunity Diagram Representation}
     \label{dimm}
 \end{figure}
@@ -412,14 +427,19 @@ Using the same SIR model parameters as in Table \ref{table:1}, setting to 25 the
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/time_lim.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/time_lim.pdf}
+    % \includegraphics[width=13cm]{latex/images/time_lim.PNG}%
     \caption{Time Limited Immunity Modelling}
     \label{low_imm}
 \end{figure}
 
+As can be seen from our experimental results, having a low time limited immunity would make almost impossible to eradicate the disease from the population. 
+
 \subsubsection{Vaccination}
 
-Extending our set of equations (adding an extra stage $\frac{\partial V}{\partial t}$), we can be able to take into account how an epidemic will evolve once a vaccine is available. In order to apply these modifications, we just need to update $\frac{\partial S}{\partial t}$ and add the vaccination stage before just after it. To make the simulation more realistic, we can then also specify from when in time a vaccine could start being distributed and how fast it can produced and shipped ($p$). Finally, a stage used to record the possible amount of deaths is included (using the same notation for the Advanced SEIR models).
+\textbf{Causal Question:} Adding vaccination to this model, would that make possible to eradicate the disease even with low time-limited immunity?
+
+\textbf{Experimental Results:} Extending our set of equations (adding an extra stage $\frac{\partial V}{\partial t}$), we can be able to take into account how an epidemic will evolve once a vaccine is available. In order to apply these modifications, we just need to update $\frac{\partial S}{\partial t}$ and add the vaccination stage before just after it. To make the simulation more realistic, we can then also specify from when in time a vaccine could start being distributed and how fast it can produced and shipped ($p$). Finally, a stage used to record the possible amount of deaths is included (using the same notation for the Advanced SEIR models).
 
 \useshortskip
 \begin{align}
@@ -455,7 +475,8 @@ Converting our set of equations into a Block Diagram representation, we can then
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=10cm]{latex/images/dvacc.PNG}%
+    \includegraphics[width=0.7\linewidth]{latex/images/dvacc.pdf}
+    % \includegraphics[width=10cm]{latex/images/dvacc.PNG}%
     \caption{SIR Time Limited Immunity and Vaccination Diagram Representation}
     \label{dvacc}
 \end{figure}
@@ -483,34 +504,39 @@ Vaccine Distribution rate & 0.1\%  \\
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/vacc.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/vacc.pdf}
+    % \includegraphics[width=13cm]{latex/images/vacc.PNG}%
+    \vspace{-0.2cm}
     \caption{Vaccination Modelling}
     \label{vacc}
 \end{figure}
-
+\vspace{-0.5cm}
 Making use of the provided Time Limited Immunity and Vaccination models, in conjunction with Equation \ref{immunity}, it could then be possible to get estimates of what proportion of the population would be necessary in order to gain Herd Immunity. 
+
+Adding vaccination in our model (especially in an early stage and distributing it at a high rate), would therefore make possible to completely eradicate a disease even in the case of low time-limited immunity \cite{next}.
 
 \subsection{Coronavirus Modelling}
 In order to test on real world data one of the created models, the architecture of the Advanced SEIR model outlined in Section \ref{cov_model} has been tested. The different parameters of the model, have then been personalised depending on the examined country specifics.
 
-In order to do so, information about a large number of countries population size and demographics has been processed making use of the United Nations World Population Prospects 2019 dataset \cite{pop_data}. Additionally, information about the number of hospital beds available for 1000 people for each country has been used from the The World Bank Data Hospital Beds dataset \cite{beds_data}, in order to calculate estimates of when hospitals in different countries might get overwhelmed and how many avoidable deaths would that cause.
-
-Finally, an estimation of the number of actual cases for each country has been calculated using the approach outlined in "Substantial undocumented infection facilitates the rapid dissemination of novel coronavirus (SARS-CoV-2)" \cite{cases_paper}.
+In order to do so, information about a large number of countries population size and demographics has been processed making use of the United Nations World Population Prospects 2019 dataset \cite{pop_data}. Additionally, information about the number of hospital beds available for 1000 people for each country has been used from the The World Bank Data Hospital Beds dataset \cite{beds_data}, in order to calculate estimates of when hospitals in different countries might get overwhelmed and how many avoidable deaths would that cause. Finally, an estimation of the number of actual cases for each country has been calculated using the approach outlined in "Substantial undocumented infection facilitates the rapid dissemination of novel coronavirus (SARS-CoV-2)" \cite{cases_paper}.
 
 \subsubsection{Germany Case Study}
 
 \textbf{Causal Question:} How can we prevent an healthcare system to become overwhelmed? How many lives would be saved?
 
-\textbf{Experimental Results:} As of the 29th of June 2020, Germany Coronavirus record can be summarised as in Figure \ref{germ}. Germany has a total population of 84 millions and the total number of estimated cases has been calculated taking in consideration that about 86\% of the total Coronavirus cases have been estimated to have been undocumented \cite{cases_paper} in China.
+\textbf{Experimental Results:} As of the second of July 2020, Germany Coronavirus record can be summarised as in Figure \ref{germ}. Germany has a total population of 84 millions and the total number of estimated cases has been calculated taking in consideration that about 86\% of the total Coronavirus cases have been estimated to have been undocumented \cite{cases_paper} in China.
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=12cm]{latex/images/cov_g.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/cov_g.pdf}
+    % \includegraphics[width=13cm]{latex/images/cov_g.PNG}%
+    \vspace{-0.2cm}
     \caption{Germany Statistics}
     \label{germ}
+    \vspace{-0.2cm}
 \end{figure}
-
-Another point, which could be necessary to take into account in order to understand the true number of cases in a country is the possibility of false positives and false negatives during testing. More accurate estimates can be calculated using Bayes Rule and the Law of Total Probability (Equation \ref{bayes2}). For instance, is a patient does a Coronavirus test and results positive, what are its chances that he/she actually has Coronavirus?
+\vspace{-0.5cm}
+Another point, which could be necessary to take into account in order to understand the true number of cases in a country is the possibility of false positives and false negatives during testing. More accurate estimates can be calculated using Bayes Rule and the Law of Total Probability (Equation \ref{bayes2}). For instance, if a patient does a Coronavirus test and results positive, what are its chances that he/she actually has Coronavirus?
 
 \useshortskip
 \begin{align}
@@ -518,7 +544,6 @@ Another point, which could be necessary to take into account in order to underst
 \label{bayes2}
 \end{align}
 \useshortskip
-
 In this example, we are going to take into consideration the COVID-19: Roche Antibody Test \cite{roche}. This test, has an estimated sensitivity of 100\% (ability to correctly identify patients with the disease) and specificity of 99.8\% (ability to correctly identify patients without the disease). Assuming a prevalence of the disease in the population of about 5\%, the following estimates can be calculated:
 
 \useshortskip
@@ -526,37 +551,44 @@ In this example, we are going to take into consideration the COVID-19: Roche Ant
 \ P(B|A) = \frac{1 \times 0.05}{1 \times 0.05 + 0.002 \times 0.95} = 96.33\%
 \end{align}
 \useshortskip
-
 If the test is positive, there would be then a 96.33\% probability the patient actually has Coronavirus. As can be seen from Equation \ref{bayes2}, the rate of the Coronavirus cases in a population, plays an important factor.
 
-An example of a simulation run, using Germany as case study is available below. As can be noticed, the key difference between \ref{germ_sim} and \ref{sig_seir} is the fact that we are to take into account this time also when the healthcare system of the selected country runs out of beds for critical patients. This can be of vital help, in order to understand to what limit the healthcare system can be able to provide support the all the patients in need at any point in the pandemic and how many deaths could be avoided.
- 
+An example of a simulation run, using Germany as case study is available in Figure \ref{germ_sim}. As can be noticed, the key difference between \ref{germ_sim} and \ref{sig_seir} is the fact that we are to take into account this time also when the healthcare system of the selected country runs out of beds for critical patients. This can be of vital help, in order to understand to what limit the healthcare system can be able to provide support the all the patients in need at any point in the pandemic and how many deaths could be avoided.
+\vspace{-0.3cm}
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/cov_g2.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/cov_g2.pdf}
+    \vspace{-0.3cm}
     \caption{Germany Simulation}
     \label{germ_sim}
 \end{figure}
 
 Additionally, an estimate of the number of beds needed to go through the peak of the simulated pandemic while providing support for all the critically ill patients is provided in Figure \ref{germ_bed} alongside with the current number of beds available.
 
+\vspace{-0.3cm}
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=9cm]{latex/images/cov_g3.PNG}%
+    \includegraphics[width=0.65\linewidth]{latex/images/cov_g3.pdf}
+    % \includegraphics[width=10cm]{latex/images/cov_g3.PNG}%
+    \vspace{-0.3cm}
     \caption{Germany Hospital Beds Analysis}
     \label{germ_bed}
+    \vspace{-0.3cm}
 \end{figure}
 
-Finally, is calculated an automatic estimation of the parameters of the Advanced SEIR model given the provided data. This estimation is computed using non-linear least squares and the final $R^{2}$ score is provided as metric for the convergence of the fitted curve compared to the original one. According to these estimates, thanks to public health restrictions, Germany $R$ value, varies from a maximum of 6.37 to a minimum of 1.45 during the last 5 months.
+\vspace{-0.3cm}
+Finally, is calculated an automatic estimation of the parameters of the Advanced SEIR model given the provided data (Figure \ref{par_est}). This estimation is computed using non-linear least squares and the final $R^{2}$ score is provided as metric for the convergence of the fitted curve compared to the original one. According to these estimates, thanks to public health restrictions, Germany $R$ value, varies from a maximum of 6.37 to a minimum of 1.45 during the last 5 months.
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/germ_params.PNG}%
+    \includegraphics[width=0.75\linewidth]{latex/images/germ_params.pdf}
+    % \includegraphics[width=11cm]{latex/images/germ_params.PNG}%
     \caption{Advanced SEIR Parameters Estimation}
+    \label{par_est}
 \end{figure}
 
 \section{Agent Based Models}
-An alternative approach which can be used in order to simulate compartmental-like models, is by creating an Agent Based simulation. In this case, each single individual in the population is created following an Objected Oriented Programming approach (eg. using a programming class) and it's behaviour in an environment while in contact with the rest of the population is simulated. Using this type of approach, can therefore enable us to keep track of the position of the different individuals in a population and attribute then different characteristics such as an age or daily income. Similar results could be obtained using standard compartmental models by converting our Ordinary Differential Equations into Partial Differential Equations and making them dependent on both time and space \cite{pde}.
+An alternative approach which can be used in order to simulate compartmental-like models, is by creating an Agent Based simulation. In this case, each single individual in the population is created following an Objected Oriented Programming approach (e.g. using a programming class) and it's behaviour in an environment while in contact with the rest of the population is simulated. Using this type of approach, can therefore enable us to keep track of the position of the different individuals in a population and attribute them different characteristics such as an age or daily income. Similar results could be obtained using standard compartmental models by converting our Ordinary Differential Equations into Partial Differential Equations and making them dependent on both time and space \cite{pde}.
 
 The proposed Agent Based Model, is directly inspired from The Epidemiological Triad paradigm (Figure \ref{triad}).
 
@@ -579,14 +611,15 @@ The proposed Agent Based Model, is directly inspired from The Epidemiological Tr
     \item $p$ can be reduced instead for example by making less likely to catch the disease by taking precautions such as washing hands, wearing masks, avoid touching our faces, etc...
 \end{itemize}
 
-This trend can be observed in the following proposed model (Algorithm \ref{alg1}) by the \textbf{Contact Radius} ($E$) and \textbf{Probability of how unlikely it is to spread the virus if within the contact radius} (complementary of $p$) variables.
+This trend can be observed in the following proposed model (Appendix \ref{code_alg}) by the \textbf{Contact Radius} ($E$) and \textbf{Probability of how unlikely it is to spread the virus if within the contact radius} (complementary of $p$) variables.
 In this way, causal effects of social distancing and improved hygiene can be easily inspected. Furthermore, the role of dividing individuals in different communities is additionally studied. Having different communities with a central shared point and random infected initialization, can in fact resemble how contagious disease hot-spots can be created.
 
 An example output of this type of simulation, is available in Figure \ref{pop}.
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/pop.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/pop.pdf}
+    % \includegraphics[width=13cm]{latex/images/pop.PNG}%
     \caption{Population Modelling}
     \label{pop}
 \end{figure}
@@ -616,54 +649,7 @@ Additionally, each iteration is kept an eye on the individuals affected by the v
 
 Successively, depending on the speed and the travelling direction, the position of all the different individuals is updated. Additional, conditions are imposed if an individual reaches an edge of the grid, in order to make it bounce back (therefore inverting the direction of movement). All the different metrics are then stored in order to produce the plots.
 
-In order to simulate different separated communities, the population is being divided into groups which all have different grid limits within which they can move. Creating sub-populations with overlapping grid limits, individuals can then be allowed to move from one subset to another.
-
-The overall workflow is summarised in Algorithm \ref{alg1}.
-
-\begin{algorithm}
-\caption{Population Modelling Pseudo-code Outline}
-\label{alg1}
-% \vspace*{-.5cm}
-% \begin{multicols}{2}
-\begin{algorithmic}[1]
-  \STATE $E \Leftarrow Contact\:Radius$
-  \STATE $\overline{p} \Leftarrow Unlikeliness\:of\:Spread$
-  \STATE $p\_died \Leftarrow Death\:Probability\:dependent\:on\:age$
-  \FOR{$day\:in\:simulation\:days$}
-  \FOR{$individual\:in\:population$}
-      \STATE$Record\:individual\:status$
-      \IF{$Infected$}
-      \IF{$Draw\:with\:probability\:(p\_died\times age == 1)$}
-        \STATE $individual\:status \Leftarrow Dead$
-      \ELSE
-        \IF{$(Rehabilitation\:days == 14)$}
-          \STATE $individual\:status \Leftarrow Recovered$
-        \ENDIF
-        \STATE $Rehabilitation\:days\:+= 1$
-      \ENDIF
-      \ELSIF{$Susceptible$}
-        \STATE $close\_people = 0$
-        \FOR{$friend\:in\:community$}
-        \IF{$(Friend==Infected)\:and\:(Euclid\:Dist<E)$}
-        \STATE $close\_people\:+= 1$
-        \ENDIF
-        \ENDFOR
-        \IF{$(Draw\:with\:probability\:dependent\:on\:close\_people\:and\:\overline{p} == 1)$}
-          \STATE $individual\:status \Leftarrow Infected$
-        \ENDIF
-      \ENDIF
-      \IF{$(Static == False)$}
-          \STATE $individual\:X\:and\:Y\:position\:update$
-          \IF{$individual\:X\:or\:Y\:position\:out\:of\:boundaries$}
-            \STATE $Adjust\:position\:and\:reverse\:movement\:direction$
-          \ENDIF
-      \ENDIF
-  \ENDFOR
-\ENDFOR
-\end{algorithmic}
-% \end{multicols}
-% \vspace*{-.4cm}
-\end{algorithm}
+In order to simulate different separated communities, the population is being divided into groups which all have different grid limits within which they can move. Creating sub-populations with overlapping grid limits, individuals can then be allowed to move from one subset to another. The overall workflow is summarised in Appendix \ref{code_alg}.
 
 \subsection{Track and Tracing}
 
@@ -674,48 +660,59 @@ The overall workflow is summarised in Algorithm \ref{alg1}.
 In the following model, is presented how an epidemic might evolve if all the infected individual are successfully identified and then make their way to a quarantine location designed for all the individuals affected by the disease. Individuals are represented with different associated velocities in order to simulate the fact that same might be tracked before than others and might interact with susceptible individuals along the way.
 
 As we can see from Figure \ref{track1}, using this type of technique, led to a sharp decrease in the overall number of deaths (17) and infected than our general model. In this example, have been assumed four different communities with fraction of individuals allowed to move between different hubs. 
-
+% \vspace{-0.3cm}
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/track1.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/track1.pdf}
+    % \includegraphics[width=13cm]{latex/images/track1.PNG}%
+    \vspace{-0.3cm}
     \caption{Perfect Track and Tracing}
     \label{track1}
 \end{figure}
+\vspace{-0.3cm}
 
-The following model, extends instead the first model by adding a probability value that some individuals might not get traced at all and might therefore end up spreading the disease (eg. coronavirus asymptomatic or limited available testing capacity). An example simulation result using a 50\% probability to not be traced is shown in Figure \ref{track2}. As the results demonstrated, allowing even a small portion of un-tracked infected individual, can potentially lead to far worse scenarios compared to Figure \ref{track1}. Analogous results have been registered also in \cite{epic}.
+The following model, extends instead the first model by adding a probability value that some individuals might not get traced at all and might therefore end up spreading the disease (e.g. Coronavirus asymptomatic or limited available testing capacity). An example simulation result using a 50\% probability to not be traced is shown in Figure \ref{track2}. As the results demonstrated, allowing even a small portion of un-tracked infected individual, can potentially lead to far worse scenarios compared to Figure \ref{track1}. Analogous results have been registered also in \cite{epic}.
 
+\vspace{-0.4cm}
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/track2.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/track2.pdf}
+    % \includegraphics[width=13cm]{latex/images/track2.PNG}%
+    \vspace{-0.4cm}
     \caption{Imperfect Track and Tracing}
     \label{track2}
 \end{figure}
+\vspace{-0.3cm}
 
 \subsection{Central Hubs}
 
 \textbf{Causal Question:} How does having a central hub visited by different communities members effects the spread of the disease?
 
-\textbf{Experimental Results:} Imposing travel restrictions can greatly help in lowering the rate at which a disease can spread. Individuals, although still have at times to visit centrals hubs such as supermarkets during lock-down's. What would be the affect of allowing a central hub on the velocity at which a disease can spread? In this simulation, we can easily observe how having even just a single central hub, can lead to a fast spreading of the disease across different communities.
+\textbf{Experimental Results:} Imposing travel restrictions can greatly help in lowering the rate at which a disease can spread. Individuals, although still have at times to visit centrals hubs such as supermarkets during lock-down's. In this simulation, we can easily observe how having even just a single central hub, can lead to a fast spreading of the disease across different communities.
 
-As the results show in Figure \ref{hub}, allowing about 30\% of the population to visit a central hub, can potentially be quite dangerous because if anyone in the hub is affected, it can then easily allow to spread the disease to individuals belonging to different communities. 
+As the results show in Figure \ref{hub}, allowing about 30\% of the population to visit a central hub, can potentially be quite dangerous because if anyone in the hub is affected, it can then easily allow to spread the disease to individuals belonging to different communities. Possible outcomes in this type of situation, can greatly vary from different runs, depending on causalities and random initialization.
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/hubs1.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/hubs1.pdf}
+    % \includegraphics[width=13cm]{latex/images/hubs1.PNG}%
     \caption{Single Central Hub}
     \label{hub}
 \end{figure}
 
+One of the most efficient strategies in order to make central hubs safer, would be to make sure that all the individuals which travel to the hub are virus-free, therefore making impossible to spread the disease across different communities through the central hub.
+
 \subsection{Finance Simulation}
 
-Applying different types of social distancing and limited movement restrictions, could potentially lead to a good containment of the spreading of a disease, but also to a major shrink of the whole economy. In the following simulation, two main types of responses are simulated: no containment at all or imposing an hard lock-down. In order to keep track of the economic consequences of these two different approaches, the created population has been divided into 3 different classes: Working Class, Middle Class and Upper Class. Which have assigned different types of incomes and expenses which they have to pay on daily bases depending on their income. The government offers the opportunity to give financial support on daily basis in case any of the citizen is struggling to pay its expenses. In a fully functioning society, most of the citizen are able to pay their expenses without having to use their savings or ask for help. As restrictions are imposed and freedom of movement is limited, citizen can only continue to earning and be self-sufficient if they are able to work from home. Otherwise, the will have to make use of their savings and of the government support provided. The financial support covers just the daily expenses and can be asked every day. Because of the nature of their work, middle and higher class workers, are more likely be able to work remotely.
+\textbf{Causal Question:} How can social distancing techniques affect a community economy? Which social classes would suffer the greatest impact?
 
-In normal conditions, the updated income of a citizen on daily basis is equal to:
+\textbf{Experimental Results:} Applying different types of social distancing and limited movement restrictions, could potentially lead to a good containment of the spreading of a disease, but also to a major shrink of the whole economy. In the following simulation, two main types of responses are simulated: no containment at all or imposing an hard lock-down. In order to keep track of the economic consequences of these two different approaches, the created population has been divided into 3 different classes: Working Class, Middle Class and Upper Class. Which have assigned different types of incomes and expenses which they have to pay on daily basis depending on their income. The government offers the opportunity to give financial support on daily basis in case any of the citizen is struggling to pay its expenses. In a fully functioning society, most of the citizen are able to pay their expenses without having to use their savings or ask for help. As restrictions are imposed and freedom of movement is limited, citizen can only continue to earning and be self-sufficient if they are able to work from home. Otherwise, they will have to make use of their savings and of the government support provided. The financial support covers just the daily expenses and can be asked every day. Because of the nature of their work, middle and higher class workers, are more likely be able to work remotely.
+
+In standard conditions, the updated income of a citizen on daily basis is equal to:
 
 \useshortskip
 \begin{align}
 \ Updated\:Income = (Income-Expenses)\times \norm{Current\:Position-Previous\:Position}
-\label{euc}
 \end{align}
 \useshortskip
 
@@ -725,7 +722,8 @@ Running an example simulation for 50 days, without applying any restriction, wou
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/fin1.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/fin1.pdf}
+    % \includegraphics[width=13cm]{latex/images/fin1.PNG}%
     \caption{Financial Modelling (No restrictions applied)}
     \label{fin1}
 \end{figure}
@@ -735,13 +733,14 @@ accumulated savings (mainly from higher social classes) and 241 financial suppor
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=13cm]{latex/images/fin2.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/fin2.pdf}
+    % \includegraphics[width=13cm]{latex/images/fin2.PNG}%
     \caption{Financial Modelling (Lock-down)}
     \label{fin2}
 \end{figure}
 
 \section{Extras}
-In order to make the Web Application, a complete tool which could be used by any type of users, a professional and user-friendly design was created using Streamlit and the app has been made available to the web by creating an Amazon Web Services EC2 Linux Instance. This enabled to easily fetch real time data from various sources and to implement animated an interactive plots.
+In order to make the Web Application, a complete tool which could be used by any type of users, a professional and user-friendly design was created using Streamlit and the app has been made available to the web by creating an Amazon Web Services (AWS) EC2 Linux Instance. This enabled to easily fetch real time data from various sources and to implement animated an interactive plots.
 
 Some additional features, which have been added to the Web Application are a live report of how Coronavirus has been spreading around the world and live news updates about this topic.
 
@@ -751,7 +750,8 @@ In this section of the Web Application, summary statistics of the number of case
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=11cm]{latex/images/world.PNG}%
+    \includegraphics[width=0.75\linewidth]{latex/images/world.pdf}
+    % \includegraphics[width=11cm]{latex/images/world.PNG}%
     \caption{World Statistics Example}
     \label{world}
 \end{figure}
@@ -770,20 +770,22 @@ The data used in order to create these charts, was provided by the Center for Sy
 
 \subsection{Live World News and Sentiment Analysis}
 
-This section was possible thanks to the use of the Python News API \cite{news}, making use of this API are in fact fetched every 2 hours news from a large number of countries around the world about Coronavirus. 
+This section was possible thanks to the use of the Python News API \cite{news}. Making use of this API, live news are fetched every 2 hours from a large number of countries around the world about Coronavirus. 
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=9cm]{latex/images/news.PNG}%
+    \includegraphics[width=0.8\linewidth]{latex/images/news.pdf}
+    % \includegraphics[width=9cm]{latex/images/news.PNG}%
     \caption{World News Example}
     \label{news}
 \end{figure}
 
-Using the fetched news article, it was then possible to apply sentiment analysis in each of the different countries in order to understand what are the key words of the day and what's the overall sentiment about the outbreak. Standard Natural Language Pre-processing techniques (eg. Tokenizzation, Stop Words Removal, Stemming) have been applied using the Python NLTK (Natural Language Toolkit) library and the sentiment was calculated using the VADER (Valence Aware Dictionary and sEntiment Reasoner) model. This type of model would then return a sentiment score between -1 (negative) and 1 (positive).
+Using the fetched news articles, it was then possible to apply sentiment analysis in each of the different countries in order to understand what are the key words of the day and what's the overall sentiment about the outbreak. Standard Natural Language Pre-processing techniques (eg. Tokenizzation, Stop Words Removal, Stemming) have been applied using the Python NLTK (Natural Language Toolkit) library and the sentiment was calculated using the VADER (Valence Aware Dictionary and sEntiment Reasoner) model. This type of model would then return a sentiment score between -1 (negative) and 1 (positive).
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=10cm]{latex/images/news2.PNG}%
+    \includegraphics[width=0.85\linewidth]{latex/images/news2.pdf}
+    % \includegraphics[width=13cm]{latex/images/news2.PNG}%
     \caption{World News Sentiment Analysis}
     \label{news2}
 \end{figure}

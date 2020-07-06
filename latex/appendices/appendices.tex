@@ -57,9 +57,62 @@ A worked out example, with the results from the top three countries with the mos
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=15.5cm]{latex/images/fitting.PNG}%
+    \includegraphics[width=1\linewidth]{latex/images/fitting.pdf}
+    % \includegraphics[width=15.5cm]{latex/images/fitting.PNG}%
     \caption{Curve Fitting}
 \end{figure}
+
+\clearpage
+\section{Population Modelling Pseudo-code}
+\label{code_alg}
+
+\begin{algorithm}
+\caption{Population Modelling Pseudo-code Outline}
+\label{alg1}
+% \vspace*{-.5cm}
+% \begin{multicols}{2}
+\begin{algorithmic}[1]
+  \STATE $E \Leftarrow Contact\:Radius$
+  \STATE $\overline{p} \Leftarrow Unlikeliness\:of\:Spread$
+  \STATE $p\_died \Leftarrow Death\:Probability\:dependent\:on\:age$
+  \FOR{$day\:in\:simulation\:days$}
+  \FOR{$individual\:in\:population$}
+      \STATE$Record\:individual\:status$
+      \IF{$Infected$}
+      \IF{$Draw\:with\:probability\:(p\_died\times age == 1)$}
+        \STATE $individual\:status \Leftarrow Dead$
+      \ELSE
+        \IF{$(Rehabilitation\:days == 14)$}
+          \STATE $individual\:status \Leftarrow Recovered$
+        \ENDIF
+        \STATE $Rehabilitation\:days\:+= 1$
+      \ENDIF
+      \ELSIF{$Susceptible$}
+        \STATE $close\_people = 0$
+        \FOR{$friend\:in\:community$}
+        \IF{$(Friend==Infected)\:and\:(Euclid\:Dist<E)$}
+        \STATE $close\_people\:+= 1$
+        \ENDIF
+        \ENDFOR
+        \IF{$(Draw\:with\:probability\:dependent\:on\:close\_people\:and\:\overline{p} == 1)$}
+          \STATE $individual\:status \Leftarrow Infected$
+        \ENDIF
+      \ENDIF
+      \IF{$(Static == False)$}
+          \STATE $individual\:X\:and\:Y\:position\:update$
+          \IF{$individual\:X\:or\:Y\:position\:out\:of\:boundaries$}
+            \STATE $Adjust\:position\:and\:reverse\:movement\:direction$
+          \ENDIF
+      \ENDIF
+  \ENDFOR
+\ENDFOR
+\end{algorithmic}
+% \end{multicols}
+% \vspace*{-.4cm}
+\end{algorithm}
+
+\clearpage
+\includepdf[pages=-,pagecommand=\section{Project Brief},noautoscale=true,offset=0 -70, scale=1.1]{latex/images/Outline.pdf}
 
 % % Can input the GANTT chart as either pdf or image (commented below)
 % \includepdf[pages=-,pagecommand={\section{Project Management}\null\vfill\captionof{figure}{First and Second Semester Gantt Chart Data}},noautoscale=true,offset=0 -10, scale=0.7]{images/g1.pdf}

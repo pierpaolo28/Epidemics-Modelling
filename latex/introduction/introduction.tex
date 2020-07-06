@@ -1,2 +1,87 @@
 \chapter{Introduction}
 \section{Motivation}
+\vspace{-0.1cm}
+Thanks to recent advancements in Artificial Intelligence (AI), we are now able to leverage Machine Learning and Deep Learning technologies in both academic and commercial applications. Although, relying just on correlations between the different features, can possibly lead to wrong conclusions since correlation does not necessarily imply causation.
+
+Three of the main limitations of nowadays Machine Learning and Deep Learning models are: 
+\vspace{-0.2cm}
+\begin{itemize}
+    \item \textbf{Robustness} = trained models might not be able to generalise to new data and therefore would not be able to provide robust and reliable performances in the real world.
+    \item \textbf{Explainability} = complex Deep Learning models can be difficult to analyse in order to clearly demonstrate their decision making process. 
+    \item \textbf{Data Dependency} = deep learning models efficiency is highly dependant on the amount and quality of data available. 
+\end{itemize}
+\vspace{-0.2cm}
+Developing models able to identify cause-effect relationships between different variables, might ultimately offer a solution to solve these problems. This idea, has also been supported by researchers such as Judea Pearl and Jonas Peters, which advocated how having models able to reason in uncertainties could not be enough to enable researchers to create machines able to truly express intelligent behaviour \cite{art_perl}.
+
+\section{Going Beyond Correlation}
+During the last few years, different approaches have been taken in order to try to overcome correlation limitations. This research focus led then to the development of the "Causality Revolution" and alternative metrics to correlation such as the \textbf{Predictive Power Score (PPS)} \cite{ppc}.
+
+Typical correlation analysis, is able to tell us if there is a linear relationship between different variables by returning a score between -1 (e.g. if one variable increase in values, the other decreases) and 1 (e.g. if one variable increases in value, the other one will follow a similar trend). Although, correlation is not able to identify any non-linear relationship and is not able to handle non-numeric data. In the case of categorical data, this could potentially be converted into numerical data by using for example One Hot Encoding or Word Embedding techniques but would most likely lead to an increase of the dataset dimensionality in order to achieve good results. Finally, correlation might not be able to understand if relationships between the different columns are symmetric or asymmetric.
+
+In Figure \ref{corr_t}, is available a summary of some examples of correlation trends and limitations.
+
+\vspace{-0.1cm}
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=0.85\linewidth]{latex/images/corr.pdf}
+    % \includegraphics[width=13cm]{latex/images/vacc.PNG}%
+    \vspace{-0.2cm}
+    \caption{Correlation Trends (Image reproduced from \cite{corr_trends})}
+    \label{corr_t}
+\end{figure}
+\vspace{-0.5cm}
+
+The predictive power score, has been ideated in order to try to overcome the presented correlation limitations. One possible way to calculate the PPS is to train a Cross-Validated Decision Tree model on one feature and consider the other feature we want to consider as our label. We can then evaluate the model using an appropriate evaluation metric and then normalise the score by comparing it with the score obtained by a naive predictor. A possible set-up for a PPS calculation is shown in Table \ref{setup}.
+
+{
+\begin{table}[h!]
+\centering
+\begin{tabular}{l|l|c|c|c}
+\multicolumn{2}{c}{}&\multicolumn{2}{c}{}&\\
+\cline{3-4}
+\multicolumn{2}{c|}{}&Numeric Data &Categorical Data &\multicolumn{1}{c}{}\\
+\cline{2-4}
+\multirow{}{}{}& ML Model & Decision Tree Regressor & Decision Tree Classifier & \\
+\cline{2-4}
+& Evaluation Metric & Mean Absolute Error & Weighted F1 Score & \\
+\cline{2-4}
+& Naive Predictor & Predict median value & Predict most common class & \\
+\cline{2-4}
+% \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}\\
+\end{tabular}
+% \vspace{-0.7cm}
+\caption{Predictive Power Score Set-up}
+\label{setup}
+\end{table}
+}
+
+Where the Mean Absolute Error (MAE) and F1 score can be defined as:
+
+\useshortskip
+\begin{align}
+\ F1 = 2 \times \dfrac{precision \times recall}{precision + recall}
+\ MAE = \dfrac{1}{n}\sum_{i=1}^{n}\abs{x_{i} - x}
+\end{align}
+\useshortskip
+
+The result from the evaluation metric, can then be normalised by comparing it with the results from the naive predictor. In the case of the F1 Score, 1 is going to be considered our upper limit and the naive predictor score as our lower limit.
+
+\useshortskip
+\begin{align}
+\ PPS = \dfrac{Decision\:Tree\:(F1) - Naive\:Predictor\:(F1)}{1 - Naive\:Predictor\:(F1)}
+\end{align}
+\useshortskip
+
+A similar formula could then be calculated for the MAE case, but zero should be considered as our lower limit (in this case, lower scores are considered as better).
+
+\useshortskip
+\begin{align}
+\ PPS = 1 - \dfrac{Decision\:Tree\:(MAE)}{Naive\:Predictor\:(MAE)}
+\end{align}
+\useshortskip
+
+Following this procedure, we would then have a PPS score between 0 (no relationship) and 1 (perfect relationship) able to capture either linear/non-linear relationships and to work with either numerical or categorical data. 
+
+\section{Objectives}
+\vspace{-0.1cm}
+As part of this research study, will be outline the main principles of Causal Reasoning and different application approaches (e.g. Knowledge Graphs, Bayesian Belief Networks, Explainable AI) and case studies (e.g. Epidemic Modelling). 
