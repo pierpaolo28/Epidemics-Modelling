@@ -7,12 +7,20 @@
 
 ## Table of Contents
 
+* [About this Branch](#about-this-branch)
 * [About the Project](#about-the-project)
 * [Getting Started](#getting-started)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
 * [Acknowledgments](#acknowledgments)
+
+## About This Branch
+
+This branch contains any additional material which has been used in order to complete this project such as:
+
+- Predictive Power Score (PPS) Analysis
+- Coronavirus Time Series analysis using Vector Autoregression 
 
 ## About The Project
 
