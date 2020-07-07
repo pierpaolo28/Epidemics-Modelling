@@ -82,6 +82,23 @@ A similar formula could then be calculated for the MAE case, but zero should be 
 
 Following this procedure, we would then have a PPS score between 0 (no relationship) and 1 (perfect relationship) able to capture either linear/non-linear relationships and to work with either numerical or categorical data. 
 
+As a simple demonstration of the PPS score, is shown in Figure \ref{pps_ex} a noisy cosine function. In this example, the X axis has been created by creating a uniform range between 0 and 1000, while the Y axis has been created by passing the respective X value in a cosine function and adding some small noise on the result. In this way, is designed a clear non-linear dependence between X and Y. 
+
+Calculating the correlation between the two features, would then lead to a result equal to zero (from either points of view). Using instead the PPS, would the lead as expected to a score of 0.737 of X respect to Y and of 0 for Y respect to X. 
+
+% \vspace{-0.1cm}
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=0.45\linewidth]{latex/images/pps_ex.pdf}
+    % \includegraphics[width=13cm]{latex/images/vacc.PNG}%
+    \vspace{-0.2cm}
+    \caption{PPS Score Example}
+    \label{pps_ex}
+\end{figure}
+% \vspace{-0.1cm}
+
+The Predictive Power Score, is just one of the different approaches which can be taken in order to go beyond correlation traditional limitations, other examples are: Causality, relative entropy and Granger techniques.
+
 \section{Objectives}
 \vspace{-0.1cm}
-As part of this research study, will be outline the main principles of Causal Reasoning and different application approaches (e.g. Knowledge Graphs, Bayesian Belief Networks, Explainable AI) and case studies (e.g. Epidemic Modelling). 
+As part of this research study, will be outline the main principles of Causal Reasoning and different application approaches (e.g. Bayesian Belief Networks, Time Series Analysis) and case studies (e.g. Epidemic Modelling). 

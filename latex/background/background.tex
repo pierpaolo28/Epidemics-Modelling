@@ -97,6 +97,48 @@ The causal analysis of any dynamical system, could then be summarised by the fol
 \end{figure}
 \vspace{-0.5cm}
 
+\section{Bayesian Belief Networks}
+
+Bayesian Belief Networks (BBN), are a type of probabilistic model which makes use of simplifying assumptions so that to reliably define connections between different elements and calculate their probabilities relationships efficiently. By analysing interactions between the different elements, we can finally make use of these type of models in order to discover causal relationships. 
+
+In a Bayesian Network, nodes represent variables while edges report the probabilistic connections between the different elements. A simple example of a three variables Bayesian Belief Network, is available in Figure \ref{net}. 
+
+\vspace{-0.5cm}
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=0.7\linewidth]{latex/images/bayes.pdf}
+    % \includegraphics[width=13cm]{latex/images/vacc.PNG}%
+    \vspace{-0.2cm}
+    \caption{Bayesian Belief Network}
+    \label{net}
+\end{figure}
+\vspace{-0.7cm}
+
+Bayesian Belief Networks, led later on to the development of Causal Networks. In fact, they can also be considered as a Causal Network in some specific cases. For this reason, Bayesian Belief Networks are nowadays considered to be one of the main techniques which can be used in Machine Learning in order to move from the Association to the Intervention level in the Causality Hierarchy (Figure \ref{pyr}).
+
+Bayesian Belief Networks, are able to express both conditional dependent and independent variables connections. These type of networks, follow additionally the Markov condition \cite{markov} (provided the parents of every node in a network, each node is conditionally independent of their nondescendent nodes).  Finally, using Bayes probabilistic approach (Equation \ref{beq}), we can be able to update the connection probabilities iteratively based on new gathered evidence.
+
+\useshortskip
+\begin{equation}
+P(A|B) = \frac{P(B|A)\times P(A)}{P(B)}
+\label{beq}
+\end{equation}
+\vspace{-0.2cm}
+\begin{conditions}
+ $A,B$   &  Events \\
+ $P(B|A)$ &  Likelihood \\
+ $P(A)$   &  Prior \\   
+ $P(B)$ & Normalizing Constant \\
+ $P(A|B)$ & Posterior
+\end{conditions}
+\useshortskip
+
+Complex BBNs can be constructed by starting from three basic types of junctions: Chains (e.g. $A \Rightarrow B \Rightarrow C$), Forks (e.g. $A \Leftarrow B \Rightarrow C$) and Colliders (e.g. $A \Rightarrow B \Leftarrow C$). Making use of the three types of junctions and of a technique called d-separation, it can then be possible to reach the Counterfactuals level in the Causality Hierarchy \cite{why}. D-separation, allow us in fact to understand, in Causal Diagrams, if a set of variables is independent of another set when given a third one. 
+
+What distinguishes Bayesian statistic from the classical frequentistic approach, is that we allow to incorporate some level of subjectivity in our model\footnote{Frequentistic probability aims instead for complete objectiveness.} (by combining prior knowledge with evidences). Additionally, in Bayesian statistics, the weight of our prior belief gradually vanishes as more data is provided (therefore converging to the frequentistic approach if given an unlimited amount of data). This case, doesn't instead hold true when talking about causality analysis.
+
+Great research focus by companies such as DeepMind is currently put into using Bayesian Belief Networks as starting point in order to create Causal Bayesian Networks (CBN) \cite{deep}. Causal Bayesian Networks, are nowadays used in order to visually identify and quantitatively measure unfairness patterns in datasets (elements in the data which can lead to Machine Learning models biased towards specific subcategories). Additionally, researches also demonstrated the possibility to use Causal Bayesian Networks in order to identify if not just the data but also the Machine Learning models itself are biased or not towards specific classes \cite{deep2}.
+
 \section{Case Study: Recommendation Systems}
 
 One of the main weakness of most Machine Learning models is the assumption that the data fed in is independent and identically distributed (IID). When this assumption holds, convergence to the lowest possible loss is achievable but when this constrain is violated the model might perform poorly even when attempting simple tasks (eg. poisoning attacks) \cite{six}.
