@@ -20,7 +20,10 @@
 This branch contains any additional material which has been used in order to complete this project such as:
 
 - Predictive Power Score (PPS) Analysis
-- Coronavirus Time Series analysis using Vector Autoregression 
+- SIR Forecasting
+- ML COVID-19 Forecasting (eg. ARIMA, LSTM, Temporal-CNN)
+- Clinical trials Data Analysis
+- Coronavirus comorbidities Data Analysis
 
 ## About The Project
 
