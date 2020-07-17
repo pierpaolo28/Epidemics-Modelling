@@ -103,7 +103,7 @@ In this chapter, we will explore the first two approaches.
 
 In Compartmental Models, is assumed that each individual in a population, is assigned to a compartment. During the course of the simulations, individuals can then be free to move from one compartment to another depending on the dynamics of the model. Some examples of common departments in Epidemic Modelling are: Susceptible, Exposed, Infectious, Recovered, Dead, Vaccinated, etc...
 
-These models can be designed using either ordinary differential equations or stochastic elements as well. Diagrams representations of this type of models can be of great help in order to understand how the model equations works and what are the possible movements between different states. 
+These models can be designed using either ordinary differential equations or stochastic elements as well. Diagrams representations of this type of models can be of great help in order to understand how the model equations works and what are the possible movements between different states. In Appendix \ref{causal_comp}, are additionally available the Causal Diagrams equivalent representation of the implemented Compartmental Models. 
 
 \subsection{SIR (Susceptible-Infected-Recovered)}
 \label{sir_sec}
@@ -588,6 +588,7 @@ Finally, is calculated an automatic estimation of the parameters of the Advanced
 \end{figure}
 
 \section{Agent Based Models}
+\label{agent_smith}
 An alternative approach which can be used in order to simulate compartmental-like models, is by creating an Agent Based simulation. In this case, each single individual in the population is created following an Objected Oriented Programming approach (e.g. using a programming class) and it's behaviour in an environment while in contact with the rest of the population is simulated. Using this type of approach, can therefore enable us to keep track of the position of the different individuals in a population and attribute them different characteristics such as an age or daily income. Similar results could be obtained using standard compartmental models by converting our Ordinary Differential Equations into Partial Differential Equations and making them dependent on both time and space \cite{pde}.
 
 The proposed Agent Based Model, is directly inspired from The Epidemiological Triad paradigm (Figure \ref{triad}).
@@ -780,12 +781,29 @@ This section was possible thanks to the use of the Python News API \cite{news}. 
     \label{news}
 \end{figure}
 
-Using the fetched news articles, it was then possible to apply sentiment analysis in each of the different countries in order to understand what are the key words of the day and what's the overall sentiment about the outbreak. Standard Natural Language Pre-processing techniques (eg. Tokenizzation, Stop Words Removal, Stemming) have been applied using the Python NLTK (Natural Language Toolkit) library and the sentiment was calculated using the VADER (Valence Aware Dictionary and sEntiment Reasoner) model. This type of model would then return a sentiment score between -1 (negative) and 1 (positive).
+Using the fetched news articles, it was then possible to apply sentiment analysis in each of the different countries in order to understand what are the key words of the day and what's the overall sentiment about the outbreak. Sentiment Analysis is one of the most popular Natural Language Pre-processing (NLP) used in order to infer sentiments from text data and expressing them as a numeric score. If applied to large databases (e.g. Social Networks, News Websites), this technique can be able to provide valuable information about how the public is reacting to macro changes in fields such as politics and economics.
+
+Standard NPL techniques (eg. Tokenizzation, Stop Words Removal, Stemming) have been applied in this case study using the Python NLTK (Natural Language Toolkit) library and the sentiment was calculated using the VADER (Valence Aware Dictionary and sEntiment Reasoner) model. This type of model would then return a sentiment score between -1 (negative) and 1 (positive).
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=0.85\linewidth]{latex/images/news2.pdf}
+    \includegraphics[width=0.8\linewidth]{latex/images/news2.pdf}
     % \includegraphics[width=13cm]{latex/images/news2.PNG}%
     \caption{World News Sentiment Analysis}
     \label{news2}
 \end{figure}
+
+\section{Remarks}
+The different Compartmental and Agent Based Models proposed in this chapter, aimed to provide an interactive tool in order to simulate how viruses can spread in a community and what can be done in order to try to control the rate of transition (using COVID-19 as practical case study). Although, these models can only be considered to be an approximation of the real world dynamics and might therefore not be able to capture all the key aspects related to a disease. As Scott Ambler \cite{scott} said: \say{The primary purpose of modelling is to provide an opportunity to think before you act}.
+
+Some examples of limitations in the proposed models are \cite{sri_ex}:
+
+\begin{itemize}
+    \item A not accurate estimation of the growth rate can potentially lead to a poor prediction in the long term of the estimates of the number of infected and deaths (for example due to the stochasticity of the Agent Based Models).
+    \item Small changes in how/when different intervention techniques are applied can potentially lead to completely different simulation results (exponential growth vs exponential decay).
+    \item Simple models might at times provide a more accurate bigger picture of the simulation compared to complex models. In fact, simpler models might not have some constrains embedded instead in complex models which have been designed study more specific situations.
+    \item Using a continuous probability fraction to express how likely it is that the virus might spread from an individual to another might result in an excessively pessimistic view of how the epidemic might evolve (e.g. if a lock-down is lifted before all the cases are eradicated then the number of infect will most likely start to increase exponentially again). This problem has been partially address by using adding a "minimum contact radius" in the Agent Based Simulations. 
+    \item Concerning the examined Compartmental Models, systems of differential equations are highly sensitive to initial conditions and changes in then can lead to completely different outcomes.
+\end{itemize}
+
+Finally, the used COVID-19 data used to fit the models, might be not accurate since many countries around the world had been not able in the past few months to achieve an adequate testing capacity.

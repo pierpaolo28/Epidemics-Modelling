@@ -11,6 +11,7 @@
 \label{ch:background}
 
 \section{Concepts of Causality}
+\label{concepts}
 
 Current supervised Machine Learning techniques are designed to exploit possible relationships/correlations between features and labels in order to produce reliable estimates. Use of this kind of technologies in ambit such as Medicine, Finance and Law are now raising increasing concerns due to the lack of ability in such systems to correctly identify causal relationships and provide explanations about their decisions. One possible solution in order to overcome these type of problems if by taking into account causal relationships.
 
@@ -46,7 +47,7 @@ In this example, a survey is carried out between individuals of age 3-20 in orde
 \end{figure}
 \vspace{-0.5cm}
 
-In case we want to query additional information from what we currently have available \footnote{So that to move from the association to the intervention level in the causality hierarchy.}, we can then make use of the symbolic language in order to advance questions such as: What is the probability (P) that a student will get an higher I.Q. score (S) if he studies an additional amount of time (T)? This question could then be formulated in a symbolic form such as $P(S|do(T))$  \footnote{Although, Do-Calculus notation might look similar to the one of conditional probability, the two have two different meanings.}. When formulating these type of questions, we are then implying that we are not anymore passively observing possible results but instead actively intervening in order to find out about possible consequences. This type of approach is known as an Interventional Study and is in contrast with the traditional Observational Study.
+In case we want to query additional information from what we currently have available \footnote{So that to move from the association to the intervention level in the causality hierarchy.}, we can then make use of the symbolic language in order to advance questions such as: What is the probability (P) that a student will get an higher I.Q. score (S) if he studies an additional amount of time (T)? This question could then be formulated in a symbolic form such as $P(S|do(T))$  \footnote{Although, Do-Calculus notation might look similar to the one of conditional probability, the two have two different meanings.}. When formulating these type of questions, we are then implying that we are not anymore passively observing possible results but instead actively intervening in order to find out about possible consequences. This type of approach is known as an Interventional Study and is in contrast with traditional Observational Studies.
 
 Finally, in order to create a full Causal Inference Engine, an architecture like in Figure \ref{engine}, might be necessary \cite{why}. Following this type of approach, three inputs are needed and three outputs are produced. As our three inputs, are given any assumption made about the model (\textbf{Assumptions}), any questions we are trying to answer (\textbf{Queries}) and any data which can be used in order to fuel our engine (\textbf{Data}). The model, will then output as Boolean value if is able or not to answer the given queries, and if so, it would provide as second output a mathematical formula which can be used in order to answer the queries. Finally, a numerical prediction specific to the given input data is provided (this might contain some form of uncertainty in the estimation given the amount of data provided and the assumption made).  
 
@@ -98,7 +99,7 @@ The causal analysis of any dynamical system, could then be summarised by the fol
 \vspace{-0.5cm}
 
 \section{Bayesian Belief Networks}
-
+\label{bbn_ref}
 Bayesian Belief Networks (BBN), are a type of probabilistic model which makes use of simplifying assumptions so that to reliably define connections between different elements and calculate their probabilities relationships efficiently. By analysing interactions between the different elements, we can finally make use of these type of models in order to discover causal relationships. 
 
 In a Bayesian Network, nodes represent variables while edges report the probabilistic connections between the different elements. A simple example of a three variables Bayesian Belief Network, is available in Figure \ref{net}. 
@@ -138,6 +139,84 @@ Complex BBNs can be constructed by starting from three basic types of junctions:
 What distinguishes Bayesian statistic from the classical frequentistic approach, is that we allow to incorporate some level of subjectivity in our model\footnote{Frequentistic probability aims instead for complete objectiveness.} (by combining prior knowledge with evidences). Additionally, in Bayesian statistics, the weight of our prior belief gradually vanishes as more data is provided (therefore converging to the frequentistic approach if given an unlimited amount of data). This case, doesn't instead hold true when talking about causality analysis.
 
 Great research focus by companies such as DeepMind is currently put into using Bayesian Belief Networks as starting point in order to create Causal Bayesian Networks (CBN) \cite{deep}. Causal Bayesian Networks, are nowadays used in order to visually identify and quantitatively measure unfairness patterns in datasets (elements in the data which can lead to Machine Learning models biased towards specific subcategories). Additionally, researches also demonstrated the possibility to use Causal Bayesian Networks in order to identify if not just the data but also the Machine Learning models itself are biased or not towards specific classes \cite{deep2}.
+
+\section{Intervention}
+What allow us to talk about cause and effect, are experiments. Experiments, are a set of procedures carried out under controlled conditions, so that to test an hypothesis and try to undercover causes. Controlling the conditions of an experiment, can allow us in fact to eliminate any alternative explanations which we might have about the how a phenomena works. When creating an experiment, we need to make sure that different treatments are applied and that they are randomly assigned \cite{cassie}. In an experiment, a treatment is defined to be as a change imposed from us to the environment of the experiment. Treatments, should additionally be randomly assigned in order to make up for any variability in the environment space (e.g. different individuals/objects might have different characteristics). Finally, if working with just a sample from a population, it is necessary to make sure that the available sample size is large enough to be representative of the whole population. If all these characteristics are provided, then we can be able to accurately discover causal relationships even under uncertainty. Therefore, experiments play a key role in order for us to move between the different levels in the Causality Hierarchy (Figure \ref{pyr}). If any of the conditions, doesn't instead hold true, we might end up accidentally adding some form of bias in our experiment. Without experiments, data driven decisions can just be backed by correlations and domain knowledge, but no pure evidences.
+
+One of the main differences between Causal Diagrams and Bayesian Belief Networks, is that the former are able to deal with interventions, while the latter works only with observations. Interventions allows us to use Causal Inference, while observations allows us to make predictions. What makes possible for Causal Diagrams to work with interventions is the Do Operator. From the Do Operator, has then been possible to create the Do Calculus which has been demonstrated to be complete as a technique (if Do Calculus is not able to identify an effect, then this cannot be identified anywhere else). On the other hand, what makes difficult to use Causal Diagrams is making sure they are designed correctly. In fact, different Causal Diagrams can potentially be proposed in order to describe a process and depending from different point of views, it can be difficult to understand which one is able to better capture the underlying dynamics of a process.
+
+For example, let's imagine we have carried out a study in order to find out if a diet can bring a positive effect (above the average) on the overall well-being of a sample in a population. Therefore, we divide the participants of this experiment into two groups: one which will strictly follow the diet and the other one which will instead follow common used diet-lifestyles. From this study might result that following the diet causes a positive effect to the individuals well-being (Figure \ref{cex1}).
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=0.4\linewidth]{latex/images/simple_ex.pdf}
+    % \includegraphics[width=13cm]{latex/images/vacc.PNG}%
+    \vspace{-0.2cm}
+    \caption{Simple Causal Diagram}
+    \label{cex1}
+\end{figure}
+\vspace{-0.5cm}
+
+Although, at this point we might start having some doubts about if there could be any potential pitfall in our analysis. One possible approach in order to test for the presence of confounding variables is to take measurements about the suspected hidden variable (in this way, we can be able to fill any missing piece in our diagram). Carrying out a controlled experiment, we will be able to deconfound any true and "spurious" effect this hidden variable might cause. In the case of our example, we could for instance notice that the group which followed the diet had an overall younger age than the other group. Therefore, age could be considered as a possible factor which has skewed our early results and that we should therefore take into account (Figure \ref{cex2}).  
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=0.4\linewidth]{latex/images/simple_ex2.pdf}
+    % \includegraphics[width=13cm]{latex/images/vacc.PNG}%
+    \vspace{-0.2cm}
+    \caption{Improved Causal Diagram}
+    \label{cex2}
+\end{figure}
+\vspace{-0.5cm}
+
+Our confounding variable (Age) could then be deconfounded by comparing the two different groups of the experiment for different age groups, averaging the results and weight the different age groups sections by their percentage presence in the population composing the experiment. This procedure is commonly referred as \textbf{adjusting/controlling for a variable} \cite{why}. Examining the results of our analysis we could then maybe think there might be some other variables missing and repeat this process again to improve our representation of the system. A confounding, can therefore be defined to be as anything making $P(A|B)$ different from $P(A|do(B))$.   
+
+In a causal diagram, information can flow through links from one vertex to another in two different directions (causal and noncausal). In this setting, information flowing in the noncausal direction, can then lead to the creation of confoundings. In order to avoid this problem, information flowing in the noncausal direction can be blocked by using either of the following three approaches:
+
+\begin{itemize}
+    \item Accurate controlled experiment randomization.
+    \item Statistical variable adjustments.
+    \item Applying the Do Operator on a variable, can stop the flow of information in the noncausal direction (this procedure can also be applied when working with observational data).
+\end{itemize}
+
+Finally, information flow in causal diagram is regulated by the same type of junctions introduced in Section \ref{bbn_ref}. Controlling for different variables in these types of junctions (to prevent presence of confoundings), would then lead to the following results:
+
+\begin{itemize}
+    \item \textbf{$A \Rightarrow B \Rightarrow C$}: controlling $B$ would stop information to flow between $A$ and $C$.
+    \item \textbf{$A \Leftarrow B \Rightarrow C$}: like in the previous case, controlling $B$ would stop information to flow between $A$ and $C$.
+    \item \textbf{$A \Rightarrow B \Leftarrow C$}: controlling $B$ would in this case enable information to flow between $A$ and $C$ (without intervention, no information would have been able to flow).
+\end{itemize}
+
+Making use of this set of information, can then be possible to create and work with a multitude of different causal diagrams.
+
+\vspace{-0.2cm}
+\subsection{A/B Testing}
+\label{testing}
+\vspace{-0.2cm}
+A/B Testing is one of the most common form of experimentation in Computer Science. Companies nowadays make common use of A/B Testing for instance when shipping a new feature in production. For example, a company might come up with a new design for a section on an App. To a randomised half of the users is going to be proposed the new version (Treatment Group), while to the other half is going to be proposed the original version (Control Group). Collecting users behaviours and feedback could then be possible to observe the causal effects of our interventions. This type of approach can be considered to be analogous to how vaccines/drugs are evaluated in clinical trials.
+
+\section{Counterfactuals}
+Carrying out experiments can be difficult and expensive in different real-life situations, in that case, we can perform just observational studies (we don't exercise any control on our independent variable). When working with observational data, changes between the control and treatment groups become \textbf{counterfactual} therefore making difficult to undercover causal effects. Due to these limiting circumstances, it is then necessary to make some assumptions in order to create an approximation model able to make predictions. Counterfactual analysis focuses then on how different types of interventions could have retrospectively led to different outcomes (imagining alternative "worlds"). 
+
+Some examples of Counterfactuals types of questions are: Would the patient have survived whiteout taking any medication? How likely it is that a political party would have won the elections if it had proposed a more liberal policy than the advertised one? 
+
+Because of the nature of these types of questions, it can be difficult to provide answers with full certainty. Therefore, some form of probabilistic mechanism needs to be incorporated (e.g. We are 90\% confident that choosing a more liberal policy would have increased the chances of winning the elections by 7\%).
+
+This type of probabilistic approach can be introduced by using \textbf{potential outcomes}. Potential outcomes are determined on an individual level (not with respect of the entire population) and they depend on the assumption that if a value if assigned to a first variable, then a value should be assigned to its dependent variables \cite{why}.
+
+One of nowadays main application of Counterfactuals, is \textbf{mediation analysis}. Mediation analysis is based on the concept of mediating variables (variables used to influence an outcome based on the effect of an applied treatment). An example of a mediating variable can be $Vitamin\:A$ in $Eating\:Carrots \Rightarrow Vitamin\:A \Rightarrow Improved\:Eye\:Sight$. The aim of mediation analysis in this setting would then be to understand if the mediating variable is able to capture all the effects caused by the treatment variable ($Eating\:Carrots$) or not. Effects can then either reach our outcome variable directly or indirectly (through the mediating variable). Direct effects could then be represented in our example as moving through the following diagram without the need of mediating variables: $Eating\:Carrots \Rightarrow Improved\:Eye\:Sight$. Using mediation analysis we could then be able for example to find out if eating carrots is possible to improve our eye sight just by the increase of Vitamin A resources or through any other effect.
+
+What makes mediation analysis an interesting field of research, is the fact that the total effect exercised by a variable is not simply equal to the sum of its exercised direct and indirect effects in the case of third party variables interactions.
+
+Examples of other techniques ideated during the course of the last decade in order to try to solve Counterfactual problems are \cite{eva}:
+
+\begin{itemize}
+    \item \textbf{Do Calculus}
+    \item \textbf{Ordinary Least Squares with Confounding Variables}
+    \item \textbf{Propensity Score Matching}
+    \item \textbf{Instrumental Variables}
+    \item \textbf{Difference in Differences}
+\end{itemize}
 
 \section{Case Study: Recommendation Systems}
 

@@ -34,6 +34,13 @@
  
 \lstset{style=mystyle}
 
+
+\includepdf[pages=-,pagecommand={\section{Project Management}\label{man}\null\vfill\captionof{figure}{Planned Gantt Chart}},noautoscale=true,offset=0 -10, scale=0.70]{images/gann.pdf}
+
+% \includepdf[pages=-,pagecommand={\null\vfill\captionof{figure}{Actual Gantt Chart}},noautoscale=true,offset=0 -10, scale=0.65]{images/ganttreal.pdf}
+
+\includepdf[pages=-,pagecommand={\null\vfill\captionof{figure}{Risk Assesment Matrix}},noautoscale=true,offset=0 -10, scale=0.7]{images/Management.pdf}
+
 \section{Logistic/Exponential Curve Fitting}
 \label{exp_fit}
 
@@ -63,6 +70,13 @@ A worked out example, with the results from the top three countries with the mos
 \end{figure}
 
 \clearpage
+
+\section{Compartmental Models Causal Diagrams}
+\label{causal_comp}
+
+
+\clearpage
+
 \section{Population Modelling Pseudo-code}
 \label{code_alg}
 
@@ -112,7 +126,35 @@ A worked out example, with the results from the top three countries with the mos
 \end{algorithm}
 
 \clearpage
-\includepdf[pages=-,pagecommand=\section{Project Brief},noautoscale=true,offset=0 -70, scale=1.1]{latex/images/Outline.pdf}
+\includepdf[pages=-,pagecommand=\section{Project Brief}\label{brief},noautoscale=true,offset=0 -70, scale=1.1]{latex/images/Outline.pdf}
+
+\clearpage
+\section{Design Archive Guide}
+\label{archive}
+A tree representation of this Project Design Archive is represented in the figure below. This image has been created through the windows command prompt using the tree command in the designed directory.
+% \vspace*{-17mm}
+% \setcounter{figure}{0}
+% \begin{figure}[ht!]%
+%     \centering
+%     \includegraphics[page=1,scale=0.88]{images/dirtree.pdf}
+%     \vspace*{-52mm}
+%     \caption{Design Archive}%
+% \end{figure}
+
+\clearpage
+
+
+\section{Word Count}
+\label{count}
+%\vspace*{100pt}
+% The registered word count for this report, starting from Chapter 1 to Chapter 6, was equal to 9996 words. This has been measured using PDF Word Counter \cite{wordcount}.
+
+
+
+
+
+
+
 
 % % Can input the GANTT chart as either pdf or image (commented below)
 % \includepdf[pages=-,pagecommand={\section{Project Management}\null\vfill\captionof{figure}{First and Second Semester Gantt Chart Data}},noautoscale=true,offset=0 -10, scale=0.7]{images/g1.pdf}
@@ -351,23 +393,5 @@ A worked out example, with the results from the top three countries with the mos
 %     \label{fig:example2}%
 % \end{figure}
 
-% \clearpage
-% \section{Design Archive Guide}
-% A tree representation of this Project Design Archive is represented in Figure K.1. This image has been created through the windows command prompt using the tree command in the designed directory.
-% \vspace*{-17mm}
-% \setcounter{figure}{0}
-% \begin{figure}[ht!]%
-%     \centering
-%     \includegraphics[page=1,scale=0.88]{images/dirtree.pdf}
-%     \vspace*{-52mm}
-%     \caption{Design Archive}%
-% \end{figure}
-
-% \clearpage
-
-
-% \section{Word Count}
-% %\vspace*{100pt}
-% The registered word count for this report, starting from Chapter 1 to Chapter 6, was equal to 9996 words. This has been measured using PDF Word Counter \cite{wordcount}.
 
 \end{appendices}

@@ -8,7 +8,7 @@ Three of the main limitations of nowadays Machine Learning and Deep Learning mod
 \begin{itemize}
     \item \textbf{Robustness} = trained models might not be able to generalise to new data and therefore would not be able to provide robust and reliable performances in the real world.
     \item \textbf{Explainability} = complex Deep Learning models can be difficult to analyse in order to clearly demonstrate their decision making process. 
-    \item \textbf{Data Dependency} = deep learning models efficiency is highly dependant on the amount and quality of data available. 
+    \item \textbf{Data Dependency} = deep learning models efficiency is highly dependent on the amount and quality of data available. 
 \end{itemize}
 \vspace{-0.2cm}
 Developing models able to identify cause-effect relationships between different variables, might ultimately offer a solution to solve these problems. This idea, has also been supported by researchers such as Judea Pearl and Jonas Peters, which advocated how having models able to reason in uncertainties could not be enough to enable researchers to create machines able to truly express intelligent behaviour \cite{art_perl}.
@@ -99,6 +99,15 @@ Calculating the correlation between the two features, would then lead to a resul
 
 The Predictive Power Score, is just one of the different approaches which can be taken in order to go beyond correlation traditional limitations, other examples are: Causality, relative entropy and Granger techniques.
 
+\section{Causality vs Explainability}
+One of the major trade-offs in nowadays Machine Learning is model performance against complexity. In fact, complex Deep Learning architectures are usually able to perform better in a wide variety of tasks compared to traditional linear classifiers and regression techniques. This trade-off has been analysed in-depth in the 2016 publication "Why should I trust you?" by Ribiero et. al. \cite{otto} and led a new trend in AI to focus on interpretability.
+
+Complex and more accurate models are nowadays referred to as \textbf{Black-boxes}. These type of models working progresses are more difficult to comprehend and they are not able to estimate the importance of each feature and how they are related to each other. Some examples of Black Boxes models are neural networks and ensemble models.
+
+On the other hand, simpler and less accurate models such as decision trees and linear regression, are instead regarded as \textbf{White-boxes} and can be much more interpretable. Two of the main measures which can be used in order to estimate the explainability of a model, are the linearity and monotonicity of a model response function \cite{nove}.
+
+One of the key differences between Explainable AI and Causal AI, is that the former aims just to understand how a model might come to a prediction by weighting the provided features while the latter is designed undercover the process governing the system we are analysing to create insights. In this way, Causal AI can be used in order to answer common retrospective and system design type of questions, providing vital business value to organizations (e.g. EU’s General Data Protection Regulation, right to explanation clause) \cite{causalens}. 
+
 \section{Objectives}
 \vspace{-0.1cm}
-As part of this research study, will be outline the main principles of Causal Reasoning and different application approaches (e.g. Bayesian Belief Networks, Time Series Analysis) and case studies (e.g. Epidemic Modelling). 
+As part of this research study, will be outlined the main principles of Causal Reasoning and different application approaches (e.g. Bayesian Belief Networks, Time Series Analysis) and an Epidemic Modelling case study concerning COVID-19 (Coronavirus). The Novel Coronavirus, is new type of RNA virus which can be able to infect humans potentially causing respiratory infections. The 2020 Novel Coronavirus outbreak started in the late 2019 in Wuhan, China and, as of July 2020, it is believed the virus is mainly able to spread by air through sneezing and coughing. 
