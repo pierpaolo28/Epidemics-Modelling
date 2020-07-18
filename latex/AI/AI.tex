@@ -174,3 +174,33 @@ As can be seen from \ref{d_cond}, Influenza and pneumonia seems to be one of the
     \caption{COVID-19 Deaths Distribution}
     \label{d_top}
 \end{figure}
+
+\subsection{Survival Analysis}
+Survival Analysis is one of the most common mathematical modelling approaches which can be used in order to estimate the time it can take for a particular event to take place. This type of approach, can therefore be used in order to answer causal questions such as: What is the likelihood a COVID-19 patient would die within a given time frame? How would that change given the individual specifics (e.g. pre-existing conditions) and provided cures?
+
+The time for an event to happen (e.g. a patient death) can be characterised in this case by a continuous non-negative random variable. This random variable can then be summarised in terms of its probability density function ($g(t)$) and cumulative density function ($G(t)$). The cumulative density function at a specific time, would then give us the probability that someone might have died by then (Equation \ref{cdf}).
+
+\useshortskip
+\begin{align}
+\ G(t) =\int_{t}^{0} g(t) dx
+\label{cdf}
+\end{align}
+\useshortskip
+
+The probability that a death might have not occurred by a specific point (Survival Function), could then be specified as shown in Equation \ref{surv} as $S(t) = 1 - G(t)$.
+
+\useshortskip
+\begin{align}
+\ S(t) =\int_{\infty}^{t} g(t) dx
+\label{surv}
+\end{align}
+\useshortskip
+
+Finally, making use of the Survival Function, we can then be able to estimate the rate at which the different patients dies in our population \footnote{Given the provided individual characteristics.} (Hazard Function). The Hazard Function, can then be considered to be as our measure of risk to die in the provided time interval (Equation \ref{hfun}).
+
+\useshortskip
+\begin{align}
+\ H(t) = \dfrac{\dfrac{S(t) - S(t - dt)}{dt}}{S(t)} = \dfrac{g(t)}{S(t)}
+\label{hfun}
+\end{align}
+\useshortskip

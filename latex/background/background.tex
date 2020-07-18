@@ -218,78 +218,17 @@ Examples of other techniques ideated during the course of the last decade in ord
     \item \textbf{Difference in Differences}
 \end{itemize}
 
-\section{Case Study: Recommendation Systems}
+\section{Causality in Machine Learning}
 
-One of the main weakness of most Machine Learning models is the assumption that the data fed in is independent and identically distributed (IID). When this assumption holds, convergence to the lowest possible loss is achievable but when this constrain is violated the model might perform poorly even when attempting simple tasks (eg. poisoning attacks) \cite{six}.
+The core principles which characterise Machine Learning are closely related to Statistics, in which we aim to undercover properties from an unknown distribution by sampling independent and identically distributed (IID) random variables from it. What makes Causal Inference more difficult to apply is the assumption that direct dependencies in the data exists (inferring a causal structure from just data can therefore be a challenging task). On the other hand, causal tools can allow us to go beyond mere statistical associations, providing us with much more insightful and powerful models. Some example applications areas of Causality in Machine Learning are \cite{ml_peters}:
+\begin{itemize}
+    \item Semi-supervised learning.
+    \item Half-Sibling Regression.
+    \item Time Series Analysis (e.g. Granger causality).
+    \item Reinforcement Learning.
+\end{itemize}
+
+\subsection{Case Study: Recommendation Systems}
+
+One of the main weakness of most Machine Learning models is the assumption that the data fed in is independent and identically distributed. When this assumption holds, convergence to the lowest possible loss is achievable but when this constrain is violated the model might perform poorly even when attempting simple tasks (e.g. poisoning attacks) \cite{six}.
 As an example, let us consider an e-commerce recommendation system. Nowadays systems, are able to offer recommendations mainly based on products correlated to the ones we are planning to buy, although this cannot always lead to accurate estimates. For instance, we might have recently bought a new phone and we are now looking for a phone case. While browsing for phone cases, although our recommendation system might try to suggest us other items such as phones (just because they are correlated) instead of more cause-effect related items like screen protectors.
-
-% \section{Autism Spectrum Disorders (ASD)}
-
-% Nowadays, there does not exist a recognised medical test for autism diagnostic. Cases are examined individually by doctors for classification. Online screening tools such as Q-Chat are currently available to help parents understand if their child is affected or not by autism \cite{screening}. Uses of Machine Learning (to analyse patients EEG readings) and Computer Vision \footnote{to detect, from video recording, behavioural and communication impairments} might provide a useful solution to this problem. 
-
-% Each LSTM module can be considered to be formed by three gates: input ($i_{t}$) , forget ($f_{t}$) and output gate ($o_{t}$). The input gate decides if a piece of information is important enough or not to be remembered (Equation 2.1). The forget gate (Equation 2.2) decides if a piece of information stored is still relevant or not (and therefore has to be deleted). The output gate determines if a particular information has to have or not a weight in the current time step (Equation 2.3).
-% \useshortskip
-% \begin{align}
-% \ i_{t} = \sigma(w_{i}[h_{t-1},X_{t}] + b_{i}) \\
-% \ f_{t} = \sigma(w_{f}[h_{t-1},X_{t}] + b_{f}) \\
-% \ o_{t} = \sigma(w_{o}[h_{t-1},X_{t}] + b_{o})
-% \label{eq:3}
-% \end{align}
-% \useshortskip
-% \begin{conditions}
-%  w_{x}  &  neuron gate weight \\
-%  h_{t-1}     &  LSTM previous step output \\
-%  X_{t}     &  LSTM current input \\   
-%  b_{x}      &  gates biases \\
-% \end{conditions}
-% \useshortskip
-% The Sigmoid function ($\sigma$, Equation 2.4) is used to squish the output between any value from zero (making the gate block everything) to one (making the gate pass through everything). A neuron gate weight ($w_{x}$) represents the strength of the connection, while the bias ($b_{x}$) is used shift the activation function to fit best the data.
-
-% \useshortskip
-% \begin{align}
-% \ \sigma(x) = \frac{1}{1 + e^{-x}}
-% \label{eq:3}
-% \end{align}
-% \useshortskip
-
-% In mathematical terms, convolution ($\circledast$) is an operation between two functions to create a third one, which represents to what extent a function can be modified by another (Equation 2.5).
-% \begin{align}
-% \ (f \circledast g)' = \int_{\infty}^{\infty} f(\tau)g'(t-\tau)d\tau
-% \label{eq:3}
-% \end{align}
-% \useshortskip
-
-% {
-% \begin{table}[h!]
-% \centering
-% \begin{tabular}{l|l|c|c|c}
-% \multicolumn{2}{c}{}&\multicolumn{2}{c}{Model Predictions}&\\
-% \cline{3-4}
-% \multicolumn{2}{c|}{}&Negative (0)&Positive (1)&\multicolumn{1}{c}{Total}\\
-% \cline{2-4}
-% \multirow{}{}{True Outputs}& Negative (0) & $TN$ & $FP$ & $TN+FP$\\
-% \cline{2-4}
-% & Positive (1) & $FN$ & $TP$ & $FN+TP$\\
-% \cline{2-4}
-% \multicolumn{1}{c}{} & \multicolumn{1}{c}{Total} & \multicolumn{1}{c}{$TN+FN$} & \multicolumn{    1}{c}{$FP+TP$} & \multicolumn{1}{c}{$N$}\\
-% \end{tabular}
-% \caption{Confusion Matrix}
-% \label{table:1}
-% \end{table}
-% }
-
-% Using the Confusion Matrix, the model Accuracy can be also calculated as:
-% \begin{align}
-% \ Accuracy (ACC) = \dfrac{TP + TN}{TP + TN + FP + FN}\times100\% 
-% \end{align}
-
-% From the Confusion Matrix it is then possible to calculate a model Sensitivity and Specificity. In a medical context, sensitivity quantifies the model's ability to determine patients effected by a certain medical condition. Specificity instead measures the model ability to correctly identify patients not effected by this condition.
-
-% \begin{align}
-% \ Sensitivity (TPR) = \dfrac{TP}{TP + FN}\times100\% \label{eq:1} \\
-% \ Specificity (TNR)  = \dfrac{TN}{TN + FP}\times100\%
-% \end{align}
-
-% The AUC (Area Under The Curve) - ROC (Receiver Operating Characteristics) curve evaluates a model's ability to correctly discriminate between the different classes using different thresholds. 
-
-% Plotting the False Positive Rate (Specificity) against the  True Positive Rate (1 - Sensitivity), the ROC Curve can be calculated (Figure 2.10).
