@@ -115,7 +115,7 @@ MAPE is in fact one of the most commonly used loss function for regression tasks
 
 Overall, the LSTM and T-CNN managed to best fit the original data, while both Exponential Smoothing and Auto ARIMA predicts and increase in the number of cases over the next month.
 
-One of the major trade-offs in nowadays Machine Learning is model performance against complexity. In fact, complex Deep Learning architectures are usually able to perform better in a wide variety of tasks compared to traditional linear classifiers and regression techniques. This trade-off has been analysed in-depth in the 2016 publication "Why should I trust you?" by Ribiero et. al. \cite{exp_ai} and led a new trend in AI to focus on interpretability. Using for example, an SIR model in order to make predictions, can in fact allow us to now only to make estimates (like just done using ML based techniques), but also to infer underlying epidemology parameters such as $\beta$ and $\gamma$ which can in turn give us more information about how the disease is spreading.
+Complex Deep Learning models are currently able to offer us good performances on a wide variety of tasks but they heavily rely on past data and they are not able to give us any insight about how the system might work behind the scenes. On the other hand, using for example an SIR model in order to make predictions, can allow us to not only to make estimates (like just done using ML based techniques), but also to infer underlying epidemiology parameters such as $\beta$ and $\gamma$ which can in turn give us more information about how the disease is spreading in a community.
 
 % \section{Vector Autoregression}
 \vspace{-0.2cm}
@@ -137,7 +137,9 @@ As outlined in Section \ref{testing}, clinical trials are one of the main exampl
 
 In this setting, the Causal question we are asking ourselves is: Does a certain treatment decrease COVID-19 mortality rate? This question, can then be formulated in statistical terms as a \textbf{null and alternative hypothesis}. In the null hypothesis, applying the treatment would not lead to any major change in the mortality rate and therefore both the treatment and control groups will be quite similar. Instead, in the alternative hypothesis, the treatment would cause a statistically significant change between the two groups. In our case, patients affected by COVID-19 would be considered as our population and our intervention (providing experimental medical treatment), would then be compared to no intervention. Variation in mortality rate could then be used our our metrics to asses the results. Patients should then be randomly assigned to either groups so that to avoid introduction of any form of bias (e.g. patients age, comorbidities, geographical location). If bias is unconsciously introduced, then this could lead to some form of \textbf{confounding bias}, which would then make really difficult to disconnect what are effects due to the intervention and which ones are instead caused a flow in the randomization process. 
 
-Following on with our example, the number of times an intervention leads to a substantial difference compared to the control group, can then be summarised over a number of trials as a Binomial Distribution. In this distribution, the X axis will represent the count of possible outcomes, while the Y axis will represent the probability associated with an outcome. Although, according to the Central Limit Theorem, as we would increase our sample size, we would then end up with a Gaussian Distribution for each group in the experiment. In Figure \ref{test_dist}, is shown a possible outcome for our example. As can be see from the diagram, four different areas are present: True Positive (TP), True Negative (TN), False Positive (FP), False Negative (FN).
+Following on with our example, the number of times an intervention leads to a substantial difference compared to the control group, can then be summarised over a number of trials as a Binomial Distribution. In this distribution, the X axis will represent the count of possible outcomes, while the Y axis will represent the probability associated with an outcome. Although, according to the Central Limit Theorem, as we would increase our sample size, we would then end up with a Gaussian Distribution for each group in the experiment. 
+
+In Figure \ref{test_dist}, is shown a possible outcome for our example. As can be see from the diagram, four different areas are present: True Positive (TP), True Negative (TN), False Positive (FP), False Negative (FN).
 \vspace{-0.2cm}
 \begin{figure}[ht!]%
     \centering
@@ -204,3 +206,41 @@ Finally, making use of the Survival Function, we can then be able to estimate th
 \label{hfun}
 \end{align}
 \useshortskip
+
+Making use of these basis, we can then make use of a non-parametric model such as the \textbf{Kaplan-Meier Estimate} in order to create a probabilistic survival curve of the patients survival against time \cite{survival_an}.
+
+The Kaplan-Meier Estimate, can be calculated making use of the expression shown below. In Equation \ref{km}, $n_{i}$ represents the patient at risk at time $t_{i}$, while $d_{i}$ the number of deaths occurred so far in time.
+
+\useshortskip
+\begin{align}
+\ \widehat{S(t)} = \prod_{i=t_{i}}^{t} \dfrac{n_{i}-d_{i}}{n_{i}}
+\label{km}
+\end{align}
+\useshortskip
+
+As a practical example, let us consider we are trying to test the efficacy of an antidote for COVID-19 in order to reduce the mortality rate of patients which suffer at the same time of hypertensive diseases. We run an experiment with 400 patients and divide them into a Control (No Antidote) and Treatment (Using Antidote) Group of 200 patients each. Using the Kaplan-Meier Estimate, we can then be able to estimate if the antidote can have a positive impact or not. For example, in Figure \ref{s_curve} is shown a possible outcome in case the antidote has a positive effect compared to no intervention.
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=0.55\linewidth]{latex/images/survival.pdf}
+    % \includegraphics[width=13cm]{latex/images/vacc.PNG}%
+    \vspace{-0.2cm}
+    \caption{Survival Curve}
+    \label{s_curve}
+\end{figure}
+
+As shown in Figure \ref{s_curve}, all patients starts with a probability to survive equal to one (before being infected) and then using the antidote can manage to limit the negative impact the disease can have on their survival probability. In Figure \ref{s_curve}, have additionally been included confidence intervals in order to take into account uncertainties due to the reduced sample size and possibility of bias in the created data.
+
+Another possible approach which can be used in order to visualise the how using an antidote can be help or not to prolong the life span of the considered patients is to plot the number of days a patient survived on a time line (Figure \ref{span}). In order to make the data visualization easier, just a random sample of 20 patients has been considered in Figure \ref{span}. Patients which have survived more than 9 days have automatically been considered as recovered in this example.
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=0.5\linewidth]{latex/images/survival_span.pdf}
+    \includegraphics[width=0.49\linewidth]{latex/images/survival_span2.pdf}
+    % \includegraphics[width=13cm]{latex/images/vacc.PNG}%
+    \vspace{-0.2cm}
+    \caption{Patients survival span throughout experiment}
+    \label{span}
+\end{figure}
+
+In order to make our experiment more accurate and personalised for each individual patient, we could then try to make use of additional information about the patients (e.g. age, sex, economic status). This could easily done, making use of more advanced models such as the Cox Proportional Hazard Model. This approach has in fact been taken in different research publications such as "Risk factors for severity and mortality in adult COVID-19 inpatients in Wuhan" \cite{surv1} and "Survival Analysis of COVID-19 on Democracy with Cox Proportional Hazards Model" \cite{surv2}, in order to test new approaches to reduce the mortality rate of COVID-19. 
