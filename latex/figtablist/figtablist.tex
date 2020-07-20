@@ -1,5 +1,5 @@
 \newpage
-\addcontentsline{toc}{chapter}{List of Tables}
+\addcontentsline{toc}{chapter}{List of Figures}
 
 % \renewcommand{\listfigurename}{List of plots}
 % \renewcommand\cftlottitlefont{\large\bfseries}
@@ -7,16 +7,26 @@
 % \renewcommand\cfttabpagefont{\medium}
 % \renewcommand\centering
 
-\renewcommand{\listtablename}{\hfill\bfseries\large List of Tables}
-\renewcommand{\cftafterlottitle}{\hfill}
-% \renewcommand{\listtablename}{List of Tables}
-\renewcommand\cftbeforetoctitleskip{}
-\renewcommand\cftbeforeloftitleskip{}
-\renewcommand\cftbeforelottitleskip{}
-% \begin{Lists}
-
+% \renewcommand{\listtablename}{\hfill\bfseries\small List of Figures}
+% \renewcommand{\cftafterlottitle}{\hfill}
+% \renewcommand{\listtablename}{List of Figures}
+% \renewcommand\cftbeforetoctitleskip{}
+% \renewcommand\cftbeforeloftitleskip{}
+% \renewcommand\cftbeforelottitleskip{}
+\renewcommand{\listfigurename}{\begin{center} \large \textbf{List of Figures} \end{center}}
 \listoffigures
- 
-% \listoftables
+
+\newpage
+\addcontentsline{toc}{chapter}{List of Tables}
+
+% % \renewcommand{\listtablename}{\hfill\bfseries\large List of Tables}
+% % \renewcommand{\cftafterlottitle}{\hfill}
+% % \renewcommand{\listtablename}{List of Tables}
+% % \renewcommand\cftbeforetoctitleskip{}
+% % \renewcommand\cftbeforeloftitleskip{}
+% % \renewcommand\cftbeforelottitleskip{}
+
+\renewcommand{\listtablename}{\begin{center} \large \textbf{List of Tables} \end{center}}
+\listoftables
 
 % \end{Lists}
