@@ -3,7 +3,7 @@ __pycache__/
 .vscode/
 .idea/
 .env/
-presentation/reveal.js/.git
-presentation/reveal.js/.github
-presentation/reveal.js/.gitignore
-presentation/reveal.js/.npmignore
+presentation/revealjs/.git
+presentation/revealjs/.github
+presentation/revealjs/.gitignore
+presentation/revealjs/.npmignore
