@@ -49,7 +49,7 @@
 			<p id="demo"></p>
 			<script>
 				var str = "Downloadable PDF link"
-				var result = str.link(document.location.href.split("#")[0]+ '/?print-pdf/#/');
+				var result = str.link(document.location.href.split("#/")[0]+ '?print-pdf/#/');
 				document.getElementById("demo").innerHTML = result;
 			</script>
 			<p id="demo2"></p>
