@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Causal Reasoning in Machine Learning</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/night.css" id="theme">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				Causal Reasoning in Machine Learning
+			</section>
+			<section>
+				Motivations
+			</section>
+			<section>
+				Compartmental Models
+				<section>SIR</section>
+				<section>SEIR</section>
+				<section>Advanced SEIR</section>
+				<section>Time Limited Immunity SIR</section>
+				<section>Vaccination & Time Limited Immunity SIR</section>
+			</section>
+			<section>
+				Agent Based Modelling
+				<section>Population Modelling</section>
+				<section>Track and Trace</section>
+				<section>Central Hubs</section>
+				<section>Finance Simulation</section>
+			</section>
+			<section>
+				COVID-19 Analysis
+				<section>SIR Time Series Estimation</section>
+				<section>Clinical Trials</section>
+				<section>Coronavirus comorbidities</section>
+			</section>
+			<section>
+				Thank you for your attention!
+			<p id="demo"></p>
+			<script>
+				var str = "Downloadable PDF link"
+				var result = str.link(document.location.href.split("#")[0]+ '/?print-pdf/#/');
+				document.getElementById("demo").innerHTML = result;
+			</script>
+			<p id="demo2"></p>
+			<script>
+				var str = "Online Dashboard Link"
+				var result = str.link('http://3.22.240.181:8501/');
+				document.getElementById("demo2").innerHTML = result;
+			</script>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			slideNumber: true,
+			hash: true,
+			controls: true,
+			touch: true,
+			transition: 'fade',
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
