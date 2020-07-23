@@ -14,6 +14,15 @@
 	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
 </head>
 
+<style>
+    .reveal section small {
+    display: inline-block;
+    font-size: 0.6em;
+    line-height: 1.2em;
+    vertical-align: top;
+  }
+</style>
+
 <body>
 	<div class="reveal">
 		<div class="slides">
@@ -50,8 +59,45 @@
 				<h3> Compartmental Models </h3>
 				<section data-markdown>
 					<textarea data-template>
+						#### SIR Design
+						\begin{align}
+						\ \frac{\partial S}{\partial t} = -\beta \times I \times \frac{S}{N}
+						\end{align}
+						\begin{align}
+						\ \frac{\partial I}{\partial t} = \beta \times I \times \frac{S}{N} -\gamma \times I
+						\end{align}
+						\begin{align}
+						\ \frac{\partial R}{\partial t} = \gamma \times I
+						\end{align}
+				</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						#### SIR Design
+						![](images/dsir.PNG)
+				</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
 						#### SIR
 						![](images/sir.PNG)
+				</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						#### SEIR Design
+						\begin{align}
+						\ \frac{\partial E}{\partial t} = \beta \times I \times \frac{S}{N} -\delta \times E
+						\end{align}
+						\begin{align}
+						\ \frac{\partial I}{\partial t} = \delta \times E \times -\gamma \times I
+						\end{align}
+				</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						#### SEIR Design
+						![](images/dseir.PNG)
 				</textarea>
 				</section>
 				<section data-markdown>
@@ -62,9 +108,59 @@
 				</section>
 				<section data-markdown>
 					<textarea data-template>
+						#### Advanced SEIR Design
+						<small>
+						\begin{align}
+						\frac{\partial S}{\partial t} = -\beta(t) \times I \times \frac{S}{N} \\
+						\frac{\partial E}{\partial t} = \beta(t) \times I \times \frac{S}{N} -\delta \times E \\
+						\frac{\partial I}{\partial t} = \delta \times E - (1 - \alpha(t)) \times \gamma \times I - \alpha(t) \times \rho \times I \\
+						\frac{\partial R}{\partial t} = (1 - \alpha(t)) \times \gamma \times I \\
+						\frac{\partial D}{\partial t} = \alpha(t) \times \rho \times I \\
+						\alpha(t) = s \times \frac{I(t)}{N} + \alpha_{opt}
+						\end{align}
+					</small>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						#### Advanced SEIR Design
+						![](images/dadv_seir.PNG)
+				</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						#### Advanced SEIR Design
+						- Sigmoid Landscape
+						<small>
+							\begin{align}
+							\ R_{0}(t) = \frac{R_{start}-R_{end}}{1 + \exp^{-k(-x+x_{0})}} - R_{end}
+							\label{sig}
+							\end{align}
+							 $R_{start}, R_{end}$  = Initial and desired final value for $R_{0}$ in the sigmoid <br>
+							 $x_{0}$  =  Sigmoid inflection point date <br>
+							 $k$  =  Defines how drastically rapidly the restrictions have been applied <br>
+							\begin{align}
+							\ \beta(t) = R_{0}(t) \times \frac{1}{\alpha \times \frac{1}{\rho} + (1 - \alpha) \times \frac{1}{\gamma}}
+							\end{align}
+					</small>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
 						#### Advanced SEIR (Sigmoid)
 						<img src="images/sig_seir.PNG" width="650">
 				  </textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						#### Advanced SEIR Design
+						- Sine Landscape
+						<small>
+							\begin{align}
+							\ R_{0}(t) = Oscillatory\:Scale \times \sin(\frac{x}{\frac{N\:Simulation\:Days}{10}}) + Oscillatory\:Scale + 1
+							\end{align}
+					</small>
+					</textarea>
 				</section>
 				<section data-markdown>
 				<textarea data-template>
@@ -74,8 +170,58 @@
 				</section>
 				<section data-markdown>
 					<textarea data-template>
+						#### Time Limited Immunity Design
+						<small>
+							\begin{align}
+							\ \frac{\partial S}{\partial t} = -\beta \times I \times \frac{S}{N} + v \times R
+							\end{align}
+							\begin{align}
+							\ \frac{\partial I}{\partial t} = \beta \times I \times \frac{S}{N} -\gamma \times I
+							\end{align}
+							\begin{align}
+							\ \frac{\partial R}{\partial t} = \gamma \times I - v \times R
+							\end{align}
+					</small>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						#### Time Limited Immunity Design
+						![](images/dimm.PNG)
+				</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
 						#### Time Limited Immunity
 						<img src="images/time_lim.PNG" width="650">
+				</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						#### Vaccination SIR Design
+						<small>
+							\begin{align}
+							\ \frac{\partial S}{\partial t} = -\beta \times I \times \frac{S}{N} + v \times R - p \times S
+							\end{align}
+							\begin{align}
+							\ \frac{\partial V}{\partial t} = p \times S
+							\end{align}
+							\begin{align}
+							\ \frac{\partial I}{\partial t} = \beta \times I \times \frac{S}{N}  -(1-\alpha) \times \gamma \times I -\alpha \times \rho \times I
+							\end{align}
+							\begin{align}
+							\ \frac{\partial R}{\partial t} = (1-\alpha) \times \gamma \times I - v \times R
+							\end{align}
+							\begin{align}
+							\ \frac{\partial D}{\partial t} = \alpha \times \rho \times I
+							\end{align}
+					</small>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						#### Vaccination SIR Design
+						<img src="images/dvacc.PNG" width="600">
 				</textarea>
 				</section>
 				<section data-markdown>
@@ -87,6 +233,28 @@
 			</section>
 			<section>
 				<h3> Agent Based Modelling </h3>
+				<section>
+					<h4> An Object Oriented Programming (OOP) Problem </h4>
+					<pre><code data-trim data-noescape>
+						class Person:
+						    def __init__(self, situation, position, speed, extremes, age):
+						        self.situation, self.position = situation, position
+						        self.speed, self.extremes = speed, extremes
+						        angle = np.random.uniform(0, 2*np.pi)
+						        self.x_dir, self.y_dir = np.cos(angle), np.sin(angle)
+						        self.age = age
+						        self.reabilitation = 0
+
+						    def step_ahead(self, community, proximity, contagiousness,
+										no_move, deaths_p):
+						        self = contacts(self, community, proximity, contagiousness,
+										deaths_p)
+						        self = new_pos(self, no_move)
+				</code></pre>
+				</section>
+				<section>
+					<img src="images/pseudo.PNG" width="450">
+				</section>
 				<section data-markdown>
 					<textarea data-template>
 						#### Population Modelling
@@ -113,6 +281,16 @@
 				</section>
 				<section data-markdown>
 					<textarea data-template>
+						#### Finance Simulation Design
+						<small>
+							\begin{align}
+							\ Updated\:Income = (Income-Expenses)\times ||Current\:Position-Previous\:Position||
+							\end{align}
+					</small>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
 						#### Finance Simulation
 						<img src="images/fin2.PNG" width="650">
 				</textarea>
@@ -120,6 +298,22 @@
 			</section>
 			<section>
 				<h3> COVID-19 Analysis </h3>
+				<section data-markdown>
+					<textarea data-template>
+						#### SIR Time Series Estimation Design
+						<small>
+							- Estimate β and γ, given the data about the number of cases and recovered in a country.
+							\begin{align}
+					    \ Loss = \alpha \times \sqrt{\dfrac{1}{n} \sum_{t=1}^{n} (I_{t} - ID_{t})^{2}} + (1 - \alpha) \times \sqrt{\dfrac{1}{n} \sum_{t=1}^{n} (R_{t} - RD_{t})^{2}}
+					    \label{loss_it}
+					    \end{align}
+					     $I_{t}, R_{t}$  =  SIR Infected and Recovered timestep <br>
+					     $ID_{t}, RD_{t}$ =  Infected and Recovered from data timestep <br>
+					     $n$ = Number of timesteps <br>
+							- Solve the SIR model equations by numerically integrating them  and  providing some initial condition values for the number of susceptible, infected and recovered in the population.
+					</small>
+					</textarea>
+				</section>
 				<section data-markdown>
 					<textarea data-template>
 						#### SIR Time Series Estimation
@@ -131,6 +325,24 @@
 						#### Clinical Trials
 						<img src="images/abtest.PNG" width="650">
 				</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						#### Coronavirus comorbidities, Survival Analysis
+						<small>
+							One of the most common techniques which can be used in order to create
+							a probabilistic survival curve of the patients survival against time
+							is the the <strong>Kaplan-Meier Estimate</strong> non-parametric model.
+							The Kaplan-Meier Estimate, can be calculated
+							making use of the expression shown below, where
+							$n_{i}$ represents the patient at risk at time $t_{i}$, while $d_{i}$
+							the number of deaths occurred so far in time.
+							\begin{align}
+							\ \widehat{S(t)} = \prod_{i=t_{i}}^{t} \dfrac{n_{i}-d_{i}}{n_{i}}
+							\label{km}
+							\end{align}
+					</small>
+					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
@@ -174,10 +386,12 @@
 		</div>
 	</div>
 
+	<link rel="stylesheet" href="lib/css/monokai.css">
 	<script src="dist/reveal.js"></script>
 	<script src="plugin/notes/notes.js"></script>
 	<script src="plugin/markdown/markdown.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/math/math.js"></script>
 	<script>
 		// More info about initialization & config:
 		// - https://revealjs.com/initialization/
@@ -188,10 +402,17 @@
 			controls: true,
 			touch: true,
 			transition: 'fade',
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: { Macros: { RR: "{\\bf R}" } }
+			},
 			// Learn about plugins: https://revealjs.com/plugins/
-			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+			plugins: [RevealMath, RevealMarkdown, RevealHighlight, RevealNotes]
 		});
 	</script>
+
 </body>
 
 </html>
