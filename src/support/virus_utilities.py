@@ -99,7 +99,7 @@ def comulative_plot(negatives, positives, survivors, dates_range):
                          mode="lines", name='Recovered',
                          line=dict(width=2, color="green")),
               go.Scatter(x=dates_range, y=survivors,
-                         mode="lines", name='Deths',
+                         mode="lines", name='Deaths',
                          line=dict(width=2, color="orange"))],
         layout=go.Layout(
             title_text="Comulative Results Over Time", hovermode="closest",
@@ -202,7 +202,7 @@ def virus_SEIR_plot(negatives, esposed, positives, survivors, deths, R0, alpha, 
 
     fig.add_trace(
         go.Scatter(x=[i for i in range(len(negatives))], y=deths,
-                   mode="lines", name='Deths',
+                   mode="lines", name='Deaths',
                    line=dict(width=2, color="black")),
         row=1, col=1
     )
@@ -228,13 +228,13 @@ def virus_SEIR_plot(negatives, esposed, positives, survivors, deths, R0, alpha, 
 
     fig.add_trace(
         go.Scatter(x=[i for i in range(len(negatives))], y=daily_deths,
-                   mode="lines", name='Daily Deths',
+                   mode="lines", name='Daily Deaths',
                    line=dict(width=2)),
         row=3, col=1)
 
     fig.add_trace(
         go.Scatter(x=[i for i in range(len(negatives))], y=avoidable_deths,
-                   mode="lines", name='Avoidable Deths',
+                   mode="lines", name='Avoidable Deaths',
                    line=dict(width=2)),
         row=3, col=1)
 
@@ -354,7 +354,7 @@ def virus_SEIR_plot(negatives, esposed, positives, survivors, deths, R0, alpha, 
     fig.update_xaxes(title_text="Days",  row=2, col=1)
     fig.update_yaxes(title_text="α", row=2, col=2)
     fig.update_xaxes(title_text="Days",  row=2, col=2)
-    fig.update_yaxes(title_text="Number of Deths", row=3, col=1)
+    fig.update_yaxes(title_text="Number of Deaths", row=3, col=1)
     fig.update_xaxes(title_text="Days",  row=3, col=1)
     st.plotly_chart(fig)
 

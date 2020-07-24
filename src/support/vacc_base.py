@@ -145,7 +145,7 @@ def vacc_SIR_plot(negatives, vaccinated, positives, survivors, deths, R0):
                          mode="lines", name='Recovered',
                          line=dict(width=2, color="orange")),
               go.Scatter(x=[i for i in range(len(negatives))], y=deths,
-                         mode="lines", name='Deths',
+                         mode="lines", name='Deaths',
                          line=dict(width=2, color="black")), ],
         layout=go.Layout(
             title_text="Vaccination and Time Limited Immunity SIR Model (R<sub>0</sub>=" + str(round(R0, 2))+')', hovermode="closest",
