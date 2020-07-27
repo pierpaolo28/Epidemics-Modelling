@@ -9,18 +9,18 @@
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
 	<link rel="stylesheet" href="dist/theme/night.css" id="theme">
-
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	<link rel="shortcut icon" href="../dist/epid.ico" type="image/x-icon" />
 </head>
 
 <style>
-    .reveal section small {
-    display: inline-block;
-    font-size: 0.6em;
-    line-height: 1.2em;
-    vertical-align: top;
-  }
+	.reveal section small {
+		display: inline-block;
+		font-size: 0.6em;
+		line-height: 1.2em;
+		vertical-align: top;
+	}
 </style>
 
 <body>
@@ -163,7 +163,7 @@
 					</textarea>
 				</section>
 				<section data-markdown>
-				<textarea data-template>
+					<textarea data-template>
 					#### Advanced SEIR (Sinusoid)
 					<img src="images/sine_seir.PNG" width="650">
 				</textarea>
@@ -370,18 +370,18 @@
 			</section>
 			<section>
 				Thank you for your attention!
-			<p id="demo"></p>
-			<script>
-				var str = "Downloadable PDF link"
-				var result = str.link(document.location.href.split("#/")[0]+ '?print-pdf/#/');
-				document.getElementById("demo").innerHTML = result;
-			</script>
-			<p id="demo2"></p>
-			<script>
-				var str = "Online Dashboard Link"
-				var result = str.link('http://3.22.240.181:8501/');
-				document.getElementById("demo2").innerHTML = result;
-			</script>
+				<p id="demo"></p>
+				<script>
+					var str = "Downloadable PDF link"
+					var result = str.link(document.location.href.split("#/")[0] + '?print-pdf/#/');
+					document.getElementById("demo").innerHTML = result;
+				</script>
+				<p id="demo2"></p>
+				<script>
+					var str = "Online Dashboard Link"
+					var result = str.link('http://3.22.240.181:8501/');
+					document.getElementById("demo2").innerHTML = result;
+				</script>
 			</section>
 		</div>
 	</div>
@@ -406,7 +406,11 @@
 				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
 				config: 'TeX-AMS_HTML-full',
 				// pass other options into `MathJax.Hub.Config()`
-				TeX: { Macros: { RR: "{\\bf R}" } }
+				TeX: {
+					Macros: {
+						RR: "{\\bf R}"
+					}
+				}
 			},
 			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMath, RevealMarkdown, RevealHighlight, RevealNotes]
