@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="../dist/epid.ico" type="image/x-icon" />
   <link rel="stylesheet" href="support.css">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
   <script src='d3.js'></script>
   <title>Epidemic Modelling</title>
 </head>
@@ -20,50 +21,61 @@
         <h1>How does a pandemic start?</h1>
         <p>By <a href='https://www.linkedin.com/in/pierpaolo28/'> Pier Paolo Ippolito </a></p>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-          aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Pandemics, usually develops thanks to a disease ability to spread at an exponential rate. In the case of COVID-19, the number of cases from one day to the next was in fact equal to the number of nowadays cases times some constant between
+          1.25-1.5 (depending on factors such as population density and restrictions in place). The change in the number of cases from a day to another, can then be defined by the following equation:
+          $$ \Delta N_{d} = E \times p \times N_{d} $$
+          Where <b>E</b> represents the average number of people we are exposed to every day, <b>p</b> represents the probability that an exposure might lead to an infection and <b>N<sub>d</sub></b> is the number of cases as of today. Therefore, in
+          this
+          type of
+          situation, the only possible way to try to slow down our exponential trend is by decreasing <b>E</b> and <b>p</b>.
         </p>
 
       </section>
       <section class="step">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-          aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          In order to make this possible, different techniques such as track and trace, social distancing and travel restrictions can be applied. Although, even if no intervention at all is done, an exponential trend is destined to convert to a
+          logistic curve once a large number of the population gets infected by the disease (in fact, the probability that an exposure can lead to an infect automatically decreases if the majority of the population and the people we meet are already
+          infected). Applying any type of restriction, would then help us in making possible to reach our inflection point between these two trends as soon as possible.
         </p>
       </section>
-      <section class='step'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </section>
-      <section class="step">
-        <br><br><br><br><br><br>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-          aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
 
       </section>
       <section class="step">
         <p>
         <h2>Clinical Trials: A/B Testing</h2>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Clinical trials are one of the main example of A/B testing application. Gathering results from an A/B test, we can then be able to infer causal relationships about what can be the potential effects of a treatment. In this setting, the Causal
+        question we are asking ourselves is: Does a certain treatment decrease COVID-19 mortality rate? This question, can then be formulated in statistical terms as a <b>null and alternative hypothesis</b>.
+        <br>
+        <br>
+        In the null hypothesis, applying the treatment would not lead to any major change in the mortality rate and therefore both the treatment and control groups will be quite similar. Instead, in the alternative hypothesis, the treatment would
+        cause a
+        statistically significant change between the two groups. In our case, patients affected by COVID-19 would be considered as our population and our intervention (providing experimental medical treatment), would then be compared to no
+        intervention. Variation in mortality rate could then be used our our metrics to asses the results. Patients should then be randomly assigned to either groups so that to avoid introduction of any form of bias (e.g. patients age, comorbidities,
+        geographical location).
         </p>
 
       </section>
       <section class="step">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        If bias is unconsciously introduced, then this could lead to some form of <b>confounding bias</b>, which would then make really difficult to disconnect what are effects due to the intervention and which ones are instead
+        caused a flow in the randomization process. Following on with our example, the number of times an intervention leads to a substantial difference compared to the control group, can then be summarised over a number of trials as a Binomial
+        Distribution. In this distribution, the X axis will represent the count of possible outcomes, while the Y axis will represent the probability associated with an outcome. Although, according to the Central Limit Theorem, as we would increase
+        our sample size, we would then end up with a Gaussian Distribution for each group in the experiment.
+        <br>
+        <br>
+        In the adjacent, is shown a possible outcome for our example. As can be see from the diagram, four different areas are present: True Positive
+        (TP), True Negative (TN), False Positive (FP), False Negative (FN). In the TP case, we can affirm our treatment is beneficial since it managed to pass our test for the hypothesis (e.g. decreasing the mortality rate). In the case of the TN
+        area, we can instead affirm that our treatment is not beneficial. While in the FP area, we might be deceived to believe our intervention was beneficial while it wasn’t (the opposite holds true instead in the FN area). In these last two cases,
+        it is then vital to look for any possible form of bias interference.
       </section>
       <section class="step">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Depeding on how much data we currently have available, this could then potentially help us in better defining our distributions and reducing the uncertainty in the measuraments.
       </section>
       <section class="step">
         <h1>Credits</h1>
         <p>
           This interactive online presentation was realised using D3.js and the Scroller design by <a href='https://towardsdatascience.com/how-i-created-an-interactive-scrolling-visualisation-with-d3-js-and-how-you-can-too-e116372e2c73'>Cuthbert
             Chow</a> and <a href='https://vallandingham.me/scroller.html'>Jim Vallandingham</a>.
+          <br>
           <br>
           Additional insights are available on the <a href='https://pierpaolo28.github.io/Epidemics-Modelling/presentation//index.html#/'>Reveal.js presentation</a> and <a href='http://3.22.240.181:8501/'>the Epidemic Modelling dashboard</a>.
         </p>

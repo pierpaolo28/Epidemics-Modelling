@@ -57,8 +57,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
     draw1,
     draw2,
     draw1,
-    draw2,
-    draw1,
     draw2
   ]
 
