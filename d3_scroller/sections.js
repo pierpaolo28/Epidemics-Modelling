@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     .attr("viewBox", "0 0 800 800");
 
   let img = svg.append("svg:image")
-    .attr("xlink:href", "abtest.png")
+    .attr("xlink:href", "https://github.com/pierpaolo28/Epidemics-Modelling/blob/gh-pages/d3_scroller/abtest.PNG")
     .attr("width", "100%")
     .attr("height", "100%")
 
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
       .attr("viewBox", "0 0 800 800");
 
     let img2 = svg2.append("svg:image")
-      .attr("xlink:href", "abtest.png")
+      .attr("xlink:href", "https://github.com/pierpaolo28/Epidemics-Modelling/blob/gh-pages/d3_scroller/abtest.PNG")
       .attr("width", "100%")
       .attr("height", "100%")
 
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
       .attr("viewBox", "0 0 800 800");
 
     let img2 = svg2.append("svg:image")
-      .attr("xlink:href", "germ_params.png")
+      .attr("xlink:href", "https://github.com/pierpaolo28/Epidemics-Modelling/blob/gh-pages/d3_scroller/germ_params.PNG")
       .attr("width", "100%")
       .attr("height", "100%")
 
