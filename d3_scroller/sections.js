@@ -1,3 +1,5 @@
+// Following Cuthbert Chow implementation: https://towardsdatascience.com/how-i-created-an-interactive-scrolling-visualisation-with-d3-js-and-how-you-can-too-e116372e2c73
+
 document.addEventListener('DOMContentLoaded', function(e) {
 
   let svg = d3.select('#vis').append("svg")
