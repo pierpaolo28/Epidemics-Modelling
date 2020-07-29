@@ -1,8 +1,4 @@
 document.addEventListener('DOMContentLoaded', function(e) {
-  //First draw function
-
-  // let width = 800,
-  //   height = 800;
 
   let svg = d3.select('#vis').append("svg")
     .attr("width", "100%")
@@ -10,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     .attr("viewBox", "0 0 800 800");
 
   let img = svg.append("svg:image")
-    .attr("xlink:href", "./abtest.PNG")
+    .attr("xlink:href", "./first.PNG")
     .attr("width", "100%")
     .attr("height", "100%")
 
@@ -23,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
       .attr("viewBox", "0 0 800 800");
 
     let img2 = svg2.append("svg:image")
-      .attr("xlink:href", "./abtest.PNG")
+      .attr("xlink:href", "./first.PNG")
       .attr("width", "100%")
       .attr("height", "100%")
 
@@ -40,7 +36,75 @@ document.addEventListener('DOMContentLoaded', function(e) {
       .attr("viewBox", "0 0 800 800");
 
     let img2 = svg2.append("svg:image")
-      .attr("xlink:href", "./germ_params.PNG")
+      .attr("xlink:href", "./two.PNG")
+      .attr("width", "100%")
+      .attr("height", "100%")
+
+    return svg2
+  }
+
+  function draw3(svg) {
+
+    d3.select("#vis").selectAll("svg").remove();
+
+    let svg2 = d3.select('#vis').append("svg")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .attr("viewBox", "0 0 800 800");
+
+    let img2 = svg2.append("svg:image")
+      .attr("xlink:href", "./abflow.PNG")
+      .attr("width", "100%")
+      .attr("height", "100%")
+
+    return svg2
+  }
+
+  function draw4(svg) {
+
+    d3.select("#vis").selectAll("svg").remove();
+
+    let svg2 = d3.select('#vis').append("svg")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .attr("viewBox", "0 0 800 800");
+
+    let img2 = svg2.append("svg:image")
+      .attr("xlink:href", "./abtest.PNG")
+      .attr("width", "100%")
+      .attr("height", "100%")
+
+    return svg2
+  }
+
+  function draw5(svg) {
+
+    d3.select("#vis").selectAll("svg").remove();
+
+    let svg2 = d3.select('#vis').append("svg")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .attr("viewBox", "0 0 800 800");
+
+    let img2 = svg2.append("svg:image")
+      .attr("xlink:href", "./abtest2.PNG")
+      .attr("width", "100%")
+      .attr("height", "100%")
+
+    return svg2
+  }
+
+  function draw6(svg) {
+
+    d3.select("#vis").selectAll("svg").remove();
+
+    let svg2 = d3.select('#vis').append("svg")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .attr("viewBox", "0 0 800 800");
+
+    let img2 = svg2.append("svg:image")
+      .attr("xlink:href", "./WBS.PNG")
       .attr("width", "100%")
       .attr("height", "100%")
 
@@ -54,10 +118,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
   let activationFunctions = [
     draw1,
     draw2,
-    draw1,
-    draw2,
-    draw1,
-    draw2
+    draw3,
+    draw4,
+    draw5,
+    draw6
   ]
 
   //All the scrolling function
