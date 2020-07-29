@@ -1,27 +1,27 @@
 document.addEventListener('DOMContentLoaded', function(e) {
 
   let svg = d3.select('#vis').append("svg")
-    .attr("width", "100%")
-    .attr("height", "100%")
-    .attr("viewBox", "0 0 800 800");
+    .attr("width", "80%")
+    .attr("height", "80%")
+    .attr("viewBox", "0 0 500 500");
 
   let img = svg.append("svg:image")
     .attr("xlink:href", "./first.PNG")
-    .attr("width", "100%")
-    .attr("height", "100%")
+    .attr("width", "80%")
+    .attr("height", "80%")
 
   function draw1(svg) {
     d3.select("#vis").selectAll("svg").remove();
 
     let svg2 = d3.select('#vis').append("svg")
-      .attr("width", "100%")
-      .attr("height", "100%")
-      .attr("viewBox", "0 0 800 800");
+      .attr("width", "80%")
+      .attr("height", "80%")
+      .attr("viewBox", "0 0 500 500");
 
     let img2 = svg2.append("svg:image")
       .attr("xlink:href", "./first.PNG")
-      .attr("width", "100%")
-      .attr("height", "100%")
+      .attr("width", "80%")
+      .attr("height", "80%")
 
     return svg2
   }
@@ -31,14 +31,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
     d3.select("#vis").selectAll("svg").remove();
 
     let svg2 = d3.select('#vis').append("svg")
-      .attr("width", "100%")
-      .attr("height", "100%")
-      .attr("viewBox", "0 0 800 800");
+      .attr("width", "80%")
+      .attr("height", "80%")
+      .attr("viewBox", "0 0 500 500");
 
     let img2 = svg2.append("svg:image")
       .attr("xlink:href", "./two.PNG")
-      .attr("width", "100%")
-      .attr("height", "100%")
+      .attr("width", "80%")
+      .attr("height", "80%")
 
     return svg2
   }
@@ -48,14 +48,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
     d3.select("#vis").selectAll("svg").remove();
 
     let svg2 = d3.select('#vis').append("svg")
-      .attr("width", "100%")
-      .attr("height", "100%")
-      .attr("viewBox", "0 0 800 800");
+      .attr("width", "80%")
+      .attr("height", "80%")
+      .attr("viewBox", "0 0 500 500");
 
     let img2 = svg2.append("svg:image")
       .attr("xlink:href", "./abflow.PNG")
-      .attr("width", "100%")
-      .attr("height", "100%")
+      .attr("width", "80%")
+      .attr("height", "80%")
 
     return svg2
   }
@@ -65,14 +65,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
     d3.select("#vis").selectAll("svg").remove();
 
     let svg2 = d3.select('#vis').append("svg")
-      .attr("width", "100%")
-      .attr("height", "100%")
-      .attr("viewBox", "0 0 800 800");
+      .attr("width", "80%")
+      .attr("height", "80%")
+      .attr("viewBox", "0 0 500 500");
 
     let img2 = svg2.append("svg:image")
       .attr("xlink:href", "./abtest.PNG")
-      .attr("width", "100%")
-      .attr("height", "100%")
+      .attr("width", "80%")
+      .attr("height", "80%")
 
     return svg2
   }
@@ -82,14 +82,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
     d3.select("#vis").selectAll("svg").remove();
 
     let svg2 = d3.select('#vis').append("svg")
-      .attr("width", "100%")
-      .attr("height", "100%")
-      .attr("viewBox", "0 0 800 800");
+      .attr("width", "80%")
+      .attr("height", "80%")
+      .attr("viewBox", "0 0 500 500");
 
     let img2 = svg2.append("svg:image")
       .attr("xlink:href", "./abtest2.PNG")
-      .attr("width", "100%")
-      .attr("height", "100%")
+      .attr("width", "80%")
+      .attr("height", "80%")
 
     return svg2
   }
@@ -99,14 +99,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
     d3.select("#vis").selectAll("svg").remove();
 
     let svg2 = d3.select('#vis').append("svg")
-      .attr("width", "100%")
-      .attr("height", "100%")
-      .attr("viewBox", "0 0 800 800");
+      .attr("width", "80%")
+      .attr("height", "80%")
+      .attr("viewBox", "0 0 500 500");
 
     let img2 = svg2.append("svg:image")
       .attr("xlink:href", "./WBS.PNG")
-      .attr("width", "100%")
-      .attr("height", "100%")
+      .attr("width", "80%")
+      .attr("height", "80%")
 
     return svg2
   }
