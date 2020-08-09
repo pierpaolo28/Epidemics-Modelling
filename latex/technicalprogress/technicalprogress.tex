@@ -79,7 +79,7 @@ As shown in Equation \ref{r0}, $R_{0}$ can be calculated as the number of people
 
 If $R$ is greater than one, then the disease is still in the exponentially growing phase (we have an epidemic), if $R$ is instead equal to one we are then in an endemic (therefore the number of cases stays approximately constant) and if $R$ is less than one, we are finally in the eradication phase and the disease could disappear entirely soon from our population.
 
-One of the most common approaches to eradicate a decease, is through Herd Immunity. The percentage proportion of the individuals in a population necessary to reach Herd Immunity can be estimated using Equation \ref{immunity}. In the case of COVID-19, this is estimated to be around 60\%. Herd Immunity, can potentially be achieved either through vaccination or natural selection \cite{blob}.
+One of the most common approaches to eradicate a disease, is through Herd Immunity. The percentage proportion of the individuals in a population necessary to reach Herd Immunity can be estimated using Equation \ref{immunity}. In the case of COVID-19, this is estimated to be around 60\%. Herd Immunity, can potentially be achieved either through vaccination or natural selection \cite{blob}.
 
 \useshortskip
 \begin{align}
@@ -187,7 +187,7 @@ Experimental results demonstrated that even slight increases in the number of pe
 
 \subsection{SEIR (Susceptible-Exposed-Infected-Recovered)}
 
-In order to make our more more realistic, we can then add an additional state E representing all the population elements which are still in the incubation stage before becoming infected. To apply these modifications, we just need to update $\frac{\partial I}{\partial t}$ and add this extra stage just before it. The only variable which needs to be added compared to the SIR model is the proportion of how many individuals move from the incubation period to being infected ($\delta = \dfrac{1}{Days\;of\;incubation}$).
+In order to make our model more realistic, we can then add an additional state E representing all the population elements which are still in the incubation stage before becoming infected. To apply these modifications, we just need to update $\frac{\partial I}{\partial t}$ and add this extra stage just before it. The only variable which needs to be added compared to the SIR model is the proportion of how many individuals move from the incubation period to being infected ($\delta = \dfrac{1}{Days\;of\;incubation}$).
 
 \useshortskip
 \begin{align}
@@ -226,7 +226,7 @@ Using the same parameters as in Table \ref{table:1}, and choosing one day as the
 
 \textbf{Causal Question:} What are the effects of varying social distancing measures over time using different approaches (landscapes)? Given some user defined population age distribution, how would that effect the overall number of deaths?
 
-\textbf{Experimental Results:} Starting from the developed SEIR Model, it can be now possible add more compartments and make different elements time-dependent so that to better capture real-world dynamics. The main additions engineered in this model are:
+\textbf{Experimental Results:} Starting from the developed SEIR Model, it can be now possible to add more compartments and make different elements time-dependent so that to better capture real-world dynamics. The main additions engineered in this model are:
 \begin{itemize}
     \item Take into account the portion of infected individuals which dies instead of recover. This can be done by adding a new compartment after the Infected Stage and introducing two new variables $\rho$ (the rate, in terms of days, which takes on average to die) and $\alpha$ (the disease death rate) which determines the probability an individual infected might either die or recover.
     \item $R_{0}$ is not anymore static but dynamically changes over time. In this example, two functions have been used  in order to simulate $R_{0}$ behaviour over time: a Sigmoid or Sinusoidal. In this way, we are now able to model
@@ -577,7 +577,7 @@ Additionally, an estimate of the number of beds needed to go through the peak of
 \end{figure}
 
 \vspace{-0.3cm}
-Finally, is calculated an automatic estimation of the parameters of the Advanced SEIR model given the provided data (Figure \ref{par_est}). This estimation is computed using non-linear least squares and the final $R^{2}$ score is provided as metric for the convergence of the fitted curve compared to the original one. According to these estimates, thanks to public health restrictions, Germany $R$ value, varies from a maximum of 6.37 to a minimum of 1.45 during the last 5 months.
+Finally, is calculated an automatic estimation of the parameters of the Advanced SEIR model given the provided data (Figure \ref{par_est}). This estimation is computed using non-linear least squares and the final $R^{2}$ score is provided as metric for the convergence of the fitted curve compared to the original one. According to these estimates, thanks to public health restrictions, Germany $R$ value, varied from a maximum of 6.37 to a minimum of 1.45 during the last 5 months.
 
 \begin{figure}[ht!]%
     \centering
@@ -648,7 +648,7 @@ During each iteration, using the Euclidean Distance in Equation \ref{euc}, is me
 
 Additionally, each iteration is kept an eye on the individuals affected by the virus. Each iteration depending on the mortality probability different individuals might die and if an individual survives for 14 iterations without dying, it is then considered as a survivor (recovered).
 
-Successively, depending on the speed and the travelling direction, the position of all the different individuals is updated. Additional, conditions are imposed if an individual reaches an edge of the grid, in order to make it bounce back (therefore inverting the direction of movement). All the different metrics are then stored in order to produce the plots.
+Successively, depending on the speed and the travelling direction, the position of all the different individuals is updated. Additional conditions are imposed if an individual reaches an edge of the grid, in order to make it bounce back (therefore inverting the direction of movement). All the different metrics are then stored in order to produce the plots.
 
 In order to simulate different separated communities, the population is being divided into groups which all have different grid limits within which they can move. Creating sub-populations with overlapping grid limits, individuals can then be allowed to move from one subset to another. The overall workflow is summarised in Appendix \ref{code_alg}.
 
