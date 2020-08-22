@@ -4,6 +4,9 @@ from support.utilities import world_map, world_plot, stats
 
 
 def write():
+    f = open("src/pages/vote.txt", "w")
+    f.write("0")
+    f.close()
     with st.spinner("Loading Home ..."):
         st.write(
             """

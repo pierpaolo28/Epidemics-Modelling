@@ -24,26 +24,42 @@ def write():
             - **Agent Based Modelling:** Population Modelling, Track and Trace, Central Hubs, Finance Simulation.
 
             Which of the two approaches do you think would make you feel most confortable to make a decision about possible interventions to apply (aiding your decision making)?
+
+            You can express just a single vote, subsequent ones will be automatically discarded.
             '''
         )
 
         data = pd.read_csv('src/pages/record.csv')
         last_record = list(data.sum(axis=0))
         if st.button('Compartmental Modelling'):
-            with open('src/pages/record.csv', 'a') as fd:
-                writer = csv.writer(fd)
-                writer.writerow([])
-                writer.writerow(['1', '0'])
-            data = pd.read_csv('src/pages/record.csv')
-            last_record = list(data.sum(axis=0))
+            f = open("src/pages/vote.txt", "r")
+            status = int(f.read())
+            f.close()
+            if status == 0:
+                with open('src/pages/record.csv', 'a') as fd:
+                    writer = csv.writer(fd)
+                    writer.writerow([])
+                    writer.writerow(['1', '0'])
+                data = pd.read_csv('src/pages/record.csv')
+                last_record = list(data.sum(axis=0))
+                f = open("src/pages/vote.txt", "w")
+                f.write("1")
+                f.close()
             st.write(last_record[0])
         if st.button('Agent Based Modelling'):
-            with open('src/pages/record.csv', 'a') as fd:
-                writer = csv.writer(fd)
-                writer.writerow([])
-                writer.writerow(['0', '1'])
-            data = pd.read_csv('src/pages/record.csv')
-            last_record = list(data.sum(axis=0))
+            f = open("src/pages/vote.txt", "r")
+            status = int(f.read())
+            f.close()
+            if status == 0:
+                with open('src/pages/record.csv', 'a') as fd:
+                    writer = csv.writer(fd)
+                    writer.writerow([])
+                    writer.writerow(['0', '1'])
+                data = pd.read_csv('src/pages/record.csv')
+                last_record = list(data.sum(axis=0))
+                f = open("src/pages/vote.txt", "w")
+                f.write("1")
+                f.close()
             st.write(last_record[1])
         st.write("Sample Size (logged responses): ",
                  round(sum(last_record), 3))
