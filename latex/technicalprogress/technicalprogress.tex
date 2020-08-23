@@ -111,7 +111,7 @@ These models can be designed using either ordinary differential equations or sto
 \textbf{Causal Question:} How does the number of people I am in contact with on average in a day affect the evolution of the pandemic?
 
 \textbf{Experimental Results:} The SIR model is one of the most widely used epidemiology model and is composed by just 3 different compartments: Susceptible ($S$), Infected ($I$) and Recovered ($R$). This model can be described by the following three formulas, where 
-$N$ is the total number of elements in the population, $\beta$ represents average amount of people an infected element can be able to infect in a day and
+$N$ is the total number of elements in the population, $\beta$ represents the average amount of people an infected element can be able to infect in a day and
 $\gamma$ the percentage of how many individuals recover from the disease each day.
 
 \useshortskip
@@ -439,7 +439,7 @@ As can be seen from our experimental results, having a low time limited immunity
 
 \textbf{Causal Question:} Adding vaccination to this model, would that make possible to eradicate the disease even with low time-limited immunity?
 
-\textbf{Experimental Results:} Extending our set of equations (adding an extra stage $\frac{\partial V}{\partial t}$), we can be able to take into account how an epidemic will evolve once a vaccine is available. In order to apply these modifications, we just need to update $\frac{\partial S}{\partial t}$ and add the vaccination stage before just after it. To make the simulation more realistic, we can then also specify from when in time a vaccine could start being distributed and how fast it can produced and shipped ($p$). Finally, a stage used to record the possible amount of deaths is included (using the same notation for the Advanced SEIR models).
+\textbf{Experimental Results:} Extending our set of equations (adding an extra stage $\frac{\partial V}{\partial t}$), we can be able to take into account how an epidemic will evolve once a vaccine is available. In order to apply these modifications, we just need to update $\frac{\partial S}{\partial t}$ and add the vaccination stage just after it. To make the simulation more realistic, we can then also specify from when in time a vaccine could start being distributed and how fast it can produced and shipped ($p$). Finally, a stage used to record the possible amount of deaths is included (using the same notation for the Advanced SEIR models).
 
 \useshortskip
 \begin{align}
@@ -475,7 +475,7 @@ Converting our set of equations into a Block Diagram representation, we can then
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=0.7\linewidth]{latex/images/dvacc.pdf}
+    \includegraphics[width=0.8\linewidth]{latex/images/dvacc.pdf}
     % \includegraphics[width=10cm]{latex/images/dvacc.PNG}%
     \caption{SIR Time Limited Immunity and Vaccination Diagram Representation}
     \label{dvacc}
@@ -553,7 +553,7 @@ In this example, we are going to take into consideration the COVID-19: Roche Ant
 \useshortskip
 If the test is positive, there would be then a 96.33\% probability the patient actually has Coronavirus. As can be seen from Equation \ref{bayes2}, the rate of the Coronavirus cases in a population, plays an important factor.
 
-An example of a simulation run, using Germany as case study is available in Figure \ref{germ_sim}. As can be noticed, the key difference between \ref{germ_sim} and \ref{sig_seir} is the fact that we are to take into account this time also when the healthcare system of the selected country runs out of beds for critical patients. This can be of vital help, in order to understand to what limit the healthcare system can be able to provide support the all the patients in need at any point in the pandemic and how many deaths could be avoided.
+An example of a simulation run, using Germany as case study is available in Figure \ref{germ_sim}. As can be noticed, the key difference between \ref{germ_sim} and \ref{sig_seir} is the fact that we are taking into account this time also when the healthcare system of the selected country runs out of beds for critical patients. This can be of vital help, in order to understand to what limit the healthcare system can be able to provide support the all the patients in need at any point in the pandemic and how many deaths could be avoided.
 \vspace{-0.3cm}
 \begin{figure}[ht!]%
     \centering
@@ -637,7 +637,7 @@ An original death probability is assigned to each individual, indicating the pro
 
 For example, if a 50 years old individual has a base probability to die of 1\%, this will be increased because of the virus to 1.5\%. Additionally, a Boolean value (\textbf{Static}) can be used in order to make the population static (therefore mimicking the effect of being permanently in a same location in order to avoid spreading the virus).
 
-During each iteration, using the Euclidean Distance in Equation \ref{euc}, is measured how close each individual is with the others in the space and if it is close to some people affected by the virus (within the defined Contact Radius). The number of occurrences are then counted and the more they are and the more likely it will be that the individual will catch the virus (how likely it is that someone can catch the virus is additionally dependent on the specified probability of how unlikely is it to catch the virus - the lower it is and the more likely we will become infected).
+During each iteration, using the Euclidean Distance in Equation \ref{euc}, is measured how close each individual is with the others in the space and if it is close to some people affected by the virus (within the defined Contact Radius). The number of occurrences are then counted and the more they are and the more likely it will be that the individual will catch the virus (how likely it is that someone can catch the virus is additionally dependent on the specified probability of how unlikely it is to catch the virus - the lower it is and the more likely we will become infected).
 
 \useshortskip
 \begin{align}
@@ -660,7 +660,7 @@ In order to simulate different separated communities, the population is being di
 
 In the following model, is presented how an epidemic might evolve if all the infected individual are successfully identified and then make their way to a quarantine location designed for all the individuals affected by the disease. Individuals are represented with different associated velocities in order to simulate the fact that same might be tracked before than others and might interact with susceptible individuals along the way.
 
-As we can see from Figure \ref{track1}, using this type of technique, led to a sharp decrease in the overall number of deaths (17) and infected than our general model. In this example, have been assumed four different communities with fraction of individuals allowed to move between different hubs. 
+As we can see from Figure \ref{track1}, using this type of technique, led to a sharp decrease in the overall number of deaths (17) and infected than our general model. In this example, have been assumed four different communities with a fraction of individuals allowed to move between different hubs. 
 % \vspace{-0.3cm}
 \begin{figure}[ht!]%
     \centering
@@ -691,7 +691,7 @@ The following model, extends instead the first model by adding a probability val
 
 \textbf{Experimental Results:} Imposing travel restrictions can greatly help in lowering the rate at which a disease can spread. Individuals, although still have at times to visit centrals hubs such as supermarkets during lock-down's. In this simulation, we can easily observe how having even just a single central hub, can lead to a fast spreading of the disease across different communities.
 
-As the results show in Figure \ref{hub}, allowing about 30\% of the population to visit a central hub, can potentially be quite dangerous because if anyone in the hub is affected, it can then easily allow to spread the disease to individuals belonging to different communities. Possible outcomes in this type of situation, can greatly vary from different runs, depending on causalities and random initialization.
+As the results show in Figure \ref{hub}, allowing about 30\% of the population to visit a central hub, can potentially be quite dangerous because if anyone in the hub is effected, it can then easily allow to spread the disease to individuals belonging to different communities. Possible outcomes in this type of situation, can greatly vary from different runs, depending on causalities and random initialization.
 
 \begin{figure}[ht!]%
     \centering
@@ -707,7 +707,7 @@ One of the most efficient strategies in order to make central hubs safer, would 
 
 \textbf{Causal Question:} How can social distancing techniques affect a community economy? Which social classes would suffer the greatest impact?
 
-\textbf{Experimental Results:} Applying different types of social distancing and limited movement restrictions, could potentially lead to a good containment of the spreading of a disease, but also to a major shrink of the whole economy. In the following simulation, two main types of responses are simulated: no containment at all or imposing an hard lock-down. In order to keep track of the economic consequences of these two different approaches, the created population has been divided into 3 different classes: Working Class, Middle Class and Upper Class. Which have assigned different types of incomes and expenses which they have to pay on daily basis depending on their income. The government offers the opportunity to give financial support on daily basis in case any of the citizen is struggling to pay its expenses. In a fully functioning society, most of the citizen are able to pay their expenses without having to use their savings or ask for help. As restrictions are imposed and freedom of movement is limited, citizen can only continue to earning and be self-sufficient if they are able to work from home. Otherwise, they will have to make use of their savings and of the government support provided. The financial support covers just the daily expenses and can be asked every day. Because of the nature of their work, middle and higher class workers, are more likely be able to work remotely.
+\textbf{Experimental Results:} Applying different types of social distancing and limited movement restrictions, could potentially lead to a good containment of the spreading of a disease, but also to a major shrink of the whole economy. In the following simulation, two main types of responses are simulated: no containment at all or imposing an hard lock-down. In order to keep track of the economic consequences of these two different approaches, the created population has been divided into 3 different classes: Working Class, Middle Class and Upper Class. Which have assigned different types of incomes and expenses they have to pay on daily basis depending on their income. The government offers the opportunity to give financial support on daily basis in case any of the citizen is struggling to pay its expenses. In a fully functioning society, most of the citizen are able to pay their expenses without having to use their savings or ask for help. As restrictions are imposed and freedom of movement is limited, citizen can only continue to earning and be self-sufficient if they are able to work from home. Otherwise, they will have to make use of their savings and of the government support provided. The financial support covers just the daily expenses and can be asked every day. Because of the nature of their work, middle and higher class workers, are more likely be able to work remotely.
 
 In standard conditions, the updated income of a citizen on daily basis is equal to:
 
@@ -793,6 +793,10 @@ Standard NPL techniques (eg. Tokenizzation, Stop Words Removal, Stemming) have b
     \label{news2}
 \end{figure}
 
+\subsection{Live Feedback A/B Testing}
+
+Additional background information about A/B Testing and it's application in COVID-19 clinical trials, can be found in Appendix \ref{ab_trials}.
+
 \section{Remarks}
 The different Compartmental and Agent Based Models proposed in this chapter, aimed to provide an interactive tool in order to simulate how viruses can spread in a community and what can be done in order to try to control the rate of transition (using COVID-19 as practical case study). Although, these models can only be considered to be an approximation of the real world dynamics and might therefore not be able to capture all the key aspects related to a disease. As Scott Ambler \cite{scott} said: \say{The primary purpose of modelling is to provide an opportunity to think before you act}.
 
@@ -801,9 +805,9 @@ Some examples of limitations in the proposed models are \cite{sri_ex}:
 \begin{itemize}
     \item A not accurate estimation of the growth rate can potentially lead to a poor prediction in the long term of the estimates of the number of infected and deaths (for example due to the stochasticity of the Agent Based Models).
     \item Small changes in how/when different intervention techniques are applied can potentially lead to completely different simulation results (exponential growth vs exponential decay).
-    \item Simple models might at times provide a more accurate bigger picture of the simulation compared to complex models. In fact, simpler models might not have some constrains embedded instead in complex models which have been designed study more specific situations.
-    \item Using a continuous probability fraction to express how likely it is that the virus might spread from an individual to another might result in an excessively pessimistic view of how the epidemic might evolve (e.g. if a lock-down is lifted before all the cases are eradicated then the number of infect will most likely start to increase exponentially again). This problem has been partially address by using adding a "minimum contact radius" in the Agent Based Simulations. 
-    \item Concerning the examined Compartmental Models, systems of differential equations are highly sensitive to initial conditions and changes in then can lead to completely different outcomes.
+    \item Simple models might at times provide a more accurate bigger picture of the simulation compared to complex models. In fact, simpler models might not have some constrains embedded instead in complex models which have been designed to study more specific situations.
+    \item Using a continuous probability fraction to express how likely it is that the virus might spread from an individual to another might result in an excessively pessimistic view of how the epidemic might evolve (e.g. if a lock-down is lifted before all the cases are eradicated then the number of infected will most likely start to increase exponentially again). This problem has been partially address by adding a "minimum contact radius" in the Agent Based Simulations. 
+    \item Concerning the examined Compartmental Models, systems of differential equations are highly sensitive to initial conditions and changes in them can lead to completely different outcomes.
 \end{itemize}
 
-Finally, the used COVID-19 data used to fit the models, might be not accurate since many countries around the world had been not able in the past few months to achieve an adequate testing capacity.
+Finally, the COVID-19 data used to fit the models, might not be accurate since many countries around the world had been not able in the past few months to achieve an adequate testing capacity.

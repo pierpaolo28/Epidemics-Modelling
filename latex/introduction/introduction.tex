@@ -14,90 +14,38 @@ Three of the main limitations of nowadays Machine Learning and Deep Learning mod
 Developing models able to identify cause-effect relationships between different variables, might ultimately offer a solution to solve these problems. This idea, has also been supported by researchers such as Judea Pearl and Jonas Peters, which advocated how having models able to reason in uncertainties could not be enough to enable researchers to create machines able to truly express intelligent behaviour \cite{art_perl}.
 
 \section{Going Beyond Correlation}
-During the last few years, different approaches have been taken in order to try to overcome correlation limitations. This research focus led then to the development of the "Causality Revolution" and alternative metrics to correlation such as the \textbf{Predictive Power Score (PPS)} \cite{ppc}.
+Paradoxes are a classes of phenomena which arise when, although starting from premises known as true, we derive some sort of logically unreasonable result. One of the most common form of paradox in Data Science is Simpson's Paradox.
 
-Typical correlation analysis, is able to tell us if there is a linear relationship between different variables by returning a score between -1 (e.g. if one variable increase in values, the other decreases) and 1 (e.g. if one variable increases in value, the other one will follow a similar trend). Although, correlation is not able to identify any non-linear relationship and is not able to handle non-numeric data. In the case of categorical data, this could potentially be converted into numerical data by using for example One Hot Encoding or Word Embedding techniques but would most likely lead to an increase of the dataset dimensionality in order to achieve good results. Finally, correlation might not be able to understand if relationships between the different columns are symmetric or asymmetric.
+As an example, let us consider a thought experiment. We carried out a research study in order to find out if doing daily physical exercises can help or not reduce Cholesterol levels (in mg/dL) and we are now starting to examine the obtained results. First, we divide our population sample into two main categories based on the individuals age (under/over 60 years old) and then we plot their cholesterol levels against the number of hours the subjects exercised per day. By examining the results in the first two plots of Figure \ref{s1}, we can then infer that exercising for more hours a day can then lead to an overall reduction in our cholesterol levels. This hypothesis can then also be reinforced by examining the overall trend of the best fit line inferred through Linear Regression and the quite strong negative Person Correlation scored in both cases. At this point, comforted by our derived results, we can then try to repeat this same analysis taking into consideration this time the whole population sample (rightmost plot in Figure \ref{s1}). In this case, we are faced with a completely contradictory scenario and a positive correlation implying that more exercise can lead to increased cholesterol levels.
 
-In Figure \ref{corr_t}, is available a summary of some examples of correlation trends and limitations.
-
-\vspace{-0.1cm}
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=0.85\linewidth]{latex/images/corr.pdf}
+    \includegraphics[width=1\linewidth]{latex/images/simpson1.pdf}
     % \includegraphics[width=13cm]{latex/images/vacc.PNG}%
-    \vspace{-0.2cm}
-    \caption{Correlation Trends (Image reproduced from \cite{corr_trends})}
-    \label{corr_t}
+    \vspace{-0.5cm}
+    \caption{Cholesterol vs Daily Hours of Exercise}
+    \label{s1}
 \end{figure}
-\vspace{-0.5cm}
+\vspace{-0.7cm}
 
-The predictive power score, has been ideated in order to try to overcome the presented correlation limitations. One possible way to calculate the PPS is to train a Cross-Validated Decision Tree model on one feature and consider the other feature we want to consider as our label. We can then evaluate the model using an appropriate evaluation metric and then normalise the score by comparing it with the score obtained by a naive predictor. A possible set-up for a PPS calculation is shown in Table \ref{setup}.
+This type of scenario is commonly known as Simpson's Paradox and takes place everytime we have some form of correlation which points in a direction when considered in a sub-group and points instead in the opposite direction if considered as part of the whole group. In order to unveil the reasons behind this type of mechanism, we need to try to go beyond the provided data and think about how our data was generated in the first place to \textbf{cause} this outcome (e.g. What unknown missing variable might be preventing us to see the full picture?).
 
-{
-\begin{table}[h!]
-\centering
-\begin{tabular}{l|l|c|c|c}
-\multicolumn{2}{c}{}&\multicolumn{2}{c}{}&\\
-\cline{3-4}
-\multicolumn{2}{c|}{}&Numeric Data &Categorical Data &\multicolumn{1}{c}{}\\
-\cline{2-4}
-\multirow{}{}{}& ML Model & Decision Tree Regressor & Decision Tree Classifier & \\
-\cline{2-4}
-& Evaluation Metric & Mean Absolute Error & Weighted F1 Score & \\
-\cline{2-4}
-& Naive Predictor & Predict median value & Predict most common class & \\
-\cline{2-4}
-% \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}\\
-\end{tabular}
-% \vspace{-0.7cm}
-\caption{Predictive Power Score Set-up}
-\label{setup}
-\end{table}
-}
+In this simple scenario, our missing component could be any potentially influential variable such as: individual's comorbidities, diet and age. We decide then to take a closer look on how cholesterol levels vary with greater age (Figure \ref{s2}). Repeating the same analysis done in Figure \ref{s1}, we can then clearly see how cholesterol levels are strongly positively correlated to individual's age.
 
-Where the Mean Absolute Error (MAE) and F1 score can be defined as:
-
-\useshortskip
-\begin{align}
-\ F1 = 2 \times \dfrac{precision \times recall}{precision + recall}
-\ MAE = \dfrac{1}{n}\sum_{i=1}^{n}\abs{x_{i} - x}
-\end{align}
-\useshortskip
-
-The result from the evaluation metric, can then be normalised by comparing it with the results from the naive predictor. In the case of the F1 Score, 1 is going to be considered our upper limit and the naive predictor score as our lower limit.
-
-\useshortskip
-\begin{align}
-\ PPS = \dfrac{Decision\:Tree\:(F1) - Naive\:Predictor\:(F1)}{1 - Naive\:Predictor\:(F1)}
-\end{align}
-\useshortskip
-
-A similar formula could then be calculated for the MAE case, but zero should be considered as our lower limit (in this case, lower scores are considered as better).
-
-\useshortskip
-\begin{align}
-\ PPS = 1 - \dfrac{Decision\:Tree\:(MAE)}{Naive\:Predictor\:(MAE)}
-\end{align}
-\useshortskip
-
-Following this procedure, we would then have a PPS score between 0 (no relationship) and 1 (perfect relationship) able to capture either linear/non-linear relationships and to work with either numerical or categorical data. 
-
-As a simple demonstration of the PPS score, is shown in Figure \ref{pps_ex} a noisy cosine function. In this example, the X axis has been created by creating a uniform range between 0 and 1000, while the Y axis has been created by passing the respective X value in a cosine function and adding some small noise on the result. In this way, is designed a clear non-linear dependence between X and Y. 
-
-Calculating the correlation between the two features, would then lead to a result equal to zero (from either points of view). Using instead the PPS, would the lead as expected to a score of 0.737 of X respect to Y and of 0 for Y respect to X. 
-
-% \vspace{-0.1cm}
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=0.45\linewidth]{latex/images/pps_ex.pdf}
+    \includegraphics[width=1\linewidth]{latex/images/simpson2.pdf}
     % \includegraphics[width=13cm]{latex/images/vacc.PNG}%
     \vspace{-0.2cm}
-    \caption{PPS Score Example}
-    \label{pps_ex}
+    \caption{Cholesterol vs Age}
+    \label{s2}
 \end{figure}
-% \vspace{-0.1cm}
 
-The Predictive Power Score, is just one of the different approaches which can be taken in order to go beyond correlation traditional limitations, other examples are: Causality, relative entropy and Granger techniques.
+From these results, we can then deduce that cholesterol levels are more likely to increase with aging and lack of exercise (there is cause effect relationship between the three variables). Therefore, in order to try to quantify the benefits of exercising in reducing cholesterol levels and overcome the Simpson Paradox, we should then make sure to run our experiment while having a fixed value for the age of the subjects (\textbf{controlling the variable}).   
+
+During the course of the last century, the Simpson Paradox occurred in many statistical studies such as: UC Berkeley gender bias, Kidney stone treatment and Racial disparity in the death penalty \cite{simpara}. Other common examples of statistical/mathematical paradoxes are the Monty Hall Problem, the Berkson's Paradox and the Accuracy Paradox.
+
+Additional information about technical limitations of correlation and possible alternative metrics which have been designed in order to overcome this type of problems is available in Appendix \ref{pps}.
 
 \section{Causality vs Explainability}
 One of the major trade-offs in nowadays Machine Learning is model performance against complexity. In fact, complex Deep Learning architectures are usually able to perform better in a wide variety of tasks compared to traditional linear classifiers and regression techniques. This trade-off has been analysed in-depth in the 2016 publication "Why should I trust you?" by Ribiero et. al. \cite{otto} and led a new trend in AI to focus on interpretability.
@@ -106,8 +54,25 @@ Complex and more accurate models are nowadays referred to as \textbf{Black-boxes
 
 On the other hand, simpler and less accurate models such as decision trees and linear regression, are instead regarded as \textbf{White-boxes} and can be much more interpretable. Two of the main measures which can be used in order to estimate the explainability of a model, are the linearity and monotonicity of a model response function \cite{nove}.
 
-One of the key differences between Explainable AI and Causal AI, is that the former aims just to understand how a model might come to a prediction by weighting the provided features while the latter is designed undercover the process governing the system we are analysing to create insights. In this way, Causal AI can be used in order to answer common retrospective and system design type of questions, providing vital business value to organizations (e.g. EU’s General Data Protection Regulation, right to explanation clause) \cite{causalens}. 
+One of the key differences between Explainable AI and Causal AI, is that the former aims just to understand how a model might come to a prediction by weighting the provided features while the latter is designed undercover the process governing the system we are analysing to create insights. In this way, Causal AI can be used in order to answer common retrospective and system design type of questions, providing vital business value to organizations (e.g. EU’s General Data Protection Regulation, right to explanation clause) \cite{causalens}.
+
+\section{Foundations of Modelling and Simulations}
+Modelling and Simulations is a branch of mathematics which aim to be able to imitate real-world processes over a period of time. In this way, artificially generated historical data can be easily created and used in order to make inference in real-world applications. Simulation models are usually based on a series of simplifying assumptions (of the real-world environment) which can then be expressed in a mathematical or symbolic notation \cite{mod_1}. 
+
+There are two main types of programmable simulation models:
+\begin{itemize}
+    \item \textbf{Mathematical Models}: makes use of mathematical symbols and relationships in order to summarise processes. Compartmental Models in Epidemiology are a typical example of mathematical models.
+    \item \textbf{Process Models}: are based on list of steps handcrafted by the designer in order to represent an environment (e.g. Agent Based Modelling).
+\end{itemize}
+
+Modelling and Simulations, are nowadays used in many different fields such as Finance (e.g. Monte Carlo Simulations for Portfolio Optimization), Medical/Military Training, Epidemiology and Space Missions \cite{mod_2, mod_3}. 
+
+Some of the main uses of simulations is to verify analytical solutions, experiment policies before applying any physical implementation and understand the connection and relative importance of the different variables composing the system (e.g. by modifying input parameters and examining the results). These properties, makes therefore the Modelling and Simulations paradigm a \textbf{white-box} approach to predict future trends.
 
 \section{Objectives}
 \vspace{-0.1cm}
-As part of this research study, will be outlined the main principles of Causal Reasoning and different application approaches (e.g. Bayesian Belief Networks, Time Series Analysis) and an Epidemic Modelling case study concerning COVID-19 (Coronavirus). The Novel Coronavirus, is new type of RNA virus which can be able to infect humans potentially causing respiratory infections. The 2020 Novel Coronavirus outbreak started in the late 2019 in Wuhan, China and, as of July 2020, it is believed the virus is mainly able to spread by air through sneezing and coughing. 
+As part of this research study, will be outlined the main principles of Causal Reasoning and different application approaches (e.g. Bayesian Belief Networks, Time Series Analysis) and an Epidemic Modelling case study concerning COVID-19 (Coronavirus). 
+
+The Novel Coronavirus, is new type of RNA virus which can be able to infect humans potentially causing respiratory infections. The 2020 Novel Coronavirus outbreak started in the late 2019 in Wuhan, China and, as of July 2020, it is believed the virus is mainly able to spread by air through sneezing and coughing. 
+
+The proposed Compartmental Models, will be based on paradigms defined in the Epidemiology literature and the Imperial College of London COVID-19 reports studies used by the UK government in order to handle the outbreak \cite{mod_4}. The Agent Based Models have instead been handcrafted in order to provide an alternative approach to traditional mathematical model implementations and including different elements of stochasticity due to non-linear interactions at a population level. 
