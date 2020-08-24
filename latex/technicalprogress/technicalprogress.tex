@@ -794,6 +794,43 @@ Standard NPL techniques (eg. Tokenizzation, Stop Words Removal, Stemming) have b
 \end{figure}
 
 \subsection{Live Feedback A/B Testing}
+Finally, has been designed a section in order to get some feedback from the web application users and automatically generate an A/B Testing report to asses if either Agent Based Modelling or Compartmental Modelling are able to provide a statistically significant improvement for policy makers to derive conclusions (Figure \ref{liveab}).  
+
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[width=0.85\linewidth]{latex/images/ab_live.pdf}
+    \caption{Real Time A/B Testing}
+    \label{liveab}
+\end{figure}
+
+Once logged the responses from the users, a series of summary statistics are automatically generated:
+\begin{itemize}
+    \setlength\itemsep{-0.3cm}
+    \item Binomial distributions of the two examined groups.
+    \item Conversion Rates (Equation \ref{conv_rate}).
+    \item Relative Uplift (Equation \ref{uplift}).
+    \item Z Score.
+    \item P Value. 
+    \item Making use of the calculated metrics, a Boolean value representing if the experiment results can be considered statistically relevant or not if is then generated.
+\end{itemize}
+
+\useshortskip
+\begin{align}
+\ CR_{C} = \dfrac{Conversion\:C}{Visitors}\times100\% && CR_{T} = \dfrac{Conversion\:T}{Visitors}\times100\%
+\label{conv_rate}
+\end{align}
+\useshortskip
+
+\useshortskip
+\begin{align}
+\ Relative\:Uplift = \dfrac{CR_{C} - CR_{T}}{CR_{C}}\times100\%
+\label{uplift}
+\end{align}
+\useshortskip
+
+Additionally, it has been made also possible for users to vary the requirements of the statistical test by choosing a confidence percentage and if to consider our type of hypothesis to be One Sided or Two Sided. 
+
+In order to validate this A/B testing tool, it has been tested against different online tools such as AB Testguide \cite{check_live} for different input values.
 
 Additional background information about A/B Testing and it's application in COVID-19 clinical trials, can be found in Appendix \ref{ab_trials}.
 
