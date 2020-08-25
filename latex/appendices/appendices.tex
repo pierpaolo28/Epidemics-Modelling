@@ -163,7 +163,7 @@ A worked out example, with the results from the top three countries with the mos
 
 \clearpage
 
-\section{Project Demonstration Sample}
+\section{Project Demonstration}
 \label{dem}
 
 Two of the main functionalities of the created secondary GitHub pages website are a Reveal.js online presentation of the whole project and a D3.js scroller page created for interactively presenting and explaining different concepts of this research project.
@@ -301,6 +301,31 @@ In Figure \ref{test_dist}, is shown a possible outcome for our example. As can b
 In the TP case, we can affirm our treatment is beneficial since it managed to pass our test for the hypothesis (e.g. decreasing the mortality rate). In the case of the TN area, we can instead affirm that our treatment is not beneficial. While in the FP area, we might be deceived to believe our intervention was beneficial while it wasn't (the opposite holds true instead in the FN area). In these last two cases, it is then vital to look for any possible form of bias interference.
 
 \clearpage
+\section{Project Repository}
+\label{repo}
+Throughout this project, has been made use of a private GitHub repository as key version control tool. The overall project has been structured into 4 different branches:
+
+\begin{itemize}
+    \item \textbf{Master:} In this branch, has been stored all the code and support files necessary in order to create the Web Application outlined in Chapter \ref{ch:progress}. The Web Application has been mainly developed on a local machine and then deployed on an Amazon Web Services EC2 Instance through Git control.  
+    \item \textbf{Extras:} In this section have been instead developed different parts of this project such as the code used to explain the Simpson Paradox (Section \ref{simp_ref}), Coronavirus comorbidities (Section \ref{como_app}), Survival Analysis (Section \ref{surv_app}), Power Predictive Score (Appendix \ref{pps}),  Clinical trials (Appendix \ref{ab_trials}). Additionally, for the SIR Time Series Estimation model introduced in Section \ref{tool_ref_app}, has also been created an additional set-up in order to make possible to run this model easily through the command line.
+    \item \textbf{Gh-pages:} This branch has instead been used to create and deploy through GitHub Pages a support website. This website, has then been used to share two online presentations about the project (for the second examiner demonstration) and to create two online interactive shareable code notebook in order to explain how different aspects of the project have been programmed (Appendix \ref{dem}).  
+    \item \textbf{Thesis:} This project report has been entirely created using \LaTeX\:    and synchronised with this branch of the repository in order to keep a backup and version control of the writing itself.
+\end{itemize}
+
+Additionally, a Wiki page has been included as part of the repository documentation in order to provide adequate background reading and context in case this project is going to be developed any further in the future (Figure \ref{wiki_ref}).
+\\
+\\
+\begin{figure}[ht!]%
+    \centering
+    \includegraphics[page=1,scale=0.56]{latex/images/wiki_page.pdf}
+    \caption{Repository Wikipedia}%
+    \label{wiki_ref}
+\end{figure}
+\\
+\\
+Finally, Github Actions have been included in order to add some form of Continuous Integration (CI) support in line with common DevOps (Development-Operations) principles.
+
+\clearpage
 \includepdf[pages=-,pagecommand=\section{Project Brief}\label{brief},noautoscale=true,offset=0 -70, scale=1.1]{latex/images/Outline.pdf}
 
 \clearpage
@@ -322,6 +347,6 @@ A tree representation of the Project Design Archive is represented in the figure
 \section{Word Count}
 \label{count}
 
-The registered word count for this report, starting from Chapter 1 to Chapter 6, was equal to 15,047 words.  This has been measured using Doc Word Counter \cite{count_w}.
+The registered word count for this report, starting from Chapter 1 to Chapter 6, was equal to 15,053 words.  This has been measured using Doc Word Counter \cite{count_w}.
 
 \end{appendices}

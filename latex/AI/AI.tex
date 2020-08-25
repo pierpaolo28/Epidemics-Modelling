@@ -34,6 +34,7 @@
 During Chapter \ref{ch:progress}, we had the opportunity to understand how to possibly model a disease spreading in a community. In this chapter, we are instead going to expand this topic in order to take into account how the spreading of the disease can be forecasted (using real world data) and how clinical trials and comorbodities can be taken into account in the case of COVID-19.
 
 \section{SIR Time Series Estimation}
+\label{tool_ref_app}
 Building on from the SIR model constructed in Section \ref{sir_sec}, we can then make use of it in order to approximate real world data and predict future trends \cite{atom}.
 
 This process can be summarised in the following two steps:
@@ -118,7 +119,7 @@ Overall, the LSTM and T-CNN managed to best fit the original data, while both Ex
 Complex Deep Learning models are currently able to offer us good performances on a wide variety of tasks but they heavily rely on past data and they are not able to give us any insight about how the system might work behind the scenes. On the other hand, using for example an SIR model in order to make predictions, can allow us to not only to make estimates (like just done using ML based techniques), but also to infer underlying epidemiology parameters such as $\beta$ and $\gamma$ which can in turn give us more information about how the disease is spreading in a community.
 
 \section{Coronavirus comorbidities}
-
+\label{como_app}
 Two of the greatest factors, which seems to have the greatest impact over the mortality of Coronavirus for different patients, seems to be age and possible pre-existing conditions. In different models implemented in Chapter \ref{ch:progress}, has been taken into account of the age factor by varying the mortality likelihood depending on age. In this section\footnote{Making us of the data provided by the National Center for Health Statistics \cite{deaths_data}.}, we are instead going to give a look at which pre-existing conditions seems to have the greatest impact on COVID-19 mortality (Figure \ref{d_cond}). 
 
 \begin{figure}[ht!]%
@@ -142,6 +143,7 @@ As can be seen from \ref{d_cond}, Influenza and pneumonia seems to be one of the
 \end{figure}
 
 \subsection{Survival Analysis}
+\label{surv_app}
 Survival Analysis is one of the most common mathematical modelling approaches which can be used in order to estimate the time it can take for a particular event to take place. This type of approach, can therefore be used in order to answer causal questions such as: What is the likelihood a COVID-19 patient would die within a given time frame? How would that change given the individual specifics (e.g. pre-existing conditions) and provided cures?
 
 The time for an event to happen (e.g. a patient death) can be characterised in this case by a continuous non-negative random variable. This random variable can then be summarised in terms of its probability density function ($g(t)$) and cumulative density function ($G(t)$). The cumulative density function at a specific time, would then give us the probability that someone might have died by then (Equation \ref{cdf}).
