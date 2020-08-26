@@ -46,13 +46,13 @@ def write():
         last_deths = res['Cases_y_x'] - res['Cases_y_y']
 
         stats(today_top['Country/Region'], today_top['Cases_x'],
-              today_top['Cases_y'], "Highest estimated cumulative cases/deths")
+              today_top['Cases_y'], "Highest estimated cumulative cases/deaths")
 
         stats(res['Country/Region'], last_cases,
-              last_deths, "Change in cases/deths in the last 24 hours")
+              last_deths, "Change in cases/deaths in the last 24 hours")
 
         low = 0
         up = st.text_input('How many cases maximum to consider?', str(np.inf))
         world_plot(data_list[0], float(up), low, name='Cases')
         world_plot(data_list[1], float(up), low, name='Recovered')
-        world_plot(data_list[2], float(up), low, name='Deths')
+        world_plot(data_list[2], float(up), low, name='Deaths')

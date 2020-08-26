@@ -178,7 +178,7 @@ def stats(countries, infected, died, title):
 
     n_deths = list(died.values)
     ax[1].barh(x, n_deths, color='green')
-    ax[1].set_xlabel("Number of Deths", fontsize=25)
+    ax[1].set_xlabel("Number of Deaths", fontsize=25)
 
     ax[1].set_yticks(x, [])
     ax[1].invert_yaxis()
