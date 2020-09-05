@@ -48,7 +48,7 @@
 
 During the last few years, different approaches have been taken in order to try to overcome correlation limitations. This research focus led then to the development of the "Causality Revolution" and alternative metrics to correlation such as the \textbf{Predictive Power Score (PPS)} \cite{ppc}.
 
-Typical correlation analysis, is able to tell us if there is a linear relationship between different variables by returning a score between -1 (e.g. if one variable increase in values, the other decreases) and 1 (e.g. if one variable increases in value, the other one will follow a similar trend). Although, correlation is not able to identify any non-linear relationship and is not able to handle non-numeric data. In the case of categorical data, this could potentially be converted into numerical data by using for example One Hot Encoding or Word Embedding techniques but would most likely lead to an increase of the dataset dimensionality in order to achieve good results. Finally, correlation might not be able to understand if relationships between the different columns are symmetric or asymmetric.
+Typical correlation analysis is able to tell us if there is a linear relationship between different variables by returning a score between -1 (e.g. if one variable increase in values, the other decreases) and 1 (e.g. if one variable increases in value, the other one will follow a similar trend). Although, correlation is not able to identify any non-linear relationship and is not able to handle non-numeric data. In the case of categorical data, this could potentially be converted into numerical data by using for example One Hot Encoding or Word Embedding techniques but would most likely lead to an increase of the dataset dimensionality in order to achieve good results. Finally, correlation might not be able to understand if relationships between the different columns are symmetric or asymmetric.
 
 In Figure \ref{corr_t}, is available a summary of some examples of correlation trends and limitations.
 
@@ -63,7 +63,7 @@ In Figure \ref{corr_t}, is available a summary of some examples of correlation t
 \end{figure}
 \vspace{-0.5cm}
 
-The predictive power score, has been ideated in order to try to overcome the presented correlation limitations. One possible way to calculate the PPS is to train a Cross-Validated Decision Tree model on one feature and consider the other feature we want to consider as our label. We can then evaluate the model using an appropriate evaluation metric and then normalise the score by comparing it with the score obtained by a naive predictor. A possible set-up for a PPS calculation is shown in Table \ref{setup}.
+The predictive power score has been ideated in order to try to overcome the presented correlation limitations. One possible way to calculate the PPS is to train a Cross-Validated Decision Tree model on one feature and consider the other feature we want to consider as our label. We can then evaluate the model using an appropriate evaluation metric and then normalise the score by comparing it with the score obtained by a naive predictor. A possible set-up for a PPS calculation is shown in Table \ref{setup}.
 
 {
 \begin{table}[h!]
@@ -96,7 +96,7 @@ Where the Mean Absolute Error (MAE) and F1 score can be defined as:
 \end{align}
 \useshortskip
 
-The result from the evaluation metric, can then be normalised by comparing it with the results from the naive predictor. In the case of the F1 Score, 1 is going to be considered our upper limit and the naive predictor score as our lower limit.
+The result from the evaluation metric can then be normalised by comparing it with the results from the naive predictor. In the case of the F1 Score, 1 is going to be considered our upper limit and the naive predictor score as our lower limit.
 
 \useshortskip
 \begin{align}
@@ -114,9 +114,9 @@ A similar formula could then be calculated for the MAE case, but zero should be 
 
 Following this procedure, we would then have a PPS score between 0 (no relationship) and 1 (perfect relationship) able to capture either linear/non-linear relationships and to work with either numerical or categorical data. 
 
-As a simple demonstration of the PPS score, is shown in Figure \ref{pps_ex} a noisy cosine function. In this example, the X axis has been realised by creating a uniform range between 0 and 1000, while the Y axis has been created by passing the respective X value in a cosine function and adding some small noise on the result. In this way, is designed a clear non-linear dependence between X and Y. 
+As a simple demonstration of the PPS score, there is shown in Figure \ref{pps_ex} a noisy cosine function. In this example, the X axis has been realised by creating a uniform range between 0 and 1000, while the Y axis has been created by passing the respective X value in a cosine function and adding some small noise on the result. In this way, it is designed a clear non-linear dependence between X and Y. 
 
-Calculating the correlation between the two features, would then lead to a result equal to zero (from either points of view). Using instead the PPS, would then lead as expected to a score of 0.737 of X respect to Y and of 0 for Y respect to X. 
+Calculating the correlation between the two features would then lead to a result equal to zero (from either points of view). Using instead the PPS would then lead as expected to a score of 0.737 of X respect to Y and of 0 for Y respect to X. 
 
 % \vspace{-0.1cm}
 \begin{figure}[ht!]%
@@ -129,7 +129,7 @@ Calculating the correlation between the two features, would then lead to a resul
 \end{figure}
 % \vspace{-0.1cm}
 
-The Predictive Power Score, is just one of the different approaches which can be taken in order to go beyond correlation traditional limitations, other examples are: Causality, relative entropy and Granger techniques.
+The Predictive Power Score is just one of the different approaches which can be taken in order to go beyond correlation traditional limitations, other examples are: Causality, relative entropy and Granger techniques.
 
 \clearpage
 
@@ -152,7 +152,7 @@ Instead, for an exponential curve:
 \end{align}
 \useshortskip
 
-A worked out example, with the results from the top three countries with the most number of Coronavirus Cases as of the end of June 2020, is available below. From this example, we can easily see how well our data resembles a logistic/exponential curve (using the $R^{2}$ score to quantify the mismatch) and what's the predicted time for the number of cases to double given the current trends.
+A worked out example with the results from the top three countries with the most number of Coronavirus Cases as of the end of June 2020, is available below. From this example, we can easily see how well our data resembles a logistic/exponential curve (using the $R^{2}$ score to quantify the mismatch) and what's the predicted time for the number of cases to double given the current trends.
 
 \begin{figure}[ht!]%
     \centering
@@ -168,7 +168,7 @@ A worked out example, with the results from the top three countries with the mos
 
 Two of the main functionalities of the created secondary GitHub pages website are a Reveal.js online presentation of the whole project and a D3.js scroller page created for interactively presenting and explaining different concepts of this research project.
 
-In Figure \ref{revealjs_ex}, is available an example of part of the created Reveal.js presentation.
+In Figure \ref{revealjs_ex}, there is available an example of part of the created Reveal.js presentation.
 
 \begin{figure}[ht!]%
     \centering
@@ -178,7 +178,7 @@ In Figure \ref{revealjs_ex}, is available an example of part of the created Reve
     \label{revealjs_ex}
 \end{figure}
 \vspace{-0.3cm}
-In Figure \ref{d3js_ex}, is instead shown the first section of the created D3.js story-telling narrative.
+In Figure \ref{d3js_ex}, there is instead shown the first section of the created D3.js story-telling narrative.
 
 \begin{figure}[ht!]%
     \centering
@@ -192,7 +192,7 @@ In Figure \ref{d3js_ex}, is instead shown the first section of the created D3.js
 \section{Compartmental Models Causal Diagrams}
 \label{causal_comp}
 
-In this Appendix, are available the Causal Diagrams of the epidemic compartmental models introduced in Section \ref{sir_sec}.
+In this Appendix there are available the Causal Diagrams of the epidemic compartmental models introduced in Section \ref{sir_sec}.
 
 The SIR and SEIR models can be described as shown in Figure \ref{cd11} using a causal chain.
 
@@ -268,7 +268,7 @@ The SEIR model including also a deaths compartment can instead be described by a
 
 \section{Clinical trials}
 \label{ab_trials}
-Making use of the data from the United States ClinicalTrials.gov website, has been possible to gain insights about current clinical trials as of July 2020 against COVID-19 \cite{trials_data}. As can be seen from Figure \ref{trials}, Hydroxychloroquine has been so far the most common treatment tried.
+Making use of the data from the United States ClinicalTrials.gov website, it has been possible to gain insights about current clinical trials as of July 2020 against COVID-19 \cite{trials_data}. As can be seen from Figure \ref{trials}, Hydroxychloroquine has been so far the most common treatment tried.
 \vspace{-0.2cm}
 \begin{figure}[ht!]%
     \centering
@@ -280,13 +280,13 @@ Making use of the data from the United States ClinicalTrials.gov website, has be
 \end{figure}
 \vspace{-0.2cm}
 
-As outlined in Section \ref{testing}, clinical trials are one of the main example of A/B testing application. Gathering results from an A/B test, we can then be able to infer causal relationships about what can be the potential effects of a treatment \cite{power}.
+As outlined in Section \ref{testing}, clinical trials are one of the main examples of A/B testing application. Gathering results from an A/B test, we can then be able to infer causal relationships about what can be the potential effects of a treatment \cite{power}.
 
-In this setting, the Causal question we are asking ourselves is: Does a certain treatment decrease COVID-19 mortality rate? This question, can then be formulated in statistical terms as a \textbf{null and alternative hypothesis}. In the null hypothesis, applying the treatment would not lead to any major change in the mortality rate and therefore both the treatment and control groups will be quite similar. Instead, in the alternative hypothesis, the treatment would cause a statistically significant change between the two groups. In our case, patients affected by COVID-19 would be considered as our population and our intervention (providing experimental medical treatment), would then be compared to no intervention. Variation in mortality rate could then be used as our metrics to asses the results. Patients should then be randomly assigned to either groups so that to avoid introduction of any form of bias (e.g. patients age, comorbidities, geographical location). If bias is unconsciously introduced, then this could lead to some form of \textbf{confounding bias}, which would then make really difficult to disentangle what are effects due to the intervention and which ones are instead caused by a flaw in the randomization process. 
+In this setting, the Causal question we are asking ourselves is: Does a certain treatment decrease COVID-19 mortality rate? This question can then be formulated in statistical terms as a \textbf{null and alternative hypothesis}. In the null hypothesis, applying the treatment would not lead to any major change in the mortality rate and therefore both the treatment and control groups will be quite similar. Instead, in the alternative hypothesis, the treatment would cause a statistically significant change between the two groups. In our case, patients affected by COVID-19 would be considered as our population and our intervention (providing experimental medical treatment), would then be compared to no intervention. Variation in mortality rate could then be used as our metrics to asses the results. Patients should then be randomly assigned to either groups so that to avoid introduction of any form of bias (e.g. patients age, comorbidities, geographical location). If bias is unconsciously introduced, then this could lead to some form of \textbf{confounding bias}, which would then make it really difficult to disentangle what are effects due to the intervention and which ones are instead caused by a flaw in the randomization process. 
 
-Following on with our example, the number of times an intervention leads to a substantial difference compared to the control group, can then be summarised over a number of trials as a Binomial Distribution. In this distribution, the X axis will represent the count of possible outcomes, while the Y axis will represent the probability associated with an outcome. Although, according to the Central Limit Theorem, as we would increase our sample size, we would then end up with a Gaussian Distribution for each group in the experiment. 
+Following on with our example, the number of times an intervention leads to a substantial difference compared to the control group can then be summarised over a number of trials as a Binomial Distribution. In this distribution, the X axis will represent the count of possible outcomes, while the Y axis will represent the probability associated with an outcome. Although, according to the Central Limit Theorem, as we would increase our sample size, we would then end up with a Gaussian Distribution for each group in the experiment. 
 
-In Figure \ref{test_dist}, is shown a possible outcome for our example. As can be seen from the diagram, four different areas are present: True Positive (TP), True Negative (TN), False Positive (FP), False Negative (FN).
+In Figure \ref{test_dist}, there is shown a possible outcome for our example. As can be seen from the diagram, four different areas are present: True Positive (TP), True Negative (TN), False Positive (FP), False Negative (FN).
 \vspace{-0.2cm}
 \begin{figure}[ht!]%
     \centering
@@ -298,17 +298,17 @@ In Figure \ref{test_dist}, is shown a possible outcome for our example. As can b
 \end{figure}
 \vspace{-0.6cm}
 
-In the TP case, we can affirm our treatment is beneficial since it managed to pass our test for the hypothesis (e.g. decreasing the mortality rate). In the case of the TN area, we can instead affirm that our treatment is not beneficial. While in the FP area, we might be deceived to believe our intervention was beneficial while it wasn't (the opposite holds true instead in the FN area). In these last two cases, it is then vital to look for any possible form of bias interference.
+In the TP case, we can affirm our treatment is beneficial since it managed to pass our test for the hypothesis (e.g. decreasing the mortality rate). In the case of the TN area, we can instead be confident that our treatment is not beneficial. While in the FP area, we might be deceived to believe our intervention was beneficial while it wasn't (the opposite holds true instead in the FN area). In these last two cases, it is then vital to look for any possible form of bias interference.
 
 \clearpage
 \section{Project Repository}
 \label{repo}
-Throughout this project, has been made use of a private GitHub repository as key version control tool. The overall project has been structured into 4 different branches:
+Throughout this project, a private GitHub repository has been used as a key version control tool. The overall project has been structured into 4 different branches:
 
 \begin{itemize}
-    \item \textbf{Master:} In this branch, has been stored all the code and support files necessary in order to create the Web Application outlined in Chapter \ref{ch:progress}. The Web Application has been mainly developed on a local machine and then deployed on an Amazon Web Services EC2 Instance through Git control.  
-    \item \textbf{Extras:} In this section have been instead developed different parts of this project such as the code used to explain the Simpson Paradox (Section \ref{simp_ref}), Coronavirus comorbidities (Section \ref{como_app}), Survival Analysis (Section \ref{surv_app}), Power Predictive Score (Appendix \ref{pps}),  Clinical trials (Appendix \ref{ab_trials}). Additionally, for the SIR Time Series Estimation model introduced in Section \ref{tool_ref_app}, has also been created an additional set-up in order to make possible to run this model easily through the command line.
-    \item \textbf{Gh-pages:} This branch has instead been used to create and deploy through GitHub Pages a support website. This website, has then been used to share two online presentations about the project (for the second examiner demonstration) and to create two online interactive shareable code notebook in order to explain how different aspects of the project have been programmed (Appendix \ref{dem}).  
+    \item \textbf{Master:} In this branch, all the code and support files necessary in order to create the web application outlined in Chapter \ref{ch:progress} have been stored. The web application has been mainly developed on a local machine and then deployed on an Amazon Web Services EC2 Instance through Git control.  
+    \item \textbf{Extras:} In this section there has instead been developed different parts of this project such as the code used to explain the Simpson Paradox (Section \ref{simp_ref}), Coronavirus comorbidities (Section \ref{como_app}), Survival Analysis (Section \ref{surv_app}), Power Predictive Score (Appendix \ref{pps}),  Clinical trials (Appendix \ref{ab_trials}). Additionally, for the SIR Time Series Estimation model introduced in Section \ref{tool_ref_app}, the has also been created an additional set-up in order to make possible to run this model easily through the command line.
+    \item \textbf{Gh-pages:} This branch has instead been used to create and deploy through GitHub Pages a support website. This website has then been used to share two online presentations about the project (for the second examiner demonstration) and to create two online interactive shareable code notebook in order to explain how different aspects of the project have been programmed (Appendix \ref{dem}).  
     \item \textbf{Thesis:} This project report has been entirely created using \LaTeX\:    and synchronised with this branch of the repository in order to keep a backup and version control of the writing itself.
 \end{itemize}
 
@@ -347,6 +347,6 @@ A tree representation of the Project Design Archive is represented in the figure
 \section{Word Count}
 \label{count}
 
-The registered word count for this report, starting from Chapter 1 to Chapter 6, was equal to 14,981 words.  This has been measured using Doc Word Counter \cite{count_w}.
+The registered word count for this report, starting from Chapter 1 to Chapter 6, was equal to 14,998 words. This has been measured using Doc Word Counter \cite{count_w}.
 
 \end{appendices}

@@ -7,28 +7,31 @@
 Overall, this project had a positive outcome and all the objectives established in the Project Brief (Appendix \ref{brief}) have been accomplished.
 
 \section{Summary}
-As part of this study, different approaches to find causal relationships in epidemiology studies have been examined such as using: Compartmental Models, Agent Based Models, A/B Testing and Survival Analysis.
+As part of this study, different approaches to find causal relationships in epidemiology studies have been examined by using: Compartmental Models, Agent Based Models, A/B Testing and Survival Analysis.
 
 Using Compartmental Models, it was possible to create computationally effective simulations in order to deterministically keep track of a simulation dynamics given a set of initial conditions. One drawback of this approach, was the difficultly to keep track of individuals behaviours and spatial movements (this could be partially resolved by using sets of Partial Differential Equations).
 
-Agent Based Modelling, made instead much easier to uniquely define the characteristics of each individual in a population creating custom behaviours both on an individual and sub-group level. Two of the main drawbacks about this type of approach is the overall high level of stochastic behaviour and the increased time complexity.
+Agent Based Modelling made it instead much easier to uniquely define the characteristics of each individual in a population creating custom behaviours both on an individual and sub-group level. Two of the main drawbacks about this type of approach is the overall high level of stochastic behaviour and the increased time complexity.
 
-A/B testing, can instead be used in situations in which we are able to run some form of controlled experiment. Controlled experiment are in fact commonly referred as the \textbf{gold standard} for causal analysis. A/B tests can be although quite difficult to run in situations in which it is unethical to apply some form of intervention on a group of people or when experimentation can be quite costly.
+A/B testing can instead be used in situations in which we are able to run some form of controlled experiment. Controlled experiments are in fact commonly referred as the \textbf{gold standard} for causal analysis. Although, A/B tests can be quite difficult to run in situations in which it is unethical to apply some form of intervention on a group of people or when experimentation can be quite costly.
 
 Finally, Survival Analysis is another common approach which can be used in order to asses the statistical significance of an experiment. Using simple non-parametric models such as the Kaplan-Meier Estimate it can be relatively easy to gain insights on a population level. While using instead more complex parametric models such as the Cox Proportional Hazard  Model, designed intervention results can be obtained for each participant in the experiment.
 
 \section{Further Advancements}
 
-In order to take this project further, different aspect could be taken in consideration such as:
+In order to take this project further, different aspects could be taken into consideration such as:
 \vspace{-0.2cm}
 \begin{itemize}
     \item The Live Feedback A/B Testing web application page could be further improved by calculating the observed power and making adjustments depending on the provided sample size.
-    \item Using NPL it could be possible to find patterns in research publications about research advancements to find a cure/vaccine against Coronavirus. In this way, underlying patterns could be analysed and used in order to make progresses (e.g. by combining different approaches).
+    \item Using NPL, it could be possible to find patterns in research publications about research advancements to find a cure/vaccine against Coronavirus. In this way, underlying patterns could be analysed and used in order to make progresses (e.g. by combining different approaches).
     \item As more data about Clinical Trials would become available in the following months, it could be possible to make use of it in order to find causal relationships in how different treatments might effect different patients. 
     \item Introduce other causality related techniques such as Knowledge Graphs and Explainable AI. 
     \item Make use of open source causality libraries such as Microsoft DoWhy \cite{dowhy}, Uber CausalML \cite{causalml} and QuantumBlack CausalNex \cite{causalnex}. 
 \end{itemize}
 \vspace{-0.2cm}
+
+Finally, the principles of the proposed Agent Based and Compartmental models could possibly be applied not only to simulate the spreading of a disease but also other type viral content such as news and ideas through a network of individual.
+
 % Successful introduction of causality in Machine Learning could lead to a wide adoption of the employed techniques (filling a market gap) and also have important legal consequences. In fact, use of Machine Learning in important decision-making applications is currently under probe by governments and institutions due to the risks involved.
 
 % Enabling Machine Learning models to be more easily examinable to gain insights of their decision-making processes, could finally facilitate adoption of this kind of technologies in fields such as Medicine, Surveillance and Hiring.
