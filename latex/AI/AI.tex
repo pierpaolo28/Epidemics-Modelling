@@ -31,7 +31,7 @@
  
 \lstset{style=mystyle}
 
-During Chapter \ref{ch:progress}, we had the opportunity to understand how to potentially model a disease spreading in a community. In this chapter, we are instead going to expand this topic in order to take into account how the spreading of the disease can be forecasted (using real world data) and how clinical trials and comorbodities can be taken into account in the case of COVID-19.
+During Chapter \ref{ch:progress}, we had the opportunity to understand how to potentially model a disease spreading in a community. In this chapter, we are instead going to expand this topic in order to take into account how the spreading of the disease can be forecasted (using real world data) and how comorbodities can be taken into account in the case of COVID-19.
 
 \section{SIR Time Series Estimation}
 \label{tool_ref_app}
@@ -40,7 +40,7 @@ Building on from the SIR model constructed in Section \ref{sir_sec}, we can make
 This process can be summarised in the following two steps:
 
 \begin{enumerate}
-    \item Estimating $\beta$ and $\gamma$, given the data about the number of cases and recovered in a country. In order to optimise iteratively these two parameters, a modified form of the Root Mean Squared Error (RMSE) equation has been used to take into account of both the number of cases series and the number of recovered individual (Equation \ref{loss_it}). In Equation \ref{loss_it}, there has been additionally added an hyper-parameter ($\alpha$) to decide if to give more weight either to optimising the cases or recovered curve fit. This exercise has therefore been designed to be an optimization minimization problem, in which the parameters estimation is improved iteratively by minimising the overall loss. This optimization process is then carried out making use of the Limited-memory BFGS (L-BFGS) algorithm. The L-BFGS algorithm is an approximation\footnote{Limited-memory BFGS, approximating the traditional BFGS algorithm manages to in fact to keep a linear memory consumption.} of the traditional BFGS (Broyden–Fletcher–Goldfarb–Shanno) algorithm which works by estimating the Inverse of the Hessian Matrix in order to move through the search space. The calculated $\beta$ and $\gamma$ are then going to be used as our parameters for the SIR model.
+    \item Estimating $\beta$ and $\gamma$, given the data about the number of cases and recovered in a country. In order to optimise iteratively these two parameters, a modified form of the Root Mean Squared Error (RMSE) equation has been used to take into account of both the number of cases series and the number of recovered individual (Equation \ref{loss_it}). In Equation \ref{loss_it}, there has been additionally added an hyper-parameter ($\alpha$) to decide if to give more weight either to optimising the number of cases or recovered curve fit. This exercise has therefore been designed to be an optimization minimization problem, in which the parameters estimation is improved iteratively by minimising the overall loss. This optimization process is then carried out making use of the Limited-memory BFGS (L-BFGS) algorithm. The L-BFGS algorithm is an approximation\footnote{Limited-memory BFGS, approximating the traditional BFGS algorithm manages to in fact to keep a linear memory consumption.} of the traditional BFGS (Broyden–Fletcher–Goldfarb–Shanno) algorithm which works by estimating the Inverse of the Hessian Matrix in order to move through the search space. The calculated $\beta$ and $\gamma$ are then going to be used as our parameters for the SIR model.
     
     \useshortskip
     \begin{align}
@@ -75,19 +75,20 @@ In Figure \ref{sir_forecast} are available the prediction results of Italy and G
 
 \subsection{ML Forecasting}
 
-Another possible approach which can be taken in order to forecast time series is to use standard Machine Learning and Deep Learning techniques. In this case, the number of infected cases in Germany over time is going to be taken as an example \footnote{Using data up to the $9^{th}$ of July 2020.} to forecast the number of cases in 30 days time. 
-
-In order to accomplish this task, the Python Darts library \cite{darts} has been used and the following models have been taken into consideration:
+Another possible approach which can be taken in order to forecast time series is to use standard Machine Learning and Deep Learning techniques. In this case, the number of infected cases in Germany over time is going to be taken as an example \footnote{Using data up to the $9^{th}$ of July 2020.} to forecast the number of cases in 30 days time. In order to accomplish this task, the Python Darts library \cite{darts} has been used and the following models have been taken into consideration:
+\vspace{-0.5cm}
 \begin{enumerate}
     \item \textbf{Auto ARIMA (Auto Regressive Integrated Moving Average)}: is a time series method which can be used in order to make predictions as a linear weighted sum of past input data. In the Auto version of ARIMA, the model parameters are automatically inferred through differencing tests and optimised by recording Information Criterion (e.g. Akaike Information Criterion (AIC)) metrics.
     \item \textbf{Exponential Smoothing}: this technique follows the same approach of standard ARIMA models, but the model assigns exponentially decreasing weights for past observations.
     \item \textbf{LSTM (Long-Short-Term-Memory)}: The LSTM is a type of Recurrent Neural Network (RNN) ideated in order to add a memory mechanism suitable to analyse time series (the information is kept in a loop and data is fed in sequentially).
     \item \textbf{T-CNN (Temporal Convolutional Neural Network)}: The T-CNN is a type of Convoluational Neural Network used for time series forecasting. This type of model is composed by a one dimensional convoluational network combined with causal convolutions. In causal convolutions, outputs at a specific timestep are convolved just with elements of the same timestep and of previous layers (in order to add time dependencies).
 \end{enumerate}
+\vspace{-0.3cm}
+The results obtained from this analysis are available in Figure \ref{ml_forecast}. 
 
-The results obtained from this analysis are available in Figure \ref{ml_forecast}. In this case, all the models have been used in order to predict a portion of the current series (so that to estimate a fit loss) and predict the next 30 days in the future of the number of cases in Germany.
+In this case, all the models have been used in order to predict a portion of the current series (so that to estimate a fit loss) and predict the next 30 days in the future of the number of cases in Germany.
 
-% \vspace{-0.1cm}
+\vspace{-0.3cm}
 \begin{figure}[ht!]%
     \centering
     \includegraphics[width=0.55\linewidth]{latex/images/Germany_darts.pdf}
@@ -96,7 +97,7 @@ The results obtained from this analysis are available in Figure \ref{ml_forecast
     \caption{Germany ML Forecasting}
     \label{ml_forecast}
 \end{figure}
-% \vspace{-0.1cm}
+\vspace{-0.4cm}
 
 In this case, MAPE (Mean Absolute Percentage Error) has been used as our loss function. 
 MAPE is in fact one of the most commonly used loss function for regression tasks (Equation \ref{mape}). It's main advantages are interpratibility (we work using percentage terms) and scale-independency. One of the main disadvantages of MAPE is that it can be undefined for actual values close to zero.
@@ -105,8 +106,9 @@ MAPE is in fact one of the most commonly used loss function for regression tasks
 \begin{align}
 \ MAPE = \dfrac{1}{n} \sum_{t=1}^{n} \abs{\frac{A_{t}-F_{t}}{A_{t}}} \times 100
 \label{mape}
+\vspace{-1.8cm}
 \end{align}
-\vspace{-0.4cm}
+\vspace{-0.5cm}
 \begin{conditions}
  $A_{t}, F_{t}$  &  Actual and forecasted time-step \\
  $n$  &  Number of datapoints\\
@@ -114,7 +116,7 @@ MAPE is in fact one of the most commonly used loss function for regression tasks
 \vspace{-0.2cm}
 \useshortskip
 
-Overall, the LSTM and T-CNN managed to best fit the original data, while both Exponential Smoothing and Auto ARIMA predicts an increase in the number of cases over the next month.
+Overall, the LSTM and T-CNN managed to best fit the original data, while both Exponential Smoothing and Auto ARIMA predicted an increase in the number of cases over the following month. 
 
 Complex Deep Learning models are currently able to offer us good performances on a wide variety of tasks but they heavily rely on past data and they are not able to give us any insight about how the system might work behind the scenes. On the other hand, using for example an SIR model in order to make predictions, can allow us to not only to make estimates (like just done using ML based techniques), but also to infer underlying epidemiology parameters such as $\beta$ and $\gamma$ which can in turn give us more information about how the disease is spreading in a community.
 
@@ -131,7 +133,7 @@ Two of the greatest factors which seem to have the greatest impact over the mort
     \label{d_cond}
 \end{figure}
 
-As can be seen from \ref{d_cond}, influenza and pneumonia seem to be one of the main causes of deaths related to COVID-19. Taking a greater look at the patients ages whom died having these pre-conditions, we can then see how having a greater age can increase the overall likelihood of dying because of COVID-19 (Figure \ref{d_top}).
+As can be seen from Figure \ref{d_cond}, influenza and pneumonia seem to be one of the main causes of deaths related to COVID-19. Taking a greater look at the patients ages whom died having these pre-conditions, we can then see how having a greater age can increase the overall likelihood of dying because of COVID-19 (Figure \ref{d_top}).
 
 \begin{figure}[ht!]%
     \centering
@@ -209,4 +211,4 @@ Another possible approach which can be used to visualise how using an antidote c
     \label{span}
 \end{figure}
 
-In order to make our experiment more accurate and personalised for each individual patient, we could then try to make use of additional information about the patients (e.g. age, sex, economic status). This could be easily done, making use of more advanced models such as the Cox Proportional Hazard Model. This approach has in fact been taken in different research publications such as "Risk factors for severity and mortality in adult COVID-19 inpatients in Wuhan" \cite{surv1} and "Survival Analysis of COVID-19 on Democracy with Cox Proportional Hazards Model" \cite{surv2}, in order to test new approaches to reduce the mortality rate of COVID-19. 
+In order to make our experiment more accurate and personalised for each individual patient, we could then try to make use of additional information about the patients (e.g. age, sex, economic status). This could be easily done, making use of more advanced models such as the Cox Proportional Hazard Model. This approach has in fact been taken in different research publications such as "Risk factors for severity and mortality in adult COVID-19 inpatients in Wuhan" \cite{surv1} and "Survival Analysis of COVID-19 on Democracy with Cox Proportional Hazards Model" \cite{surv2}, so that to test new approaches to reduce the mortality rate of COVID-19. 

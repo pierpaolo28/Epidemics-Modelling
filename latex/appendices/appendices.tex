@@ -96,7 +96,7 @@ Where the Mean Absolute Error (MAE) and F1 score can be defined as:
 \end{align}
 \useshortskip
 
-The result from the evaluation metric can then be normalised by comparing it with the results from the naive predictor. In the case of the F1 Score, 1 is going to be considered our upper limit and the naive predictor score as our lower limit.
+The result from the evaluation metric can then be normalised by comparing it with the results from the naive predictor. In the case of the F1 Score, one is going to be considered our upper limit and the naive predictor score as our lower limit.
 
 \useshortskip
 \begin{align}
@@ -140,7 +140,7 @@ For a logistic curve at the turning point:
 
 \useshortskip
 \begin{align}
-\ Slope = Growth Factor/2 \Rightarrow\quad Doubling Time (DT) = \dfrac{ln(2)}{Growth Factor/2}
+\ Slope = Growth\:Factor/2 \Rightarrow\quad Doubling\:Time\:(DT) = \dfrac{ln(2)}{Growth \:Factor/2}
 \end{align}
 \useshortskip
 
@@ -148,7 +148,7 @@ Instead, for an exponential curve:
 
 \useshortskip
 \begin{align}
-\ Slope = Growth Factor \Rightarrow\quad Doubling Time (DT) = \dfrac{ln(2)}{Growth Factor}
+\ Slope = Growth\:Factor \Rightarrow\quad Doubling\:Time\:(DT) = \dfrac{ln(2)}{Growth\:Factor}
 \end{align}
 \useshortskip
 
@@ -166,9 +166,7 @@ A worked out example with the results from the top three countries with the most
 \section{Project Demonstration}
 \label{dem}
 
-Two of the main functionalities of the created secondary GitHub pages website are a Reveal.js online presentation of the whole project and a D3.js scroller page created for interactively presenting and explaining different concepts of this research project.
-
-In Figure \ref{revealjs_ex}, there is available an example of part of the created Reveal.js presentation.
+Two of the main functionalities of the created secondary GitHub pages website are a Reveal.js online presentation of the whole project and a D3.js scroller page created for interactively presenting and explaining different concepts of this research project. In Figure \ref{revealjs_ex}, there is available an example of part of the created Reveal.js presentation.
 
 \begin{figure}[ht!]%
     \centering
@@ -188,7 +186,7 @@ In Figure \ref{d3js_ex}, there is instead shown the first section of the created
     \label{d3js_ex}
 \end{figure}
 
-
+\newpage
 \section{Compartmental Models Causal Diagrams}
 \label{causal_comp}
 
@@ -204,7 +202,7 @@ The SIR and SEIR models can be described as shown in Figure \ref{cd11} using a c
     \label{cd11}
 \end{figure}
 
-The SEIR model including also a deaths compartment can instead be described by a chain followed by a fork junction. Finally, models including time-limited immunity can be created my introducing a possibility for cycles in the graph.
+The SEIR model including also a deaths compartment can instead be described by a chain followed by a fork junction. Finally, models including time-limited immunity can be created by introducing a possibility for cycles in the graph.
 
 \begin{figure}[ht!]%
     \centering
@@ -282,7 +280,9 @@ Making use of the data from the United States ClinicalTrials.gov website, it has
 
 As outlined in Section \ref{testing}, clinical trials are one of the main examples of A/B testing application. Gathering results from an A/B test, we can then be able to infer causal relationships about what can be the potential effects of a treatment \cite{power}.
 
-In this setting, the Causal question we are asking ourselves is: Does a certain treatment decrease COVID-19 mortality rate? This question can then be formulated in statistical terms as a \textbf{null and alternative hypothesis}. In the null hypothesis, applying the treatment would not lead to any major change in the mortality rate and therefore both the treatment and control groups will be quite similar. Instead, in the alternative hypothesis, the treatment would cause a statistically significant change between the two groups. In our case, patients affected by COVID-19 would be considered as our population and our intervention (providing experimental medical treatment), would then be compared to no intervention. Variation in mortality rate could then be used as our metrics to asses the results. Patients should then be randomly assigned to either groups so that to avoid introduction of any form of bias (e.g. patients age, comorbidities, geographical location). If bias is unconsciously introduced, then this could lead to some form of \textbf{confounding bias}, which would then make it really difficult to disentangle what are effects due to the intervention and which ones are instead caused by a flaw in the randomization process. 
+In this setting, the Causal question we are asking ourselves is: Does a certain treatment decrease COVID-19 mortality rate? This question can then be formulated in statistical terms as a \textbf{null and alternative hypothesis}. In the null hypothesis, applying the treatment would not lead to any major change in the mortality rate and therefore both the treatment and control groups will be quite similar. Instead, in the alternative hypothesis, the treatment would cause a statistically significant change between the two groups. 
+
+In our case, patients affected by COVID-19 would be considered as our population and our intervention (providing experimental medical treatment), would then be compared to no intervention. Variation in mortality rate could then be used as our metrics to asses the results. Patients should then be randomly assigned to either groups so that to avoid introduction of any form of bias (e.g. patients age, comorbidities, geographical location). If bias is unconsciously introduced, then this could lead to some form of \textbf{confounding bias}, which would then make it really difficult to disentangle what are effects due to the intervention and which ones are instead caused by a flaw in the randomization process. 
 
 Following on with our example, the number of times an intervention leads to a substantial difference compared to the control group can then be summarised over a number of trials as a Binomial Distribution. In this distribution, the X axis will represent the count of possible outcomes, while the Y axis will represent the probability associated with an outcome. Although, according to the Central Limit Theorem, as we would increase our sample size, we would then end up with a Gaussian Distribution for each group in the experiment. 
 

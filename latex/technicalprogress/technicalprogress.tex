@@ -589,7 +589,7 @@ Finally, it is calculated an automatic estimation of the parameters of the Advan
 
 \section{Agent Based Models}
 \label{agent_smith}
-An alternative approach which can be used in order to simulate compartmental-like models is by creating an Agent Based simulation. In this case, each single individual in the population is created following an Objected Oriented Programming approach (e.g. using a programming class) and it's behaviour in an environment while in contact with the rest of the population is simulated. Using this type of approach can therefore enable us to keep track of the position of the different individuals in a population and attribute them different characteristics such as an age or daily income. Similar results could be obtained using standard compartmental models by converting our Ordinary Differential Equations into Partial Differential Equations and making them dependent on both time and space \cite{pde}.
+An alternative approach which can be used in order to simulate compartmental-like models is by creating an Agent Based simulation. In this case, each single individual in the population is created following an Object Oriented Programming approach (e.g. using a programming class) and it's behaviour in an environment while in contact with the rest of the population is simulated. Using this type of approach can therefore enable us to keep track of the position of the different individuals in a population and attribute them different characteristics such as an age or daily income. Similar results could be obtained using standard compartmental models by converting our Ordinary Differential Equations into Partial Differential Equations and making them dependent on both time and space \cite{pde}.
 
 The proposed Agent Based Model, is directly inspired from The Epidemiological Triad paradigm (Figure \ref{triad}).
 
@@ -763,11 +763,11 @@ These included:
     \setlength\itemsep{-0.3cm}
     \item Record of the number of cases/recovered/deaths in the world up to date.
     \item Interactive world view of how the number of cases are spread around the word.
-    \item Charts displaying what are today's top 10 countries for number of cases and deaths and how their numbers changed in the last 24 hours.
+    \item Charts displaying what are today's top 10 countries for number of cases/deaths and how their numbers changed in the last 24 hours.
     \item Interactive animations displaying how Coronavirus spread across different countries over time.
 \end{itemize}
 
-The data used in order to create these charts was provided by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University \cite{world_data} and automatically updated every 24hrs.
+The data used in order to create these charts was provided by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University \cite{world_data} and automatically updated every 24 hours.
 
 \subsection{Live World News and Sentiment Analysis}
 
@@ -802,8 +802,9 @@ Finally, there has been designed a section to get some feedback from the web app
     \caption{Real Time A/B Testing}
     \label{liveab}
 \end{figure}
-
+\vspace{-0.2cm}
 Once logged the responses from the users, a series of summary statistics are automatically generated:
+\vspace{-0.4cm}
 \begin{itemize}
     \setlength\itemsep{-0.3cm}
     \item Binomial distributions of the two examined groups.
@@ -811,7 +812,7 @@ Once logged the responses from the users, a series of summary statistics are aut
     \item Relative Uplift (Equation \ref{uplift}).
     \item Z Score.
     \item P Value. 
-    \item Making use of the calculated metrics, a Boolean value representing if the experiment results can be considered statistically relevant or not if is then generated.
+    \item Making use of the calculated metrics, is then generated a Boolean value representing if the experiment results can be considered statistically relevant or not.
 \end{itemize}
 
 \useshortskip
@@ -835,7 +836,7 @@ In order to validate this A/B testing tool, it has been tested against different
 Additional background information about A/B Testing and it's application in COVID-19 clinical trials, can be found in Appendix \ref{ab_trials}.
 
 \section{Remarks}
-The different Compartmental and Agent Based Models proposed in this chapter aimed to provide an interactive tool in order to simulate how viruses can spread in a community and what can be done in order to try to control the rate of transmission (using COVID-19 as practical case study). Although, these models can only be considered to be an approximation of the real world dynamics and might therefore not be able to capture all the key aspects related to a disease. As Scott Ambler \cite{scott} said: \say{The primary purpose of modelling is to provide an opportunity to think before you act}.
+The different Compartmental and Agent Based Models proposed in this chapter aimed to provide an interactive tool in order to simulate how viruses can spread in a community and what can be done in order to try to control the rate of transmission (using COVID-19 as a practical case study). Although, these models can only be considered to be an approximation of the real world dynamics and might therefore not be able to capture all the key aspects related to a disease. As Scott Ambler \cite{scott} said: \say{The primary purpose of modelling is to provide an opportunity to think before you act}.
 
 Some examples of limitations in the proposed models are \cite{sri_ex}:
 
