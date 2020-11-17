@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import torch
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
@@ -16,8 +15,8 @@ def write():
         st.markdown('## Time Limited Immunity SIR')
         st.markdown(
             '''
-            Updating our SIR model, we can be able to take into account the possibility that individuals might 
-            not gain lifetime immunity from a disease when recovering from it, but that might instead be re-infected 
+            Updating our SIR model, we can be able to take into account the possibility that individuals might
+            not gain lifetime immunity from a disease when recovering from it, but that might instead be re-infected
             again in the future after some time. The amount of time an individual might be immune from a disease can
             be represented by just adding a new variable to our model ($v$).
             '''
@@ -61,9 +60,9 @@ def write():
         st.markdown('## Time Limited Immunity and Vaccination SIR')
         st.markdown(
             '''
-            Extending our set of equations (adding an extra stage $\\frac{\partial V}{\partial t}$), we can be able to take into account how an epidemic will evolve once a vaccine is available. 
+            Extending our set of equations (adding an extra stage $\\frac{\partial V}{\partial t}$), we can be able to take into account how an epidemic will evolve once a vaccine is available.
             In order to apply these modifications, we just need to update $\\frac{\partial S}{\partial t}$ and add the vaccination stage before just after it.
-            To make the simulation more realistic, we can then also specify from when in time a vaccine could start being distributed and how fast it can produced and shipped ($p$). 
+            To make the simulation more realistic, we can then also specify from when in time a vaccine could start being distributed and how fast it can produced and shipped ($p$).
             Finally, a stage used to record the possible amount of deaths is included (using the same notation for the SEIR and Advanced SEIR models).
             '''
         )

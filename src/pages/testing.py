@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import torch
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
@@ -17,9 +16,9 @@ def write():
         st.markdown('## Live Feedback A/B Testing')
         st.markdown(
             '''
-            In this research study two different type of models have been examined: Agent Based Modelling and Compartmental Modelling. Compartmental Modelling 
-            represents the most traditional way (and gold standard) to model epidemical developments (Control Group), while Agent Based Modelling offers an alternative view to how to approach this 
-            type of problem (Treatment Group). 
+            In this research study two different type of models have been examined: Agent Based Modelling and Compartmental Modelling. Compartmental Modelling
+            represents the most traditional way (and gold standard) to model epidemical developments (Control Group), while Agent Based Modelling offers an alternative view to how to approach this
+            type of problem (Treatment Group).
             - **Compartmental Modelling:** SIR and SEIR Modelling, Advanced SEIR Modelling, Vaccination Modelling, Coronavirus Modelling.
             - **Agent Based Modelling:** Population Modelling, Track and Trace, Central Hubs, Finance Simulation.
 
