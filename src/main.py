@@ -1,7 +1,7 @@
 import streamlit as st
 import pages.home
 import pages.world_view
-import pages.news
+# import pages.news
 import pages.credits
 import pages.modelling
 import pages.population
@@ -15,10 +15,12 @@ import pages.vaccination
 import pages.testing
 from support.utilities import world_map, world_plot, stats
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 PAGES = {
     "Home": pages.home,
     "World View": pages.world_view,
-    "World News": pages.news,
+    # "World News": pages.news,
     "Disease growth": pages.growth,
     "Population Modelling": pages.population,
     "Track and Trace": pages.tracing,
@@ -55,8 +57,8 @@ def main():
         pages.home.write()
     elif selection == "World View":
         pages.world_view.write()
-    elif selection == "World News":
-        pages.news.write()
+    # elif selection == "World News":
+    #     pages.news.write()
     elif selection == "Disease growth":
         pages.growth.write()
     elif selection == "Track and Trace":
